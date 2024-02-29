@@ -8,7 +8,7 @@ CXX = c++
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-OBJS = $(SOURCES:%.cpp = %.o)
+OBJS := $(SOURCES:%.cpp=%.o)
 
 %.o : %.cpp
 	$(CXX) $(CPPFLAGS) -c $< -o $@
