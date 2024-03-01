@@ -117,11 +117,22 @@ std::string Contact::truncate_string(std::string str)
 
 void Contact::print_contact(int index)
 {
+	std::setfill(' ');
 	std::cout << "|" << std::setw(10) << std::setfill(' ')<< index; 
 	std::cout << "|" << std::setw(10) << std::setfill(' ')<< truncate_string(first_name);
 	std::cout << "|" << std::setw(10) << std::setfill(' ')<< truncate_string(last_name); 
 	std::cout << "|" << std::setw(10) << std::setfill(' ')<< truncate_string(nickname) << "|" << std::endl;
 	std::cout << std::setw(45) << std::setfill('-') << "-" <<std::endl;
+}
+
+void Contact::print_full_contact(void)
+{
+	std::cout << std::setfill(' ');
+	std::cout << std::setw(20) <<"First Name: " << first_name << std::endl;
+	std::cout << std::setw(20) <<"Last Name: " << first_name << std::endl;
+	std::cout << std::setw(20) <<"Nickname: " << first_name << std::endl;
+	std::cout << std::setw(20) <<"Phone number: " << first_name << std::endl;
+	std::cout << std::setw(20) <<"Darkest secret: " << darkest_secret << std::endl;
 }
 
 void PhoneBook::add(Contact contact_name)
@@ -146,13 +157,37 @@ void PhoneBook::print_header()
 	// std::cout << "|index|first name|last name|nickname|" <<std::endl;
 	// std::cout << "-------------------------------------" <<std::endl;
 }
+
+bool PhoneBook::valid_index(int& index)
+{
+	std::cout << "Enter the index of entry to display: ";
+	std::cin >> index;
+	if(std::cin.fail() == true || index == -1)
+		return (false);
+	if(number_of_contacts == 0)
+	{
+		std::cerr << "There are no contacts in book at all" << std::endl;
+		return (false);
+	}
+	if(index < 0 || index >= number_of_contacts)
+	{
+		std::cerr << "Index is out of range or wrong"<< std::endl;
+		return (false);
+	}
+	return(true);
+
+}
 void PhoneBook::search()
 {
+	int index(-1);
 	print_header();
 	for(int i = 0; i < number_of_contacts; i++)
 	{
 		book[i].print_contact(i);
 	}
+	if(valid_index(index) == false)
+		return ;
+	book[index].print_full_contact();
 }
 
 bool get_input(std::string& input)

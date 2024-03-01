@@ -21,6 +21,7 @@ class Contact
 	public :
 		bool create_contact(void);
 		void print_contact(int index);
+		void print_full_contact(void);
 };
 
 class PhoneBook
@@ -28,6 +29,7 @@ class PhoneBook
 	private:
 		Contact book[8];
 		void print_header(void);
+		bool valid_index(int &index);
 	public:
 		int number_of_contacts;
 		int index;
