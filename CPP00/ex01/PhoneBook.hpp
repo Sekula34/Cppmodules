@@ -2,6 +2,7 @@
 # define PHONEBOOK
 #include<string>
 #include<iostream>
+#include<cctype>
 
 class Contact
 {
@@ -11,7 +12,10 @@ class Contact
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
+		bool check_phone_digit(char c);
+		bool check_phone_number();
 		bool set_name(std::string &name, std::string name_msg);
+		bool set_phone_number();
 	public :
 		bool create_contact(void);
 };

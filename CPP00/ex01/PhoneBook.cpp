@@ -22,20 +22,81 @@ bool Contact::set_name(std::string &name, std::string name_msg)
 {
 	do
 	{
-		std:: cout << "Enter your " << name_msg << ": "; 
+		std::cout << "Enter your " << name_msg << ": "; 
 		std::getline(std::cin, name);
 		if (std::cin.fail() == true)
 		{
 			std::cerr << "Cin failed" << std::endl;
+			return (false);
 		}
 	} while (name.empty() == true);
-	
-	
+	return(true);
+}
+
+//return true if phone digit is plus minus paranthesis or space
+//return false if it is not
+bool Contact::check_phone_digit(char c)
+{
+	const char valid[] = {'+', '-', ' ', '(', ')'};
+
+	for(unsigned long i = 0; i < 5; i++)
+	{
+		if (c == valid[i])
+			return (true);
+	}
+	if(std::isdigit(c) != 0)
+		return (true);
+	return (false);
+}
+
+bool Contact::set_phone_number()
+{
+	do
+	{
+		std::cout <<"Enter your phone number: ";
+		std::getline(std::cin, phone_number);
+		if (std::cin.fail() == true)
+		{
+			std::cerr << "Cin failed" << std::endl;
+			return (false);
+		}
+	}while(check_phone_number() == false);
+	return (true);
+}
+
+//return false if phone numebr is not number or + () space
+//return true if ok
+bool Contact::check_phone_number()
+{
+	if (phone_number.empty() == true)
+	{
+		std::cerr<< "Phone number is empty." << std::endl;
+		return (false);
+	}
+	for (unsigned long i = 0; i < phone_number.size(); i++)
+	{
+		if(check_phone_digit(phone_number[i]) == false)
+		{
+			std::cerr<< "Invalid phone number" << std::endl;
+			return (false);
+		}
+	}
+	return (true);
 }
 
 bool Contact::create_contact()
 {
-
+	if(set_name(this->first_name, "first name") == false)
+		return (false);
+	if(set_name(this->last_name, "last name") == false)
+		return (false);
+	if(set_name(this->nickname, "nickname") == false)
+		return (false);
+	if(set_phone_number() == false)
+		return (false);
+	if(set_name(this->darkest_secret, "darkest_secret") == false)
+		return (false);
+	return (true);
 }
 
 bool get_input(std::string& input)
@@ -46,9 +107,9 @@ bool get_input(std::string& input)
 	if(std::cin.fail() == true)
 	{
 		std::cerr << "Cin failed" << std::endl;
-		return false;
+		return (false);
 	}
-	return true ;
+	return (true);
 }
 
 int main()
@@ -56,8 +117,9 @@ int main()
 	std::string first_message ("Program started!\nPhone book is empty");
 	std::string input;
 	PhoneBook my_contacts;
+	Contact filip;
 
-	std::cout<< first_message << std::endl; 
+	std::cout << first_message << std::endl; 
 	while(1)
 	{
 		if(get_input(input) == false)
@@ -69,6 +131,7 @@ int main()
 		}
 		if(input == "ADD")
 		{
+			filip.create_contact();
 			//my_contacts.add();
 
 		}
