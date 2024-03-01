@@ -18,6 +18,26 @@ bool input_checker(std::string input)
 	return (false);
 }
 
+bool Contact::set_name(std::string &name, std::string name_msg)
+{
+	do
+	{
+		std:: cout << "Enter your " << name_msg << ": "; 
+		std::getline(std::cin, name);
+		if (std::cin.fail() == true)
+		{
+			std::cerr << "Cin failed" << std::endl;
+		}
+	} while (name.empty() == true);
+	
+	
+}
+
+bool Contact::create_contact()
+{
+
+}
+
 bool get_input(std::string& input)
 {
 	std::string prompt_message ("Enter one of the following: \n\tADD\n\tSEARCH \n\tEXIT");

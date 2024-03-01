@@ -11,8 +11,9 @@ class Contact
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
+		bool set_name(std::string &name, std::string name_msg);
 	public :
-		void create_contact(void);
+		bool create_contact(void);
 };
 
 class PhoneBook
