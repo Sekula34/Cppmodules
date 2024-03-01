@@ -3,10 +3,11 @@
 #include<string>
 #include<iostream>
 #include<cctype>
+#include<iomanip>
 
 class Contact
 {
-	private:
+	public:
 		std::string first_name;
 		std::string last_name;
 		std::string nickname;
@@ -24,8 +25,9 @@ class PhoneBook
 {
 	private:
 		Contact book[8];
-		static int index;
+		void print_header(void);
 	public:
+		int index;
 		void add(Contact new_contact);
 		void search(void);
 };

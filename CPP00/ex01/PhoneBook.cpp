@@ -99,10 +99,40 @@ bool Contact::create_contact()
 	return (true);
 }
 
+void PhoneBook::add(Contact contact_name)
+{
+	book[index] = contact_name;
+	index ++;
+	if(index > 7)
+		index = 0;
+}
+
+void PhoneBook::print_header()
+{
+	std::cout << std::endl;
+	std::cout << std::setw(45) << std::setfill('-') << "-" <<std::endl;
+	std::cout << std::setfill(' ');
+	std::cout << "|" <<std::setw(10); std::cout << "index" << "|";
+	std::cout << std::setw(10) << "first name" << "|"; 
+	std::cout << std::setw(10) << "last name" << "|";
+ 	std::cout << std::setw(10) << "nickname" << "|" <<std::endl;
+	std::cout << std::setw(45) << std::setfill('-') << "-" <<std::endl;
+	// std::cout << "|index|first name|last name|nickname|" <<std::endl;
+	// std::cout << "-------------------------------------" <<std::endl;
+}
+void PhoneBook::search()
+{
+	print_header();
+	// for(int i = 0; i < 8; i++)
+	// {
+	// 	std::cout <<book[i].first_name << std::endl;
+	// }
+}
+
 bool get_input(std::string& input)
 {
-	std::string prompt_message ("Enter one of the following: \n\tADD\n\tSEARCH \n\tEXIT");
-	std::cout << prompt_message << std::endl;
+	std::string prompt_message ("Enter one of the following: \n\tADD\n\tSEARCH \n\tEXIT \nInput: ");
+	std::cout << prompt_message;
 	std::getline(std::cin, input);
 	if(std::cin.fail() == true)
 	{
@@ -117,11 +147,11 @@ int main()
 	std::string first_message ("Program started!\nPhone book is empty");
 	std::string input;
 	PhoneBook my_contacts;
-	Contact filip;
-
+	my_contacts.index = 0;
 	std::cout << first_message << std::endl; 
 	while(1)
 	{
+		Contact filip;
 		if(get_input(input) == false)
 			return 1;
 		if (input_checker(input) == false)
@@ -132,16 +162,18 @@ int main()
 		if(input == "ADD")
 		{
 			filip.create_contact();
+			my_contacts.add(filip);
 			//my_contacts.add();
 
 		}
 		if(input == "SEARCH")
 		{
-			//my_contacts.search
+			my_contacts.search();
 
 		}
 
 	}
+
 	return (0);
 
 }
