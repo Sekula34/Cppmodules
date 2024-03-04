@@ -160,10 +160,17 @@ void PhoneBook::print_header()
 
 bool PhoneBook::valid_index(int& index)
 {
+	std::string index_str;
 	std::cout << "Enter the index of entry to display: ";
-	std::cin >> index;
-	if(std::cin.fail() == true || index == -1)
+	std::getline(std::cin, index_str);
+	if(std::cin.fail() == true)
 		return (false);
+	std::istringstream integer_stream(index_str);
+	if (!(integer_stream >> index))
+	{
+		std::cerr << "Invalid input" << std::endl;
+		return (false);
+	}
 	if(number_of_contacts == 0)
 	{
 		std::cerr << "There are no contacts in book at all" << std::endl;
@@ -218,7 +225,6 @@ int main()
 			return 1;
 		if (input_checker(input) == false)
 		{
-			input.erase();
 			continue;
 		}
 		if(input == "ADD")
@@ -233,6 +239,7 @@ int main()
 			my_contacts.search();
 
 		}
+		std::cout << std::endl;
 
 	}
 
