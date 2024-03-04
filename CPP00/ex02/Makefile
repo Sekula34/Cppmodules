@@ -1,8 +1,9 @@
-NAME = 
+NAME = bank
 
-SOURCES =
+SOURCES = tests.cpp \
+	Account.cpp
 
-HEADERS = 
+HEADERS = Account.hpp
 
 CXX = c++
 
