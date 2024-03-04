@@ -71,6 +71,7 @@ void Account::makeDeposit(int deposit)
 {
 
 	_amount += deposit;
+	_totalAmount += deposit;
 	_totalNbDeposits ++;
 	_nbDeposits ++;
 
@@ -97,10 +98,12 @@ bool Account::makeWithdrawal(int withdrawal)
 		_amount -= withdrawal;
 		_nbWithdrawals ++;
 		_totalAmount -= withdrawal;
+		_totalNbWithdrawals ++;
 		_displayTimestamp();
 		std::cout << "index:" << _accountIndex << ";";
 		std::cout << "p_amount:" << _amount + withdrawal << ";";
 		std::cout << "withdrawal:" << withdrawal << ";";
+		std::cout << "amount:" << _amount << ";";
 		std::cout << "nb_withdrawals:" << _nbWithdrawals << std::endl;
 	}
 	return (true);
@@ -129,6 +132,5 @@ void Account::_displayTimestamp(void)
 	char buffer[16];
 	std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", time_pointer);
 
-	//std::cout << "["<< buffer <<"] ";
-	std::cout << "[19920104_091532] ";
+	std::cout << "["<< buffer <<"] ";
 }
