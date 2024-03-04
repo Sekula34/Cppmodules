@@ -56,3 +56,15 @@ void Account::displayAccountsInfos(void)
 	std::cout << "deposits:" << deposits <<";";
 	std::cout << "withdrawals:" << withdrawals << std::endl;
 }
+
+void Account::makeDeposit(int deposit)
+{
+	_amount += deposit;
+	_totalNbDeposits ++;
+	_nbDeposits ++;
+}
+
+bool Account::makeWithdrawal(int withdrawal)
+{
+
+}
