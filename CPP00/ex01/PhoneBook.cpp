@@ -224,25 +224,17 @@ int main()
 		if(get_input(input) == false)
 			return 1;
 		if (input_checker(input) == false)
-		{
 			continue;
-		}
 		if(input == "ADD")
 		{
 			filip.create_contact();
 			my_contacts.add(filip);
-			//my_contacts.add();
-
 		}
 		if(input == "SEARCH")
-		{
 			my_contacts.search();
-
-		}
+		if(input == "EXIT")
+			break;
 		std::cout << std::endl;
-
 	}
-
 	return (0);
-
 }
