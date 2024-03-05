@@ -1,4 +1,4 @@
-NAME = zombaci
+NAME = BraiiiiiiinnnzzzZ
 
 SOURCES = main.cpp \
 	Zombie.cpp \

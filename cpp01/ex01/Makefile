@@ -1,4 +1,4 @@
-NAME = ZombieHorde
+NAME = Moar_brainz!
 
 SOURCES = main.cpp \
 	Zombie.cpp \
