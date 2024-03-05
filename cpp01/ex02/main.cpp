@@ -3,7 +3,7 @@
 
 int main()
 {
-	std::string variable("HI THIS IS variable");
+	std::string variable("HI THIS IS BRAIN");
 	std::string* stringPTR(&variable);
 	std::string& stringREF(variable);
 	
