@@ -129,9 +129,9 @@ void Contact::print_full_contact(void)
 {
 	std::cout << std::setfill(' ');
 	std::cout << std::setw(20) <<"First Name: " << first_name << std::endl;
-	std::cout << std::setw(20) <<"Last Name: " << first_name << std::endl;
-	std::cout << std::setw(20) <<"Nickname: " << first_name << std::endl;
-	std::cout << std::setw(20) <<"Phone number: " << first_name << std::endl;
+	std::cout << std::setw(20) <<"Last Name: " << last_name << std::endl;
+	std::cout << std::setw(20) <<"Nickname: " << nickname << std::endl;
+	std::cout << std::setw(20) <<"Phone number: " << phone_number << std::endl;
 	std::cout << std::setw(20) <<"Darkest secret: " << darkest_secret << std::endl;
 }
 
