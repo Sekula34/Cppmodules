@@ -1,4 +1,4 @@
-NAME = updateFile
+NAME = sed_is_for_losers
 
 SOURCES = FileReplacer.cpp \
 	main.cpp
