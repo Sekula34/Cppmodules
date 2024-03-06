@@ -16,8 +16,6 @@ class FileReplacer
 		FileReplacer(std::string fileName, std::string oldString, std::string newString);
 		void printFileContent();
 		bool createNewFile();
-		
-		
 };
 
 #endif
