@@ -17,11 +17,11 @@ int main()
 {
 	std::string line;
 	std::fstream file("primjertidajem",std::ios::in);
-	FileReplacer myFile("primjertidajem", "makniiii", "0");
+	FileReplacer myFile("primjertidajem", "ovo", "ma nemoj");
 	
-	myFile.printFileContent();
+	//myFile.printFileContent();
 	myFile.createNewFile();
 	std::cout << "done " << std::endl;
-	std::cout << myFile._updatedLine("hmakniiii123") << std::endl;
+	//std::cout << myFile._updatedLine("hmakniiii123") << std::endl;
 	return (0);
 }

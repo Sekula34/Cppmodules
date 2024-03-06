@@ -11,11 +11,11 @@ class FileReplacer
 		std::string _fileName;
 		std::string _stringToReplace;
 		std::string _newString;
+		std::string _updatedLine(std::string line);
 	public :
 		FileReplacer(std::string fileName, std::string oldString, std::string newString);
 		void printFileContent();
 		bool createNewFile();
-		std::string _updatedLine(std::string line);
 		
 		
 };
