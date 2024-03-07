@@ -15,6 +15,11 @@ int main(int argc, char **argv)
 	}
 	std::string fileName(argv[1]);
 	std::string oldString(argv[2]);
+	if(oldString.empty() == true)
+	{
+		std::cerr <<"old string cannot be empty" << std::endl;
+		return (1);
+	}
 	std::string newString(argv[3]);
 	FileReplacer myFile(fileName, oldString, newString);
 	if(myFile.createNewFile() != true)
