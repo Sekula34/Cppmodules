@@ -24,43 +24,18 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-	enum levels{DEBUG = 1, INFO, WARNING, ERROR};
-	void (Harl::*funcPtr)(void) = NULL;
-	std::istringstream iss(level);
-	int intLevel;
-	iss >> intLevel;
-	if (iss.fail())
-	{
-		std::cerr << "Conversion failed." << std::endl;
+	if(level.empty() == true)
 		return ;
-	}
-	switch (intLevel)
+	const std::string validOption[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	void (Harl::*funcPtrArray[4])(void);
+	funcPtrArray[0] = &Harl::debug;
+	funcPtrArray[1] = &Harl::info;
+	funcPtrArray[2] = &Harl::warning;
+	funcPtrArray[3] = &Harl::error;
+	for(int i = 0; i < 4; i++)
 	{
-		case DEBUG:
-		{
-			funcPtr = &Harl::debug;
-			break;
-		}
-		case INFO:
-		{
-			funcPtr = &Harl::info;
-			break;
-		}
-		case WARNING:
-		{
-			funcPtr = &Harl::warning;
-			break;
-		}
-		case ERROR:
-		{
-			funcPtr = &Harl::error;
-			break;
-		}
-		default:
-		{
-			std::cerr <<"ERROR THIS IS KAREN LEVEL. Harl support only DEBUG, INFO, WARNING, ERROR" << std::endl;
-			return ;
-		}
+		if(level == validOption[i])
+			(this->*(funcPtrArray[i]))();
 	}
-	(this->*funcPtr)();
+	return ;
 }

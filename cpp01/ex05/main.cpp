@@ -3,10 +3,10 @@
 void printMenu(void)
 {
 	std::cout << "Enter the level of complain: "<< std::endl;
-	std::cout << "\t 1 -Debug" << std::endl;
-	std::cout << "\t 2 -Info" << std::endl;
-	std::cout << "\t 3 -Warning" << std::endl;
-	std::cout << "\t 4 -Error" << std::endl;
+	std::cout << "\tDEBUG" << std::endl;
+	std::cout << "\tINFO" << std::endl;
+	std::cout << "\tWARNING" << std::endl;
+	std::cout << "\tERROR" << std::endl;
 }
 
 int main()
