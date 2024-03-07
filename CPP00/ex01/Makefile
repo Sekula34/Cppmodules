@@ -1,8 +1,11 @@
 NAME = phone
 
-SOURCES = PhoneBook.cpp
+SOURCES = PhoneBook.cpp \
+	Contact.cpp \
+	main.cpp
 
-HEADERS = PhoneBook.hpp
+HEADERS = PhoneBook.hpp \
+	Contact.hpp
 
 CXX = c++
 
