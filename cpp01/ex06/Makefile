@@ -1,4 +1,4 @@
-NAME = harl_filter
+NAME = harlFilter
 
 SOURCES = Harl.cpp \
 	main.cpp
