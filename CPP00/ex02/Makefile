@@ -11,7 +11,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g -pedantic
 
 OBJS := $(SOURCES:%.cpp=%.o)
 
-%.o : %.cpp
+%.o : %.cpp $(HEADERS)
 	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) $(HEADERS)
