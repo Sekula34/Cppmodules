@@ -3,7 +3,7 @@
 FileReplacer::FileReplacer(std::string FileName,std::string oldString, std::string newString) : _fileName(FileName), _stringToReplace(oldString), _newString(newString)
 {
 	if(_stringToReplace.empty() == true)
-		_stringToReplace = " ";
+		throw std::runtime_error("string to replace cannot be empty");
 		
 }
 
@@ -41,7 +41,12 @@ bool FileReplacer::createNewFile()
 		std::cerr << "Cannot open/create file \"" << newFileName << "\"" << std::endl;
 		return false;
 	}
-	std::string fullFileString((std::istreambuf_iterator<char>(originalFile)), std::istreambuf_iterator<char>());
+	std::string fullFileString;
+	char ch;
+	while(originalFile.get(ch))
+	{
+		fullFileString += ch;
+	}
 	fileReplace << _updatedLine(fullFileString);
 	originalFile.close();
 	fileReplace.close();

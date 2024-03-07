@@ -4,11 +4,19 @@
 #include "FileReplacer.hpp"
 
 
-int main()
+int main(int argc, char **argv)
 {
-	std::string line;
-	FileReplacer myFile("filename", "re", "nemoj");
-	
+
+	if(argc != 4)
+	{
+		std::cerr << "Program takes three parameters in the following order: ";
+		std::cerr << "a filename and two strings s1 and s2" << std::endl;
+		return (1);
+	}
+	std::string fileName(argv[1]);
+	std::string oldString(argv[2]);
+	std::string newString(argv[3]);
+	FileReplacer myFile(fileName, oldString, newString);
 	if(myFile.createNewFile() != true)
 		return (1);
 	std::cout << "done " << std::endl;
