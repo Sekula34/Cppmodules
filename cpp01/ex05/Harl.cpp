@@ -3,7 +3,6 @@
 void Harl::debug(void)
 {
 	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!" << std::endl;
-
 }
 
 void Harl::info(void)
@@ -25,40 +24,41 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
+	enum levels{DEBUG = 1, INFO, WARNING, ERROR};
 	void (Harl::*funcPtr)(void) = NULL;
 	std::istringstream iss(level);
 	int intLevel;
 	iss >> intLevel;
-	if(iss.fail() == true)
+	if (iss.fail())
 	{
-		std::cerr << "Conversion from string to int failed "<< std::endl;
+		std::cerr << "Conversion failed." << std::endl;
 		return ;
 	}
 	switch (intLevel)
 	{
-		case 1:
+		case DEBUG:
 		{
 			funcPtr = &Harl::debug;
 			break;
 		}
-		case 2:
+		case INFO:
 		{
 			funcPtr = &Harl::info;
 			break;
 		}
-		case 3:
+		case WARNING:
 		{
 			funcPtr = &Harl::warning;
 			break;
 		}
-		case 4:
+		case ERROR:
 		{
 			funcPtr = &Harl::error;
 			break;
 		}
 		default:
 		{
-			std::cerr <<"ERROR THIS IS KAREN LEVEL. Harl support only 1, 2, 3 and 4" << std::endl;
+			std::cerr <<"ERROR THIS IS KAREN LEVEL. Harl support only DEBUG, INFO, WARNING, ERROR" << std::endl;
 			return ;
 		}
 	}
