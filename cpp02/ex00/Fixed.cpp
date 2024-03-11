@@ -34,3 +34,5 @@ void Fixed::setRawBits(int const raw)
 {
 	_fixedPointNumValue = raw;
 }
+
+const int Fixed::_numberOfFractionalBits = 8;
