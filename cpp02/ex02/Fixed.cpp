@@ -121,13 +121,13 @@ int Fixed::toInt(void) const
 	return(result);
 }
 
-std::ostream& operator<< (std::ostream& out, const Fixed &myObject)
+std::ostream& operator<< (std::ostream& out, const Fixed &myObject) 
 {
 	out << myObject.toFloat();
 	return(out);
 }
 
-bool Fixed::operator> (const Fixed& num2)
+bool Fixed::operator> (const Fixed& num2) const
 {
 	if(this->_fixedPointNumValue > num2._fixedPointNumValue)
 		return (true);
@@ -135,7 +135,7 @@ bool Fixed::operator> (const Fixed& num2)
 		return(false);
 }
 
-bool Fixed::operator< (const Fixed& num2)
+bool Fixed::operator< (const Fixed& num2) const
 {
 	if(this->_fixedPointNumValue < num2._fixedPointNumValue)
 		return (true);
@@ -143,7 +143,7 @@ bool Fixed::operator< (const Fixed& num2)
 		return (false);
 }
 
-bool Fixed::operator>=(const Fixed& num2)
+bool Fixed::operator>=(const Fixed& num2) const
 {
 	if(this->_fixedPointNumValue >= num2._fixedPointNumValue)
 		return (true);
@@ -151,7 +151,7 @@ bool Fixed::operator>=(const Fixed& num2)
 		return (false);
 }
 
-bool Fixed::operator<=(const Fixed& num2)
+bool Fixed::operator<=(const Fixed& num2) const
 {
 	if(this->_fixedPointNumValue <= num2._fixedPointNumValue)
 		return (true);
@@ -159,7 +159,7 @@ bool Fixed::operator<=(const Fixed& num2)
 		return (false);
 }
 
-bool Fixed::operator==(const Fixed& num2)
+bool Fixed::operator==(const Fixed& num2) const
 {
 	if(this->_fixedPointNumValue == num2._fixedPointNumValue)
 		return (true);
@@ -167,7 +167,7 @@ bool Fixed::operator==(const Fixed& num2)
 		return (false);
 }
 
-bool Fixed::operator!=(const Fixed& num2)
+bool Fixed::operator!=(const Fixed& num2) const
 {
 	if(this->_fixedPointNumValue != num2._fixedPointNumValue)
 		return (true);
@@ -237,7 +237,7 @@ Fixed& Fixed::operator--()
 	return(*this);
 }
 
-Fixed& Fixed::min(Fixed &num1, Fixed &num2)
+Fixed& Fixed::min(Fixed& num1, Fixed& num2)
 {
 	if(num1 < num2)
 		return(num1);
@@ -245,5 +245,11 @@ Fixed& Fixed::min(Fixed &num1, Fixed &num2)
 		return(num2);
 }
 
+const Fixed& Fixed::min(const Fixed& num1, const Fixed &num2)
+{
+	if(num1 < num2)
+		return (num1);
+	return num2;
+}
 const int Fixed::_numberOfFractionalBits = 8;
 

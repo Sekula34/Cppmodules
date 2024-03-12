@@ -19,12 +19,12 @@ class Fixed
 		~Fixed();
 
 		//comparison opearators 6
-		bool operator>(const Fixed& num2);
-		bool operator<(const Fixed& num2);
-		bool operator>=(const Fixed& num2);
-		bool operator<=(const Fixed& num2);
-		bool operator==(const Fixed& num2);
-		bool operator!=(const Fixed& num2);
+		bool operator>(const Fixed& num2) const;
+		bool operator<(const Fixed& num2) const;
+		bool operator>=(const Fixed& num2) const;
+		bool operator<=(const Fixed& num2) const;
+		bool operator==(const Fixed& num2) const;
+		bool operator!=(const Fixed& num2) const;
 
 
 		//arithmetic operators 4
@@ -41,6 +41,7 @@ class Fixed
 
 		//static functions
 		static Fixed& min(Fixed& num1, Fixed& num2);
+		const static Fixed& min(const Fixed& num1, const Fixed& num2);
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
