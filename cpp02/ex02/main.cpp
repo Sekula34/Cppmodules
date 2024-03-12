@@ -8,7 +8,7 @@ int main()
 	Fixed c;
 	
 	
-	std::cout <<(a).toFloat() << std::endl;
+	std::cout <<(--a).toFloat() << std::endl;
 	std::cout <<a.toFloat() << std::endl;
 	return 0;
 }

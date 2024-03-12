@@ -38,6 +38,7 @@ class Fixed
 		Fixed operator++(int);
 		Fixed& operator++();
 		Fixed operator--(int);
+		Fixed& operator--();
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
