@@ -65,35 +65,34 @@ void Fixed::setRawBits(int const raw)
 {
 	_fixedPointNumValue = raw;
 }
-
+// A member function float toFloat( void ) const;
+// that converts the fixed-point value to a floating-point value.
 float Fixed::toFloat(void) const
 {
 	int absFixPointVal;
-	bool negativeSign = false;
+	int negativeSign = 1;
 	int leftPart;
 	int decimalPart;
 	float result;
+
 	if(_fixedPointNumValue < 0)
 	{
-		negativeSign = true;
+		negativeSign = -1;
 		absFixPointVal = _fixedPointNumValue * (-1);
 	}
 	else 
 		absFixPointVal = _fixedPointNumValue;
 	leftPart = absFixPointVal >> 8 ;
 	decimalPart = absFixPointVal & 0xFF;
-
- 	result = float(leftPart) + _intDecimaltoFloat(decimalPart);
-	std::cout << "decimal part ist  "<< _intDecimaltoFloat(decimalPart) << std::endl;
-	return (0);
-	
+ 	result = (float(leftPart) + _intDecimaltoFloat(decimalPart)) * (negativeSign);
+	return (result);
 }
 
 float Fixed::_intDecimaltoFloat(int decimalInt) const
 {
-	double factor = 0.00390625; //2 to the power of -8
+	float factor = 0.00390625; //2 to the power of -8
 	float result = 0;
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < _numberOfFractionalBits; i++)
 	{
 		if((decimalInt & 0x1) == true)
 		{
