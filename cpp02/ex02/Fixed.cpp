@@ -176,10 +176,17 @@ bool Fixed::operator!=(const Fixed& num2)
 
 Fixed Fixed::operator+(const Fixed& num2)
 {
-	Fixed Sum;
+	Fixed sum;
 
-	Sum._fixedPointNumValue = _fixedPointNumValue + num2._fixedPointNumValue;
-	return(Sum);
+	sum._fixedPointNumValue = _fixedPointNumValue + num2._fixedPointNumValue;
+	return(sum);
+}
+
+Fixed Fixed::operator-(const Fixed& num2)
+{
+	Fixed difference;
+	difference._fixedPointNumValue = _fixedPointNumValue - num2._fixedPointNumValue;
+	return (difference);
 }
 const int Fixed::_numberOfFractionalBits = 8;
 

@@ -19,7 +19,7 @@ class Fixed
 		Fixed& operator= (const Fixed &source);
 		~Fixed();
 
-		//comparison opearators
+		//comparison opearators 6
 		bool operator>(const Fixed& num2);
 		bool operator<(const Fixed& num2);
 		bool operator>=(const Fixed& num2);
@@ -27,7 +27,10 @@ class Fixed
 		bool operator==(const Fixed& num2);
 		bool operator!=(const Fixed& num2);
 
+
+		//arithmetic operators 
 		Fixed operator+(const Fixed& num2);
+		Fixed operator-(const Fixed& num2);
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
