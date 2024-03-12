@@ -1,7 +1,6 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 # include <iostream>
-# include <cmath>
 # define MAX_FIXED 8388607
 # define MIN_FIXED -8388608
 

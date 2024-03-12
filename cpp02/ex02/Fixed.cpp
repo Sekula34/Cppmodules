@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+# include <cmath>
 
 float Fixed::_intDecimaltoFloat(int decimalInt) const
 {
