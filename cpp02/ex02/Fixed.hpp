@@ -19,6 +19,9 @@ class Fixed
 		Fixed& operator= (const Fixed &source);
 		~Fixed();
 
+		//comparison opearators
+		bool operator>(const Fixed& num2);
+
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
 		float toFloat(void) const;
