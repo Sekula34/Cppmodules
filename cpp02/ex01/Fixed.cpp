@@ -1,5 +1,22 @@
 #include "Fixed.hpp"
 
+float Fixed::_intDecimaltoFloat(int decimalInt) const
+{
+	float factor = 0.00390625; //2 to the power of -8
+	float result = 0;
+	
+	for (int i = 0; i < _numberOfFractionalBits; i++)
+	{
+		if((decimalInt & 0x1) == true)
+		{
+			result += factor;
+		}
+		factor *= 2;
+		decimalInt = decimalInt >> 1;
+	}
+	return (result);
+}
+
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
@@ -91,21 +108,15 @@ float Fixed::toFloat(void) const
 	return (result);
 }
 
-float Fixed::_intDecimaltoFloat(int decimalInt) const
+// • A member function int toInt( void ) const;
+// that converts the fixed-point value to an integer va
+int Fixed::toInt(void) const 
 {
-	float factor = 0.00390625; //2 to the power of -8
-	float result = 0;
+	int result;
 	
-	for (int i = 0; i < _numberOfFractionalBits; i++)
-	{
-		if((decimalInt & 0x1) == true)
-		{
-			result += factor;
-		}
-		factor *= 2;
-		decimalInt = decimalInt >> 1;
-	}
-	return (result);
+	result = _fixedPointNumValue >> _numberOfFractionalBits;
+	return(result);
 }
+
 const int Fixed::_numberOfFractionalBits = 8;
 
