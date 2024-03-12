@@ -27,6 +27,8 @@ class Fixed
 		bool operator==(const Fixed& num2);
 		bool operator!=(const Fixed& num2);
 
+		Fixed operator+(const Fixed& num2);
+
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
 		float toFloat(void) const;

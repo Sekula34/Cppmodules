@@ -173,5 +173,13 @@ bool Fixed::operator!=(const Fixed& num2)
 	else
 		return(false);
 }
+
+Fixed Fixed::operator+(const Fixed& num2)
+{
+	Fixed Sum;
+
+	Sum._fixedPointNumValue = _fixedPointNumValue + num2._fixedPointNumValue;
+	return(Sum);
+}
 const int Fixed::_numberOfFractionalBits = 8;
 

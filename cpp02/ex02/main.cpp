@@ -2,12 +2,12 @@
 
 int main()
 {
-	Fixed a(-1.0f);
-	Fixed b(-1.1f);
+	Fixed a(1.1f);
+	Fixed b(2.2f);
 
-	if(a != b)
-		std::cout << "a is not equal  than b" << std::endl;
-	else
-		std::cout << "a is  " << std::endl;
+	Fixed c;
+	a+(b);
+
+	std::cout <<(a+b).toFloat() << std::endl;
 	return 0;
 }
