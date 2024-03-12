@@ -2,12 +2,12 @@
 
 int main()
 {
-	Fixed a(20.1f);
-	Fixed b(20.2f);
+	Fixed a(-1.0f);
+	Fixed b(-1);
 
-	if(a <= b)
-		std::cout << "a is smaller or equal  than b" << std::endl;
+	if(a == b)
+		std::cout << "a is equal  than b" << std::endl;
 	else
-		std::cout << "a is not sq than" << std::endl;
+		std::cout << "a is not " << std::endl;
 	return 0;
 }
