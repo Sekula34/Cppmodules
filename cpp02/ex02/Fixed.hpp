@@ -28,11 +28,14 @@ class Fixed
 		bool operator!=(const Fixed& num2);
 
 
-		//arithmetic operators 
+		//arithmetic operators 4
 		Fixed operator+(const Fixed& num2);
 		Fixed operator-(const Fixed& num2);
 		Fixed operator*(const Fixed& num2);
 		Fixed operator/(const Fixed& num2);
+
+		//increment and decrement operators
+		Fixed operator++(int);
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);

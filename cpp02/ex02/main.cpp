@@ -7,7 +7,8 @@ int main()
 
 	Fixed c;
 	a+(b);
-
-	std::cout <<(a/b).toFloat() << std::endl;
+	a++;
+	std::cout <<(a++).toFloat() << std::endl;
+	std::cout <<a.toFloat() << std::endl;
 	return 0;
 }
