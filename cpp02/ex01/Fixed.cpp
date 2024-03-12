@@ -25,6 +25,7 @@ Fixed::Fixed(const int intValue)
 	if(intValue < 0)
 		_fixedPointNumValue *= (-1);
 }
+
 // • A constructor that takes a constant floating-point number as a parameter.
 // It converts it to the corresponding fixed-point value. The fractional bits value is
 // initialized to 8 like in exercise 00
@@ -35,6 +36,7 @@ Fixed::Fixed(const float flValue)
 	value = roundf(flValue * (1 << _numberOfFractionalBits));
 	this->setRawBits(value);
 }
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
@@ -65,6 +67,7 @@ void Fixed::setRawBits(int const raw)
 {
 	_fixedPointNumValue = raw;
 }
+
 // A member function float toFloat( void ) const;
 // that converts the fixed-point value to a floating-point value.
 float Fixed::toFloat(void) const
@@ -92,6 +95,7 @@ float Fixed::_intDecimaltoFloat(int decimalInt) const
 {
 	float factor = 0.00390625; //2 to the power of -8
 	float result = 0;
+	
 	for (int i = 0; i < _numberOfFractionalBits; i++)
 	{
 		if((decimalInt & 0x1) == true)
