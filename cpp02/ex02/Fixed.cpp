@@ -166,5 +166,12 @@ bool Fixed::operator==(const Fixed& num2)
 		return (false);
 }
 
+bool Fixed::operator!=(const Fixed& num2)
+{
+	if(this->_fixedPointNumValue != num2._fixedPointNumValue)
+		return (true);
+	else
+		return(false);
+}
 const int Fixed::_numberOfFractionalBits = 8;
 

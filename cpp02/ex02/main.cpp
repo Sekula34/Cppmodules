@@ -3,11 +3,11 @@
 int main()
 {
 	Fixed a(-1.0f);
-	Fixed b(-1);
+	Fixed b(-1.1f);
 
-	if(a == b)
-		std::cout << "a is equal  than b" << std::endl;
+	if(a != b)
+		std::cout << "a is not equal  than b" << std::endl;
 	else
-		std::cout << "a is not " << std::endl;
+		std::cout << "a is  " << std::endl;
 	return 0;
 }
