@@ -223,5 +223,12 @@ Fixed& Fixed::operator++()
 	return(*this);
 }
 
+Fixed Fixed::operator--(int)
+{
+	Fixed postDecrement(*this);
+	_fixedPointNumValue--;
+	return(postDecrement);
+}
+
 const int Fixed::_numberOfFractionalBits = 8;
 
