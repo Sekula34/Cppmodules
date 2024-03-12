@@ -2,12 +2,12 @@
 
 int main()
 {
-	Fixed a(10);
-	Fixed b(8);
+	Fixed a(0.5f);
+	Fixed b(0.5f);
 
 	Fixed c;
 	a+(b);
 
-	std::cout <<(a-b).toFloat() << std::endl;
+	std::cout <<(a*b).toFloat() << std::endl;
 	return 0;
 }

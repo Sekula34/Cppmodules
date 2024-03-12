@@ -188,5 +188,13 @@ Fixed Fixed::operator-(const Fixed& num2)
 	difference._fixedPointNumValue = _fixedPointNumValue - num2._fixedPointNumValue;
 	return (difference);
 }
+
+Fixed Fixed::operator*(const Fixed& num2)
+{
+	float result;
+	result = this->toFloat() * num2.toFloat();
+	Fixed multiple(result);
+	return (multiple);
+}
 const int Fixed::_numberOfFractionalBits = 8;
 
