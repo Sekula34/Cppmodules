@@ -196,5 +196,19 @@ Fixed Fixed::operator*(const Fixed& num2)
 	Fixed multiple(result);
 	return (multiple);
 }
+
+Fixed Fixed::operator/(const Fixed& num2)
+{
+	if(num2._fixedPointNumValue == 0)
+	{
+		std::cerr << "Dividing by zero is undefined behaviour" << std::endl;
+		throw ;
+	}
+	float result;
+	result = this->toFloat() / num2.toFloat();
+	Fixed quotient(result);
+	return(quotient);
+}
+
 const int Fixed::_numberOfFractionalBits = 8;
 
