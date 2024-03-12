@@ -217,5 +217,11 @@ Fixed Fixed::operator++(int)
 	return (postIncrement);
 }
 
+Fixed& Fixed::operator++()
+{
+	this->_fixedPointNumValue ++;
+	return(*this);
+}
+
 const int Fixed::_numberOfFractionalBits = 8;
 

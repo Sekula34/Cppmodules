@@ -6,9 +6,9 @@ int main()
 	Fixed b(1);
 
 	Fixed c;
-	a+(b);
-	a++;
-	std::cout <<(a++).toFloat() << std::endl;
+	
+	
+	std::cout <<(++a).toFloat() << std::endl;
 	std::cout <<a.toFloat() << std::endl;
 	return 0;
 }

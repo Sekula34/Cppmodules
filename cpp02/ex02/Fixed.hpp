@@ -36,6 +36,7 @@ class Fixed
 
 		//increment and decrement operators
 		Fixed operator++(int);
+		Fixed& operator++();
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
