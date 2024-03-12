@@ -28,6 +28,7 @@ Fixed::Fixed()
 // initialized to 8 like in exercise 00
 Fixed::Fixed(const int intValue)
 {
+	std::cout << "Int constructor called" << std::endl;
 	int absValue;
 	if(intValue > MAX_FIXED || intValue < MIN_FIXED)
 	{
@@ -48,6 +49,7 @@ Fixed::Fixed(const int intValue)
 // initialized to 8 like in exercise 00
 Fixed::Fixed(const float flValue)
 {
+	std::cout << "Float constructor called" << std::endl;
 	int value;
 
 	value = roundf(flValue * (1 << _numberOfFractionalBits));
@@ -62,7 +64,7 @@ Fixed::~Fixed()
 Fixed& Fixed::operator= (const Fixed& source)
 {
 	std::cout << "Copy assigment operator called" << std::endl;
-	this->_fixedPointNumValue = source.getRawBits();
+	this->_fixedPointNumValue = source._fixedPointNumValue;
 	return (*this);
 }
 
@@ -116,6 +118,12 @@ int Fixed::toInt(void) const
 	
 	result = _fixedPointNumValue >> _numberOfFractionalBits;
 	return(result);
+}
+
+std::ostream& operator<< (std::ostream& out, const Fixed &myObject)
+{
+	out << myObject.toFloat();
+	return(out);
 }
 
 const int Fixed::_numberOfFractionalBits = 8;
