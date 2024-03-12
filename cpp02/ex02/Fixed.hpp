@@ -34,11 +34,14 @@ class Fixed
 		Fixed operator*(const Fixed& num2);
 		Fixed operator/(const Fixed& num2);
 
-		//increment and decrement operators
+		//4increment and decrement operators
 		Fixed operator++(int);
 		Fixed& operator++();
 		Fixed operator--(int);
 		Fixed& operator--();
+
+		//static functions
+		static Fixed& min(Fixed& num1, Fixed& num2);
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);

@@ -236,5 +236,13 @@ Fixed& Fixed::operator--()
 	return(*this);
 }
 
+Fixed& Fixed::min(Fixed &num1, Fixed &num2)
+{
+	if(num1 < num2)
+		return(num1);
+	else
+		return(num2);
+}
+
 const int Fixed::_numberOfFractionalBits = 8;
 
