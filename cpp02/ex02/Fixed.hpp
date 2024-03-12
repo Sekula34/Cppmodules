@@ -21,6 +21,7 @@ class Fixed
 
 		//comparison opearators
 		bool operator>(const Fixed& num2);
+		bool operator<(const Fixed& num2);
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
