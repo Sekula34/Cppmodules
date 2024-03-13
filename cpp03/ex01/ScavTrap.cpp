@@ -17,6 +17,22 @@ ScavTrap::ScavTrap(std::string scavName) : ClapTrap(scavName)
 	_attackDamage = 20;
 } 
 
+ScavTrap::ScavTrap(const ScavTrap& source)
+{
+	_attackDamage = source._attackDamage;
+	_energyPoints = source._energyPoints;
+	_hitPoints = source._hitPoints;
+	_name = source._name;
+}
+ScavTrap& ScavTrap::operator=(const ScavTrap& source)
+{
+	_attackDamage = source._attackDamage;
+	_energyPoints = source._energyPoints;
+	_hitPoints = source._hitPoints;
+	_name = source._name;
+	return (*this);
+}
+
 ScavTrap::~ScavTrap()
 {
 	std::cout << "ScavTrap destructor called" << std::endl;
