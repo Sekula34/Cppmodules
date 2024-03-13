@@ -33,7 +33,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 		std::cerr << "name is empty" << std::endl;
 		throw ;
 	}
-	std::cout << "called constructor with name " << _name << std::endl;
+	std::cout << "Called ClapTrap constructor with name " << _name << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
