@@ -22,3 +22,21 @@ FragTrap::~FragTrap()
 	std::cout << "Called FragTrap " <<_name << " destructor" << std::endl;
 }
 
+FragTrap::FragTrap(const FragTrap& source)
+{
+	std::cout << "Called FragTrap copy constructor" << std::endl;
+	_name = source._name;
+	_hitPoints = source._hitPoints;
+	_energyPoints = source._energyPoints;
+	_attackDamage = source._attackDamage;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap& source)
+{
+	std::cout <<"Called FragTrap = operator" << std::endl;
+	_name = source._name;
+	_hitPoints = source._hitPoints;
+	_energyPoints = source._energyPoints;
+	_attackDamage = source._attackDamage;
+	return (*this);
+}
