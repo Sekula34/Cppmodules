@@ -2,7 +2,7 @@
 # define FRAGTRAP_HPP
 # include "ClapTrap.hpp"
 
-class FragTrap : ClapTrap
+class FragTrap : public ClapTrap
 {
 	private :
 	
@@ -14,6 +14,7 @@ class FragTrap : ClapTrap
 		~FragTrap();
 
 		FragTrap(std::string name);
+		void highFivesGuys(void);
 };
 
 #endif
