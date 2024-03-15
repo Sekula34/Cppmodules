@@ -1,8 +1,18 @@
-#include "DiamondTrap.hpp"
+#include "FragTrap.hpp"
 
 
 int main()
 {
-	DiamondTrap dijamant;
-	return 0;
+	std::string name = "jez";
+	FragTrap plameniJazavac(name);
+
+	plameniJazavac.highFivesGuys();
+	for(int i = 0; i < 50; i++)
+	{
+		plameniJazavac.attack("pokemona");
+		plameniJazavac.beRepaired(1);
+		plameniJazavac.takeDamage(100);
+	}
+	plameniJazavac.beRepaired(3);
+	return (0);
 }

@@ -2,12 +2,10 @@
 # define FRAGTRAP_HPP
 # include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap
+class FragTrap : public ClapTrap
 {
 	private :
 	
-	protected:
-		
 	public :
 		//orthodox
 		FragTrap();

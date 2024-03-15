@@ -1,16 +1,14 @@
-NAME = diamondTrap
+NAME = fragTrap
 
 SOURCES = ClapTrap.cpp \
 	main.cpp \
 	ScavTrap.cpp \
-	FragTrap.cpp \
-	DiamondTrap.cpp
+	FragTrap.cpp
 
 
 HEADERS = ClapTrap.hpp \
 	ScavTrap.hpp \
-	FragTrap.hpp \
-	DiamondTrap.hpp
+	FragTrap.hpp
 
 
 CXX = c++
