@@ -8,6 +8,8 @@ ScavTrap::ScavTrap() : ClapTrap()
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
+	_scavAttack = _attackDamage;
+	_scavEnergy = _energyPoints;
 }
 ScavTrap::ScavTrap(std::string scavName) : ClapTrap(scavName)
 {
@@ -15,6 +17,8 @@ ScavTrap::ScavTrap(std::string scavName) : ClapTrap(scavName)
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
+	_scavAttack = _attackDamage;
+	_scavEnergy = _energyPoints;
 } 
 
 ScavTrap::ScavTrap(const ScavTrap& source)
@@ -23,6 +27,8 @@ ScavTrap::ScavTrap(const ScavTrap& source)
 	_energyPoints = source._energyPoints;
 	_hitPoints = source._hitPoints;
 	_name = source._name;
+	_scavAttack = _attackDamage;
+	_scavEnergy = _energyPoints;
 }
 ScavTrap& ScavTrap::operator=(const ScavTrap& source)
 {
@@ -30,6 +36,8 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& source)
 	_energyPoints = source._energyPoints;
 	_hitPoints = source._hitPoints;
 	_name = source._name;
+	_scavAttack = _attackDamage;
+	_scavEnergy = _energyPoints;
 	return (*this);
 }
 

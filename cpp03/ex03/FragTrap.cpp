@@ -8,6 +8,8 @@ FragTrap::FragTrap() : ClapTrap()
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_attackDamage = 30;
+	_frag_attack = _attackDamage;
+	_frag_energy = _energyPoints;
 }
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
@@ -15,6 +17,8 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_attackDamage = 30;
+	_frag_attack = _attackDamage;
+	_frag_energy = _energyPoints;
 }
 
 FragTrap::~FragTrap()
@@ -29,6 +33,8 @@ FragTrap::FragTrap(const FragTrap& source)
 	_hitPoints = source._hitPoints;
 	_energyPoints = source._energyPoints;
 	_attackDamage = source._attackDamage;
+	_frag_attack = _attackDamage;
+	_frag_energy = _energyPoints;
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& source)
@@ -38,6 +44,8 @@ FragTrap& FragTrap::operator=(const FragTrap& source)
 	_hitPoints = source._hitPoints;
 	_energyPoints = source._energyPoints;
 	_attackDamage = source._attackDamage;
+	_frag_attack = _attackDamage;
+	_frag_energy = _energyPoints;
 	return (*this);
 }
 

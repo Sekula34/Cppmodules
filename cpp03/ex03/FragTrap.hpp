@@ -2,10 +2,11 @@
 # define FRAGTRAP_HPP
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
-	private :
-	
+	protected: 
+		unsigned int _frag_attack;
+		unsigned int _frag_energy;
 	public :
 		//orthodox
 		FragTrap();

@@ -1,18 +1,16 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 
 int main()
 {
-	std::string name = "jez";
-	FragTrap plameniJazavac(name);
-
-	plameniJazavac.highFivesGuys();
-	for(int i = 0; i < 50; i++)
+	DiamondTrap dijamant("Jelena Rozga");
+	dijamant.attack("Severinu");
+	for(int i = 0; i < 51 ; i++)
 	{
-		plameniJazavac.attack("pokemona");
-		plameniJazavac.beRepaired(1);
-		plameniJazavac.takeDamage(100);
+		dijamant.attack("nekog");
 	}
-	plameniJazavac.beRepaired(3);
+	dijamant.guardGate();
+	dijamant.highFivesGuys();
+	dijamant.whoAmI();
 	return (0);
 }
