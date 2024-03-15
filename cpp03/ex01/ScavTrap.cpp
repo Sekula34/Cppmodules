@@ -42,3 +42,17 @@ void ScavTrap::guardGate(void)
 {
 	std::cout << "ScavTrap "<<_name <<" is now in Gate keeper mode" << std::endl;
 }
+
+void ScavTrap::attack(const std::string& traget)
+{
+	if(_energyPoints >= 1)
+	{
+		std::cout << "ScavTrap " << _name << " attacks " << traget;
+		std::cout << " and cause " << _attackDamage << " of damage" << std::endl;
+		_energyPoints--;
+	}
+	else
+	{
+		std::cerr <<"ScavTrap "<< _name <<" do not have enough energy to make attack" << std::endl;
+	}
+}

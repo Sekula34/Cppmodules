@@ -1,3 +1,4 @@
+#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
 int main()
@@ -16,6 +17,7 @@ int main()
 	noone.guardGate();
 	noone = jeftinakopija;
 	noone.guardGate();
+	noone.ClapTrap::attack("hej");
 	return (0);
 
 }
