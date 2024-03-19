@@ -3,7 +3,9 @@ NAME = animal
 SOURCES = Animal.cpp \
 	Cat.cpp \
 	Dog.cpp \
-	main.cpp
+	main.cpp \
+	WrongAnimal.cpp \
+	WrongCat.cpp
 
 
 HEADERS = Animal.hpp \
