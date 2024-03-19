@@ -1,12 +1,8 @@
 #include "Animal.hpp"
+#include "Dog.hpp"
 
 int main()
 {
-    Animal first;
-    Animal second(first);
-    Animal third;
-    third = first;
-
-    first.makeSound();
+    Dog ker;
     return (0);
 }
