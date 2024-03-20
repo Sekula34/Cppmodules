@@ -7,7 +7,14 @@ Dog::Dog(void)
 	type = "Dog";
 	std::cout << "Default Dog constructor called" << std::endl;
 	std::cout << "My animal type is " << type << std::endl;
-	brainPtr = new Brain();
+	try 
+	{
+		brainPtr = new Brain();
+	}
+	catch(std::bad_alloc&)
+	{
+		std::cerr << "Mem allocation failed" << std::endl;
+	}
 }
 
 Dog::Dog(const Dog& source)
