@@ -1,5 +1,4 @@
 #include "Weapon.hpp"
-#include <iostream>
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
