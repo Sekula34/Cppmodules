@@ -1,14 +1,16 @@
-NAME = animal
+NAME = brain
 
 SOURCES = Animal.cpp \
+	Brain.cpp \
 	Cat.cpp \
 	Dog.cpp \
 	main.cpp \
 	WrongAnimal.cpp \
-	WrongCat.cpp
+	WrongCat.cpp \
 
 
 HEADERS = Animal.hpp \
+		Brain.hpp \
 		Cat.hpp \
 		Dog.hpp
 

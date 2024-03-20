@@ -1,4 +1,5 @@
 #include "Dog.hpp"
+#include "Brain.hpp"
 #include <iostream>
 
 Dog::Dog(void)
@@ -6,6 +7,7 @@ Dog::Dog(void)
 	type = "Dog";
 	std::cout << "Default Dog constructor called" << std::endl;
 	std::cout << "My animal type is " << type << std::endl;
+	brainPtr = new Brain();
 }
 
 Dog::Dog(const Dog& source)
@@ -24,6 +26,7 @@ Dog& Dog::operator=(const Dog& source)
 Dog::~Dog(void)
 {
 	std::cout << "Called Dog destructor" << std::endl;
+	delete brainPtr;
 }
 
 void Dog::makeSound(void) const

@@ -6,6 +6,7 @@ Cat::Cat(void)
 	type = "Cat";
 	std::cout << "Called Cat default constructor" << std::endl;
 	std::cout << "My type is " << type << std::endl;
+	brainPtr = new Brain();
 }
 
 Cat::Cat(const Cat& source)
@@ -24,6 +25,7 @@ Cat&::Cat::operator=(const Cat &source)
 Cat::~Cat(void)
 {
 	std::cout << "Called Cat destructor" << std::endl;
+	delete brainPtr;
 }
 
 void Cat::makeSound(void) const
