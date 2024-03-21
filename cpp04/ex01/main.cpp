@@ -1,19 +1,20 @@
-#include <iostream>
+
 #include "Dog.hpp"
-#include "Animal.hpp"
 #include "Cat.hpp"
 
 int main()
 {
 
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	Dog basic;
+	{
+	Dog tmp = basic;
+	}
 
-
-	std::cout << " I am prinint j type " << i->getType() << std::endl;
-	delete j;
-	delete i;
-
+	Cat first;
+	{
+		Cat copy(first);
+		Cat assign = first;
+	}
 	// Animal* animal[10];
 
 	// for(int i = 0; i < 10; i++)
@@ -27,5 +28,5 @@ int main()
 	// {
 	// 	delete animal[i];
 	// }
-	// return 0;
+	 return 0;
 }

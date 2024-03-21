@@ -1,6 +1,7 @@
 #include "Dog.hpp"
 #include "Brain.hpp"
 #include <iostream>
+#include <new>
 
 Dog::Dog(void)
 {
@@ -21,12 +22,30 @@ Dog::Dog(const Dog& source)
 {
 	std::cout << "Called Dog copy constructor" << std::endl;
 	type = source.type;
+	try 
+	{
+		brainPtr = new Brain();
+	}
+	catch (std::bad_alloc&)
+	{
+		std::cerr << "Mem allocation failed" << std::endl;
+	}
+	*brainPtr = *(source.brainPtr);
 }
 
 Dog& Dog::operator=(const Dog& source)
 {
 	std::cout << "Called Dog = operator" << std::endl;
 	this->type = source.type;
+	try 
+	{
+		this->brainPtr = new Brain();
+	}
+	catch(std::bad_alloc&)
+	{
+		std::cerr << "Mem allocation failed" << std::endl;
+	}
+	*(this->brainPtr) = *(source.brainPtr);
 	return (*this);
 }
 

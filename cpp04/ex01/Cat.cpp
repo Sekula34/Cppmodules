@@ -1,4 +1,5 @@
 #include "Cat.hpp"
+#include "Brain.hpp"
 #include <iostream>
 #include <new>
 
@@ -21,12 +22,30 @@ Cat::Cat(const Cat& source)
 {
 	std::cout << "Called Cat copy constructor" << std::endl;
 	type = source.type;
+	try 
+	{
+		brainPtr = new Brain();
+	}
+	catch (std::bad_alloc&)
+	{
+		std::cerr << "Mem allocation failed" << std::endl;
+	}
+	*brainPtr = *(source.brainPtr);
 }
 
 Cat&::Cat::operator=(const Cat &source)
 {
 	std::cout << "Called Cat = operator" << std::endl;
 	this->type = source.type;
+	try 
+	{
+		brainPtr = new Brain();
+	}
+	catch (std::bad_alloc&)
+	{
+		std::cerr <<"Mem allocation failed" << std::endl;
+	}
+	*(this->brainPtr) = *(source.brainPtr);
 	return (*this);
 }
 
