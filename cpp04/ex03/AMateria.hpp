@@ -5,14 +5,15 @@
 
 class AMateria 
 {
-	protected: 
+	protected:
+		std::string m_type;
 		//[...]
 	public:
 	//orthodox
 		AMateria(void);
 		AMateria(const AMateria& source);
 		AMateria& operator=(const AMateria& source);
-		~AMateria();
+		virtual ~AMateria();
 
 		AMateria(std::string const& type);
 		//[...]
