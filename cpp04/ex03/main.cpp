@@ -62,7 +62,9 @@ void test4(void)
 {
 	prinTest("4");
 	{
-		Character filip;
+		Character filip("filip");
+		std::cout << "My name is " << filip.getName() << std::endl;
+		filip.listAllMaterials();
 	}
 	printEnd();
 }

@@ -1,5 +1,7 @@
 #include "Character.hpp"
+#include <cstddef>
 #include <iostream>
+#include <sstream>
 
 Character::Character(void)
 {
@@ -60,4 +62,21 @@ void Character::use(int idx, ICharacter& target)
 {
 	(void) target;
 	(void) idx;
+}
+
+void Character::listAllMaterials() const
+{
+	std::cout << _name << " Inventory :" << std::endl;
+	for(int i=0; i < 4; i++)
+	{
+		std::stringstream ss;
+		ss << i;
+		std::cout << '\t';
+		std::cout << "Material at postion "<<ss.str() <<" is ";
+		if(_materials[i] == NULL)
+			std::cout << "<empty space>";
+		else
+			std:: cout << _materials[i]->getType();
+		std::cout << std::endl;
+	}
 }
