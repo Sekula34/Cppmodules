@@ -1,10 +1,12 @@
 NAME = interface
 
 SOURCES = main.cpp \
+	Cure/Cure.cpp \
 	Ice/Ice.cpp \
 	AMateria.cpp
 
-HEADERS = Ice/Ice.hpp \
+HEADERS = Cure/Cure.hpp \
+		Ice/Ice.hpp \
 		AMateria.hpp \
 		ICharacter.hpp \
 		IMateriaSource.hpp \
