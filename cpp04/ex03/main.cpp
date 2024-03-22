@@ -43,6 +43,7 @@ void test2(AMateria** ptr)
 
 //printng type of ptr first after calling test 1 then after calling test 2
 //to show that ptr can be both Cure and Ice
+//ptr is freed here and cannot be accessed later
 void test3(AMateria** ptr)
 {
 	prinTest("3");
@@ -52,6 +53,7 @@ void test3(AMateria** ptr)
 	test2(ptr);
 	std::cout << "Ptr type after test is " << (*ptr)->getType() << std::endl;
 	delete *ptr;
+	*ptr = NULL;
 	printEnd();
 }
 
@@ -59,5 +61,6 @@ int main()
 {
 	AMateria *ptr = NULL;
 	test3(&ptr);
+	delete ptr;
 	return (0);
 }
