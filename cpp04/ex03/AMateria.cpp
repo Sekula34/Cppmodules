@@ -1,5 +1,5 @@
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
+#include "Character/ICharacter.hpp"
 #include <string>
 #include <iostream>
 

@@ -1,5 +1,5 @@
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
+#include "Character/Character.hpp"
 #include "Ice/Ice.hpp"
 #include "Cure/Cure.hpp"
 #include <iostream>
@@ -57,10 +57,21 @@ void test3(AMateria** ptr)
 	printEnd();
 }
 
+//test that shows creation and destruction of Character class
+void test4(void)
+{
+	prinTest("4");
+	{
+		Character filip;
+	}
+	printEnd();
+}
+
 int main()
 {
 	AMateria *ptr = NULL;
 	test3(&ptr);
 	delete ptr;
+	test4();
 	return (0);
 }
