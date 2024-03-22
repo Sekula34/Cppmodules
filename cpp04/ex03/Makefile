@@ -1,8 +1,14 @@
-NAME = Interface
+NAME = interface
 
-SOURCES = main.cpp
+SOURCES = main.cpp \
+	Ice/Ice.cpp \
+	AMateria.cpp
 
-HEADERS = 
+HEADERS = Ice/Ice.hpp \
+		AMateria.hpp \
+		ICharacter.hpp \
+		IMateriaSource.hpp \
+		
 
 
 CXX = c++

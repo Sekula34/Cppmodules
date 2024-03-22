@@ -23,7 +23,7 @@ AMateria& AMateria::operator=(const AMateria& source)
 
 AMateria::~AMateria()
 {
-	std::cout << "AMateria default constructor" << std::endl;
+	std::cout << "AMateria default destructor" << std::endl;
 }
 
 AMateria::AMateria(std::string const& type)
@@ -39,5 +39,6 @@ std::string const& AMateria::getType() const
 
 void AMateria::use(ICharacter& target)
 {
+	(void)target;
 	std::cout << "Called AMateria use function" << std::endl;
 }
