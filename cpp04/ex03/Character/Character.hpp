@@ -9,6 +9,8 @@ class Character : public ICharacter
 		AMateria* _materials[4];
 		std::string _name;
 
+		int getFirstEmptySpot() const;
+
 	public :
 	//orthdox
 		Character(void);

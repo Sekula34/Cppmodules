@@ -23,7 +23,6 @@ void test1(AMateria** ptr)
 		Ice led;
 		*ptr = led.clone();
 		std::cout << (*ptr)->getType() << std::endl;
-		//delete ptr;
 	}
 	printEnd();
 }
@@ -62,9 +61,13 @@ void test4(void)
 {
 	prinTest("4");
 	{
+		AMateria *icePtr;
+		icePtr = new Ice();
 		Character filip("filip");
+		filip.equip(icePtr);
 		std::cout << "My name is " << filip.getName() << std::endl;
 		filip.listAllMaterials();
+		delete icePtr;
 	}
 	printEnd();
 }

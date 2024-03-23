@@ -3,6 +3,20 @@
 #include <iostream>
 #include <sstream>
 
+
+//function that returns first empty spot of Character inverntory
+//0 till 3 if spot is found (index);
+//-1 if all spots are taken
+int Character::getFirstEmptySpot() const 
+{
+	for(int i = 0; i < 4; i++)
+	{
+		if(_materials[i] == NULL)
+			return (i);
+	}
+	return (-1);
+}
+
 Character::Character(void)
 {
 	std::cout << "Called default Character constructor" << std::endl;
@@ -50,7 +64,18 @@ std::string const & Character::getName() const
 
 void Character::equip(AMateria* m)
 {
-	(void)m;
+	int spotIndex = getFirstEmptySpot();
+	if(spotIndex == -1)
+	{
+		std::cerr << "There is no available spot in inventory" << std::endl;
+		return ; 
+	}
+	_materials[spotIndex] = m;
+	std::stringstream ss;
+
+	ss << spotIndex;
+	std::cout << "Materia " << m->getType() << " equiped in ";
+	std::cout << "slot " << ss.str() << std::endl;
 }
 
 void Character::unequip(int idx)
