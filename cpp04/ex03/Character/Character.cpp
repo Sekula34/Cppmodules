@@ -31,6 +31,17 @@ Character::Character(Character &source)
 {
 	std::cout << "Called Character copy constructor" << std::endl;
 	_name = source._name;
+	for(int i = 0; i < 4; i++)
+	{
+		if(source._materials[i] == NULL)
+		{
+			_materials[i] = NULL;
+		}
+		else
+		{
+			_materials[i] = source._materials[i]->clone();
+		}
+	}
 }
 
 Character& Character::operator=(Character &source)
@@ -43,6 +54,10 @@ Character& Character::operator=(Character &source)
 Character::~Character()
 {
 	std::cout << "Called Character destructor" << std::endl;
+	for(int i = 0; i < 4; i++)
+	{
+		delete _materials[i];
+	}
 }
 
 Character::Character(std::string name)

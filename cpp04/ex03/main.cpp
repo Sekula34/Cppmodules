@@ -96,8 +96,35 @@ void test5(void)
 		Bobo.use(10, enemy);
 		Bobo.use(2, ally);
 
-		delete icePtr;
-		delete curePtr;
+		// delete icePtr;
+		// delete curePtr;
+	}
+	printEnd();
+}
+
+
+//Test for deep copy of charcter
+void test6(void)
+{
+	prinTest("6");
+	{
+		Character Bobo("Bubimir6");
+		Bobo.equip(new Ice());
+		Bobo.equip(new Cure());
+		Character Bobo2(Bobo);
+		AMateria *toDelete1 = Bobo.getMateriaPtr(0);
+		AMateria *toDelete2 = Bobo.getMateriaPtr(1);
+		std::cout << "Printing materials of BOBO before droping" << std::endl;
+		Bobo.listAllMaterials();
+		Bobo.unequip(0);
+		Bobo.unequip(1);
+		std::cout << "Printing materials of BOBO2" << std::endl;
+		Bobo2.listAllMaterials();
+		std::cout << std::endl;
+		std::cout << "Printing materials of BOBO after droping" << std::endl;
+		Bobo.listAllMaterials();
+		delete toDelete1;
+		delete toDelete2;
 	}
 	printEnd();
 }
@@ -108,6 +135,7 @@ int main()
 	// test3(&ptr);
 	// delete ptr;
 	// test4();
-	test5();
+	//test5();
+	test6();
 	return (0);
 }
