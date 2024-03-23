@@ -129,6 +129,29 @@ void test6(void)
 	printEnd();
 }
 
+//test forr deep copy = operator
+void test7(void) 
+{
+	prinTest("7");
+	{
+		Character first("Plameni jazavac");
+		Character second("Ugojenko");
+
+		first.equip(new Ice());
+		first.equip(new Ice());
+		first.equip(new Cure());
+
+		second.equip(new Ice());
+		second.equip(new Cure());
+
+		first = second;
+
+		first.listAllMaterials();
+	}
+	printEnd();
+
+}
+
 int main()
 {
 	// AMateria *ptr = NULL;
@@ -136,6 +159,7 @@ int main()
 	// delete ptr;
 	// test4();
 	//test5();
-	test6();
+	//test6();
+	test7();
 	return (0);
 }

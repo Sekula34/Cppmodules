@@ -47,6 +47,22 @@ Character::Character(Character &source)
 Character& Character::operator=(Character &source)
 {
 	std::cout << "Called Character =operator" << std::endl;
+	for(int i = 0; i < 4; i++)
+	{
+		delete this->_materials[i];
+		this->_materials[i] = NULL;
+	}
+	for(int i = 0; i < 4; i++)
+	{
+		if(source._materials[i] == NULL)
+		{
+			this->_materials[i] = NULL;
+		}
+		else
+		{
+			this->_materials[i] = source._materials[i]->clone();
+		}
+	}
 	this->_name = source._name;
 	return (*this);
 }
