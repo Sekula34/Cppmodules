@@ -1,10 +1,7 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 #include<string>
-#include<iostream>
-#include<cctype>
-#include<iomanip>
-#include<sstream>
+
 
 class Contact
 {

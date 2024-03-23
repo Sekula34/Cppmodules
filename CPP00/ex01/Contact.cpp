@@ -1,4 +1,8 @@
 #include "Contact.hpp"
+#include<iostream>
+#include<cctype>
+#include<iomanip>
+
 
 bool Contact::set_name(std::string &name, std::string name_msg)
 {
@@ -99,7 +103,6 @@ std::string Contact::truncate_string(std::string str)
 
 void Contact::print_contact(int index)
 {
-	std::setfill(' ');
 	std::cout << "|" << std::setw(10) << std::setfill(' ')<< index; 
 	std::cout << "|" << std::setw(10) << std::setfill(' ')<< truncate_string(first_name);
 	std::cout << "|" << std::setw(10) << std::setfill(' ')<< truncate_string(last_name); 
