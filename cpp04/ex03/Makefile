@@ -5,12 +5,16 @@ SOURCES = main.cpp \
 	Character/ICharacter.cpp\
 	Cure/Cure.cpp \
 	Ice/Ice.cpp \
+	MateriaSource/IMateriaSource.cpp\
+	MateriaSource/MateriaSource.cpp\
 	AMateria.cpp
 
 HEADERS = Cure/Cure.hpp \
 		Character/Character.hpp \
 		Character/ICharacter.hpp\
 		Ice/Ice.hpp \
+		MateriaSource/IMateriaSource.hpp\
+		MateriaSource/MateriaSource.hpp\
 		AMateria.hpp \
 		IMateriaSource.hpp \
 		
