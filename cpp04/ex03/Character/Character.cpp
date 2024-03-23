@@ -78,9 +78,20 @@ void Character::equip(AMateria* m)
 	std::cout << "slot " << ss.str() << std::endl;
 }
 
+
+//do something about pointer you are losing here
 void Character::unequip(int idx)
 {
-	(void)idx;
+	if(idx < 0 || idx > 3)
+	{
+		std::cerr << "You are trying to unequip outside of range of your inventory" << std::endl;
+		return ;
+	}
+	if(_materials[idx] != NULL)
+	{
+		std::cout << "Item " << _materials[idx]->getType() << " droped on floor" << std::endl;
+	}
+	_materials[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target)
@@ -92,7 +103,7 @@ void Character::use(int idx, ICharacter& target)
 void Character::listAllMaterials() const
 {
 	std::cout << _name << " Inventory :" << std::endl;
-	for(int i=0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 	{
 		std::stringstream ss;
 		ss << i;
@@ -104,4 +115,11 @@ void Character::listAllMaterials() const
 			std:: cout << _materials[i]->getType();
 		std::cout << std::endl;
 	}
+}
+
+AMateria* Character::getMateriaPtr(int index) const 
+{
+	if(index < 0 || index > 3)
+		return NULL;
+	return (_materials[index]);
 }

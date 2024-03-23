@@ -67,7 +67,12 @@ void test4(void)
 		filip.equip(icePtr);
 		std::cout << "My name is " << filip.getName() << std::endl;
 		filip.listAllMaterials();
-		delete icePtr;
+		AMateria *toDelete;
+		toDelete = filip.getMateriaPtr(0);
+		filip.unequip(0);
+		filip.listAllMaterials();
+		delete toDelete;
+		//delete icePtr;
 	}
 	printEnd();
 }

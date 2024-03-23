@@ -25,6 +25,8 @@ class Character : public ICharacter
 		void use(int idx, ICharacter& target);
 
 		void listAllMaterials() const;
+
+		AMateria* getMateriaPtr(int index) const;
 };
 
 #endif
