@@ -1,4 +1,8 @@
 #include "PhoneBook.hpp"
+#include<string>
+#include<iostream>
+#include<iomanip>
+#include<sstream>
 
 
 void PhoneBook::add(Contact contact_name)
