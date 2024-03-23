@@ -12,15 +12,10 @@ void Megaphone::yell(std::string sentence)
 	char letter;
 	std::string yelling;
 	
-	if (sentence.empty() == true)
-		yelling = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else 
+	for(unsigned long i = 0; i < sentence.length(); i++)
 	{
-		for(unsigned long i = 0; i < sentence.length(); i++)
-		{
-			letter = std::toupper(sentence[i]);
-			yelling.append(1, letter);
-		}
+		letter = std::toupper(sentence[i]);
+		yelling.append(1, letter);
 	}
 	std::cout << yelling;
 }
