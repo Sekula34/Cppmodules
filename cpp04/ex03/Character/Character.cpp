@@ -94,10 +94,24 @@ void Character::unequip(int idx)
 	_materials[idx] = NULL;
 }
 
+
+// The use(int, ICharacter&) member function will have to use the Materia at the
+// slot[idx], and pass the target parameter to the AMateria::use function.
 void Character::use(int idx, ICharacter& target)
 {
-	(void) target;
-	(void) idx;
+	if(idx < 0 || idx > 3)
+	{
+		std::cerr << "You are trying to cast Materia outside your inventory slot" << std::endl;
+		return;
+	}
+	if(_materials[idx] == NULL)
+	{
+		std::stringstream ss;
+		ss << idx;
+		std::cout << "Slot " << ss.str() << " is empty so you cant use it (No materias to use)" << std::endl;
+		return;
+	}
+	_materials[idx]->use(target);
 }
 
 void Character::listAllMaterials() const

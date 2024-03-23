@@ -77,11 +77,37 @@ void test4(void)
 	printEnd();
 }
 
+//test for showing use function of character
+void test5(void)
+{
+	prinTest("5");
+	{
+		Character Bobo("Bobo");
+		Character enemy("Enemy");
+		Character ally("BUBOO");
+		AMateria *icePtr = new Ice();
+		AMateria *curePtr = new Cure();
+
+		Bobo.equip(icePtr);
+		Bobo.equip(curePtr);
+		Bobo.listAllMaterials();
+		Bobo.use(0, enemy);
+		Bobo.use(1, ally);
+		Bobo.use(10, enemy);
+		Bobo.use(2, ally);
+
+		delete icePtr;
+		delete curePtr;
+	}
+	printEnd();
+}
+
 int main()
 {
-	AMateria *ptr = NULL;
-	test3(&ptr);
-	delete ptr;
-	test4();
+	// AMateria *ptr = NULL;
+	// test3(&ptr);
+	// delete ptr;
+	// test4();
+	test5();
 	return (0);
 }

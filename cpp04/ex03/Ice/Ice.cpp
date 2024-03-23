@@ -43,6 +43,5 @@ AMateria* Ice::clone() const
 
 void Ice::use(ICharacter &traget)
 {
-	(void)traget;
-	std::cout << "* shoots an ice bolt at <name> *" << std::endl;
+	std::cout << "* shoots an ice bolt at "<< traget.getName() << " *"<< std::endl;
 }

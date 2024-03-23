@@ -1,6 +1,7 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 # include "../AMateria.hpp"
+# include "../Character/ICharacter.hpp"
 
 class Cure : public AMateria
 {
