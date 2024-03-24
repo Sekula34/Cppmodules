@@ -10,11 +10,11 @@ int main()
 	Fixed y1(0);
 	Fixed x2(10);
 	Fixed y2(0);
-	Fixed x3(20);
-	Fixed y3(0);
+	Fixed x3(4);
+	Fixed y3(6);
 
-	Fixed x4(1.9f);
-	Fixed y4(-4.8f);
+	Fixed x4(3.8f);
+	Fixed y4(2.1f);
 
 	Point A(x1, y1);
 	Point B(x2, y2);
