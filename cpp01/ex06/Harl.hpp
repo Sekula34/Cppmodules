@@ -1,8 +1,6 @@
 #ifndef HARL_HPP
 # define HARL_HPP
 #include <string>
-#include <iostream>
-#include <sstream>
 
 class Harl
 {
