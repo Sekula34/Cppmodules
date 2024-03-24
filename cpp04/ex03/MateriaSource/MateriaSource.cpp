@@ -43,6 +43,10 @@ MateriaSource::MateriaSource(MateriaSource& source)
 {
 	(void)source;
 	std::cout << "Called MateriaSource copy constructor" << std::endl;
+	for(int i = 0; i < 4; i++)
+	{
+		_materias[i] = NULL;
+	}
 }
 
 MateriaSource& MateriaSource::operator=(MateriaSource& source)
