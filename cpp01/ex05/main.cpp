@@ -1,4 +1,5 @@
 #include "Harl.hpp"
+#include <iostream>
 
 void printMenu(void)
 {
