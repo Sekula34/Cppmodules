@@ -1,5 +1,8 @@
 #include "FileReplacer.hpp"
 
+#include <fstream>
+#include <iostream>
+
 FileReplacer::FileReplacer(std::string FileName,std::string oldString, std::string newString) : _fileName(FileName), _stringToReplace(oldString), _newString(newString)
 {
 	if(_stringToReplace.empty() == true)

@@ -2,8 +2,6 @@
 # define FILEREPLACER_HPP
 
 #include <string>
-#include <fstream>
-#include <iostream>
 
 class FileReplacer
 {
