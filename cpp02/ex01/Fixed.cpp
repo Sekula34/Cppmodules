@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+#include <cmath>
 
 float Fixed::_intDecimaltoFloat(int decimalInt) const
 {
@@ -127,4 +128,3 @@ std::ostream& operator<< (std::ostream& out, const Fixed &myObject)
 }
 
 const int Fixed::_numberOfFractionalBits = 8;
-
