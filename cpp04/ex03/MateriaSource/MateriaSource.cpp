@@ -74,9 +74,11 @@ void MateriaSource::learnMateria(AMateria* source)
 	if(index == -1)
 	{
 		std::cerr << "There is no empty slot to learn new materia" << std::endl;
+		delete source;
+		source = NULL;
 		return ;
 	}
-	_materias[index] = source->clone();
+	_materias[index] = source;
 	std::cout << "Materia " << source->getType() <<" learned" << std::endl;
 }
 
@@ -93,5 +95,3 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 		return (0);
 	return (_materias[index]->clone());
 }
-
-
