@@ -96,6 +96,9 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 		return (0);
 	int index = _findMateriaIndex(type);
 	if (index == -1)
+	{
+		std::cerr << "Cannot create Materia " << type <<" because it is not learned yet" << std:: endl;
 		return (0);
+	}
 	return (_materias[index]->clone());
 }

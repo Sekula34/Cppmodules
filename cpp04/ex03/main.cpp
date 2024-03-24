@@ -154,15 +154,13 @@ void test7(void)
 
 }
 
+//subject main
 void test8(void)
 {
 	prinTest("8");
 	{
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
-		src->learnMateria(new Cure());
-		src->learnMateria(new Cure());
-		src->learnMateria(new Cure());
 		src->learnMateria(new Cure());
 
 		ICharacter* me = new Character("me");
@@ -185,6 +183,42 @@ void test8(void)
 	printEnd();
 }
 
+//trying to learn more than 4
+void test9(void)
+{
+	prinTest("9");
+	{
+		IMateriaSource* src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+
+		ICharacter* me = new Character("me");
+
+		AMateria* tmp;
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+		tmp = src->createMateria("fire");
+
+		ICharacter *bob = new Character("bob");
+
+		me->use(0, *bob);
+		me->use(1, *bob);
+
+		delete bob;
+		delete me;
+		delete src;
+	}
+	printEnd();
+
+}
+
+
 int main()
 {
 	// AMateria *ptr = NULL;
@@ -194,6 +228,7 @@ int main()
 	//test5();
 	//test6();
 	//test7();
-	test8();
+	//test8();
+	test9();
 	return (0);
 }
