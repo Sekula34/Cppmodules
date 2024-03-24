@@ -3,6 +3,8 @@
 #include "Ice/Ice.hpp"
 #include "Cure/Cure.hpp"
 #include <iostream>
+#include "MateriaSource/IMateriaSource.hpp"
+#include "MateriaSource/MateriaSource.hpp"
 
 
 void prinTest(std::string number)
@@ -152,6 +154,34 @@ void test7(void)
 
 }
 
+void test8(void)
+{
+	prinTest("8");
+	{
+		IMateriaSource* src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+
+		ICharacter* me = new Character("me");
+
+		AMateria* tmp;
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+
+		ICharacter *bob = new Character("bob");
+
+		me->use(0, *bob);
+		me->use(1, *bob);
+
+		delete bob;
+		delete me;
+		delete src;
+	}
+	printEnd();
+}
+
 int main()
 {
 	// AMateria *ptr = NULL;
@@ -160,6 +190,7 @@ int main()
 	// test4();
 	//test5();
 	//test6();
-	test7();
+	//test7();
+	test8();
 	return (0);
 }

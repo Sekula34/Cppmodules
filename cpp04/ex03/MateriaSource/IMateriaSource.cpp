@@ -8,11 +8,13 @@ IMateriaSource::IMateriaSource()
 
 IMateriaSource::IMateriaSource(IMateriaSource& source)
 {
+	(void) source;
 	std::cout << "Called copy constructor of INTERFACE MateriaSource" << std::endl;
 }
 
 IMateriaSource& IMateriaSource::operator=(IMateriaSource& source)
 {
+	(void) source;
 	std::cout <<"Called operator = of INTERFACE MateriaSource " << std::endl;
 	return (*this);
 }

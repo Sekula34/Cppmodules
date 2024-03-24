@@ -16,7 +16,6 @@ HEADERS = Cure/Cure.hpp \
 		MateriaSource/IMateriaSource.hpp\
 		MateriaSource/MateriaSource.hpp\
 		AMateria.hpp \
-		IMateriaSource.hpp \
 		
 
 
