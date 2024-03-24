@@ -1,7 +1,26 @@
 #include "Zombie.hpp"
 #include <sstream>
+#include <iostream>
+
+//test for proving newZombie works
+void test0()
+{
+	Zombie *hipi;
+
+	hipi = newZombie("Hipi The Zombie");
+	hipi->announce();
+	delete (hipi);
+}
+//test for proving random chump works
+void test1()
+{
+	randomChump("Totaly random Zombie name");
+}
+
 int main()
 {
+	test0();
+	test1();
 	Zombie *hipyZ;
 	hipyZ = newZombie("hipiz");
 	hipyZ->announce();

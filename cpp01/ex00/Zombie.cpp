@@ -1,4 +1,5 @@
 #include "Zombie.hpp"
+#include <iostream>
 
 void Zombie::announce(void)
 {
@@ -6,7 +7,10 @@ void Zombie::announce(void)
 }
 Zombie:: Zombie(std::string name)
 {
+	if(name.empty() == true)
+		name = "Default_name";
 	Zombie::name = name;
+	std::cout << "Called Zobie " << name << " constructor" << std::endl;
 }
 
 Zombie:: ~Zombie()
