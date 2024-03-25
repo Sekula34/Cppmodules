@@ -1,4 +1,5 @@
 
+#include "Brain.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>
@@ -55,10 +56,16 @@ void subjectTest()
 	}
 }
 
+void test3()
+{
+	Brain firstBrain;
+}
+
 int main()
 {
 	test1();
 	test2();
 	subjectTest();
+	test3();
 	return 0;
 }
