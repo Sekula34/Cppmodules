@@ -59,3 +59,13 @@ void Dog::makeSound(void) const
 {
 	std::cout << "woof woof" << std::endl;
 }
+
+void Dog::setIdea(std::string idea, int index)
+{
+	this->brainPtr->setidea(idea, index);
+}
+
+void Dog::tellEverything(void) const 
+{
+	this->brainPtr->listIdeas();
+}

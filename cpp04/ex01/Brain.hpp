@@ -13,6 +13,7 @@ class Brain
 		~Brain();
 
 		void listIdeas(void);
+		void setidea(std::string idea, int index);
 };
 
 #endif

@@ -44,3 +44,14 @@ void Brain::listIdeas(void)
 		std::cout << ideas[i] << std::endl;
 	}
 }
+
+void Brain::setidea(std::string idea, int index)
+{
+	if(index > 99 || index < 0)
+	{
+		std::cerr << "Index of idea is out of range "  << std::endl;
+	}
+	if(idea.empty() == true)
+		idea = "<no idea>";
+	ideas[index] = idea;
+}
