@@ -2,6 +2,7 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>
+#include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
 
@@ -37,6 +38,12 @@ void subjectTestWrong(void)
     delete meta;
     delete i; 
     delete j;
+}
+
+void wrongAnimal(void)
+{
+    WrongCat mica;
+    mica.makeSound();
 }
 
 
@@ -75,13 +82,22 @@ void test4(void)
     delete animalPtr;
 }
 
+//use and instantiate the class
+void test5()
+{
+    Animal my_animal;
+
+    my_animal.makeSound();
+}
 
 int main()
 {
+    wrongAnimal();
     subjectTestWrong();
     subjectTest();
 
     test3();
     test4();
+    test5();
     return 0;
 }
