@@ -1,3 +1,4 @@
+#include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>
@@ -39,9 +40,29 @@ void subjectTestWrong(void)
 }
 
 
+//some of my testes
+void test3(void)
+{
+    Dog *dogptr;
+
+    dogptr = new Dog();
+    dogptr->makeSound();
+    std::cout << dogptr->getType() << " hello" << std::endl;
+    Animal* animalPtr;
+
+    animalPtr = dogptr;
+
+    std::cout << "Printing with animal Ptr" << std::endl;
+    animalPtr->makeSound();
+    delete dogptr;
+}
+
+
 int main()
 {
-    subjectTestWrong();
-    subjectTest();
+    // subjectTestWrong();
+    // subjectTest();
+
+    test3();
     return 0;
 }
