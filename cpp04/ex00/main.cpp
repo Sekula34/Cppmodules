@@ -41,6 +41,7 @@ void subjectTestWrong(void)
 
 
 //some of my testes
+//this one proves that animal* can point to dog*
 void test3(void)
 {
     Dog *dogptr;
@@ -57,12 +58,30 @@ void test3(void)
     delete dogptr;
 }
 
+//this one proves that animal* can point to cat* and freeing can be done with animal*
+void test4(void)
+{
+    Cat *dogptr;
+
+    dogptr = new Cat();
+    dogptr->makeSound();
+    std::cout << dogptr->getType() << " hello" << std::endl;
+    Animal* animalPtr;
+
+    animalPtr = dogptr;
+
+    std::cout << "Printing with animal Ptr" << std::endl;
+    animalPtr->makeSound();
+    delete animalPtr;
+}
+
 
 int main()
 {
-    // subjectTestWrong();
-    // subjectTest();
+    subjectTestWrong();
+    subjectTest();
 
     test3();
+    test4();
     return 0;
 }
