@@ -21,9 +21,45 @@ void test1()
 	
 }
 
+//same as test1 except it is cat this time
+void test2()
+{
+
+	Cat ker;
+
+	ker.setIdea("Imam ideju", 1);
+	ker.setIdea("I need foood", 10);
+	std::cout << "ALL IDEAS FROM FIRST CAT" << std::endl;
+
+	Cat seconddog(ker);
+	ker.setIdea("I will probably hurt you", 10);
+	ker.tellEverything();
+	std::cout << "ALL IDEAS FROM DEEP COPY CAT" << std::endl;
+	seconddog.tellEverything();
+}
+
+void subjectTest()
+{
+	Animal* animal[10];
+
+	for(int i = 0; i < 10; i++)
+	{
+		if(i < 5)
+			animal[i] = new Dog();
+		else
+			animal[i] = new Cat();
+	}
+	for(int i = 0; i < 10; i++)
+	{
+		delete animal[i];
+	}
+}
+
 int main()
 {
-	test1();
+	subjectTest();
+	// test1();
+	// test2();
 	// Dog basic;
 	// {
 	// Dog tmp = basic;

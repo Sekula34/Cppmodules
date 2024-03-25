@@ -59,3 +59,13 @@ void Cat::makeSound(void) const
 {
 	std::cout << "meow meow" << std::endl;
 }
+
+void Cat::tellEverything(void) const
+{
+	this->brainPtr->listIdeas();
+}
+
+void Cat::setIdea(std::string idea, int index)
+{
+	this->brainPtr->setidea(idea, index);
+}
