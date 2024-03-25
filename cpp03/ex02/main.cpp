@@ -14,5 +14,6 @@ int main()
 		plameniJazavac.takeDamage(100);
 	}
 	plameniJazavac.beRepaired(3);
+	plameniJazavac.highFivesGuys();
 	return (0);
 }
