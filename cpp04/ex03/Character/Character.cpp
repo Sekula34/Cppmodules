@@ -19,8 +19,8 @@ int Character::getFirstEmptySpot() const
 
 Character::Character(void)
 {
-	std::cout << "Called default Character constructor" << std::endl;
-	_name = "Character_name";
+	// std::cout << "Called default Character constructor" << std::endl;
+	// _name = "Character_name";
 	for(int i = 0; i < 4; i++)
 	{
 		_materials[i] = NULL;
@@ -29,7 +29,7 @@ Character::Character(void)
 
 Character::Character(Character &source)
 {
-	std::cout << "Called Character copy constructor" << std::endl;
+	// std::cout << "Called Character copy constructor" << std::endl;
 	_name = source._name;
 	for(int i = 0; i < 4; i++)
 	{
@@ -46,7 +46,7 @@ Character::Character(Character &source)
 
 Character& Character::operator=(Character &source)
 {
-	std::cout << "Called Character =operator" << std::endl;
+	// std::cout << "Called Character =operator" << std::endl;
 	for(int i = 0; i < 4; i++)
 	{
 		delete this->_materials[i];
@@ -69,7 +69,7 @@ Character& Character::operator=(Character &source)
 
 Character::~Character()
 {
-	std::cout << "Called Character destructor" << std::endl;
+	// std::cout << "Called Character destructor" << std::endl;
 	for(int i = 0; i < 4; i++)
 	{
 		delete _materials[i];
@@ -80,7 +80,7 @@ Character::Character(std::string name)
 {
 	if(name.empty() == true)
 		name = "Default";
-	std::cout << "Called Character constructor with the name " << name << std::endl;
+	// std::cout << "Called Character constructor with the name " << name << std::endl;
 	_name = name;
 	for(int i = 0; i < 4; i++)
 	{

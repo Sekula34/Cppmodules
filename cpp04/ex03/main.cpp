@@ -221,14 +221,14 @@ void test9(void)
 
 int main()
 {
-	// AMateria *ptr = NULL;
-	// test3(&ptr);
-	// delete ptr;
-	// test4();
-	//test5();
-	//test6();
-	//test7();
-	//test8();
+	AMateria *ptr = NULL;
+	test3(&ptr);
+	delete ptr;
+	test4();
+	test5();
+	test6();
+	test7();
+	test8();
 	test9();
 	return (0);
 }

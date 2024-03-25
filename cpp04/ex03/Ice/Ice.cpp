@@ -5,26 +5,26 @@
 
 Ice::Ice(void)
 {
-	std::cout << "Called ice default constructor" << std::endl;
+	// std::cout << "Called ice default constructor" << std::endl;
 	m_type = "ice";
 }
 
 Ice::Ice(Ice& source)
 {
-	std::cout << "Ice copy constructor"<< std::endl;
+	// std::cout << "Ice copy constructor"<< std::endl;
 	m_type = source.m_type;
 }
 
 Ice& Ice::operator=(Ice& source)
 {
-	std::cout << "Ice = assignment" << std::endl;
+	// std::cout << "Ice = assignment" << std::endl;
 	m_type = source.m_type;
 	return (*this);
 }
 
 Ice::~Ice()
 {
-	std::cout << "Ice destructor" << std::endl;
+	// std::cout << "Ice destructor" << std::endl;
 }
 
 AMateria* Ice::clone() const 
