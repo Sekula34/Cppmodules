@@ -60,5 +60,5 @@ int main()
 	test1();
 	test2();
 	subjectTest();
-	 return 0;
+	return 0;
 }
