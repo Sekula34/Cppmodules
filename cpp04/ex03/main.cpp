@@ -219,16 +219,32 @@ void test9(void)
 }
 
 
+void test10(void)
+{
+	Character filip;
+
+	filip.equip(new Ice());
+	AMateria* toDelete;
+	toDelete = filip.getMateriaPtr(0);
+	filip.unequip(0);
+	filip.equip(new Cure());
+	delete toDelete;
+	toDelete = filip.getMateriaPtr(0);
+	filip.unequip(0);
+	delete toDelete;
+}
+
 int main()
 {
-	AMateria *ptr = NULL;
-	test3(&ptr);
-	delete ptr;
-	test4();
-	test5();
-	test6();
-	test7();
-	test8();
-	test9();
+	// AMateria *ptr = NULL;
+	// test3(&ptr);
+	// delete ptr;
+	// test4();
+	// test5();
+	// test6();
+	// test7();
+	// test8();
+	// test9();
+	test10();
 	return (0);
 }
