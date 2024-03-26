@@ -11,7 +11,10 @@ class Form
 		const std::string _name;
 		bool _isSigned;
 		const int _gradeToSign;
-		const int _greadeToExecute;
+		const int _gradeToExecute;
+
+		void _checkGrades() const;
+		void _requiredGradeCheck(int grade, int requiredGrade);
 
 	public :
 
@@ -20,6 +23,8 @@ class Form
 		Form(const Form& source);
 		Form& operator=(const Form& source);
 		~Form();
+
+		Form(std::string name, int gradeToSign, int gradeToExecute);
 
 		//getters for all attributes
 		std::string getName() const;
