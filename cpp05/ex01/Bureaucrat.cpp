@@ -89,6 +89,8 @@ void Bureaucrat::decreaseGrade(int decrement)
 // <bureaucrat> couldn’t sign <form> because <reason>.
 void Bureaucrat::signForm(Form &formToSign)
 {
+	if(formToSign.getIsSgined() == true)
+		return;
 	if(this->_grade > formToSign.getGradeToSign())
 	{
 		std::cout << this->_name << " couldn't sign ";

@@ -105,6 +105,34 @@ void test9(int formgrade, int biroGrade)
 	std::cout << formToSing << std::endl;
 }
 
+
+//testing signFrom function
+//form will be signed if biro is higher or equal grade(lower int)
+void test10(int formgrade, int biroGrade)
+{
+	Bureaucrat chef("Herr MR CHEF DR SC PHD", biroGrade);
+	Form report("Report", formgrade, formgrade);
+	std::cout << "Form before signing" << std::endl;
+	std::cout << report << std::endl;
+	chef.signForm(report);
+	std::cout << "Form after signing" << std::endl;
+	std::cout << report << std::endl;
+}
+
+//if form is already signed
+void test11(int formgrade, int biroGrade)
+{
+	Bureaucrat chef("Herr MR CHEF DR SC PHD", 1);
+	Bureaucrat poorGuy("Poorguy", biroGrade);
+	Form report("Report", formgrade, formgrade);
+	chef.signForm(report);
+	std::cout << "Form before signing" << std::endl;
+	std::cout << report << std::endl;
+	poorGuy.signForm(report);
+	std::cout << "Form after signing" << std::endl;
+	std::cout << report << std::endl;
+}
+
 int main()
 {
 	try
@@ -118,7 +146,9 @@ int main()
 		//--------exo1//
 		//test7();
 		//test8();
-		test9(700,2000);
+		//test9(700,2000);
+		test10(12, 9);
+		//test11(1, 1);
 
 	}
 	catch(std::exception &e)
