@@ -46,7 +46,7 @@ void test3()
 }
 
 
-//decrease grade exception
+//decrease grade exception and << overload
 void test4()
 {
 	Bureaucrat filip("filip", 150);
@@ -55,7 +55,7 @@ void test4()
 	std::cout << "This will not be printed if exception is thrown" << std::endl;
 }
 
-//increase grade exception
+//increase grade exception and << overload
 void test5()
 {
 	Bureaucrat filip("filip", 1);
