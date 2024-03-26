@@ -3,6 +3,7 @@
 #include <ostream>
 #include <string>
 #include <iostream>
+#include <iomanip> 
 
 
 //function that check if grades are correct
@@ -40,6 +41,7 @@ _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeT
 
 Form& Form::operator=(const Form& source)
 {
+	this->_isSigned = source._isSigned;
 	return (*this);
 }
 
@@ -85,14 +87,24 @@ void Form::beSigned(const Bureaucrat& biro)
 	}
 }
 
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return ("Grade is too high");
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return ("Grade is too low");
+}
 
 std::ostream& operator<<(std::ostream& os, const Form& forma)
 {
-	os<<"-----FORM INFO-----"<<std::endl;
-	os<<"\tForm name :" << forma.getName() << std::endl;
-	os<<"\tForm is signed :" << forma.getIsSgined() << std::endl;
-	os<<"\tForm required grade to sign :" << forma.getGradeToSign() << std::endl;
-	os<<"\tForm required grade to execute :" << forma.getGradeToExecute() << std::endl;
-	os<<"----------------------------";
+	int width = 33; // Set the width for your alignment
+	os <<  "--------------------FORM INFO--------------------" << std::endl;
+	os << std::right << std::setw(width) << "Form name :" << forma.getName() << std::endl;
+	os << std::right << std::setw(width) << "Form is signed :" << forma.getIsSgined() << std::endl;
+	os << std::right << std::setw(width) << "Form required grade to sign :" << forma.getGradeToSign() << std::endl;
+	os << std::right << std::setw(width) << "Form required grade to execute :" << forma.getGradeToExecute() << std::endl;
+	os << "--------------------------------------------------";
 	return (os);
 }

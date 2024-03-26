@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("Default_name"), _grade(150)
 {
@@ -79,6 +80,23 @@ void Bureaucrat::decreaseGrade(int decrement)
 	{
 		throw Bureaucrat::GradeTooLowException();
 	}
+}
+
+// Lastly, add a signForm() member function to the Bureaucrat. If the form got signed,
+// it will print something like:
+// <bureaucrat> signed <form>
+// Otherwise, it will print something like:
+// <bureaucrat> couldn’t sign <form> because <reason>.
+void Bureaucrat::signForm(Form &formToSign)
+{
+	if(this->_grade > formToSign.getGradeToSign())
+	{
+		std::cout << this->_name << " couldn't sign ";
+		std::cout << formToSign.getName() << "because of too low level" << std::endl;
+		return ;
+	}
+	formToSign.beSigned(*this);
+	std::cout << this->_name << " signed " << formToSign.getName() << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHightException::what() const throw()

@@ -2,6 +2,7 @@
 #include <exception>
 #include <iostream>
 #include <ostream>
+#include "Form.hpp"
 
 //too high
 void test1()
@@ -74,6 +75,12 @@ void test6()
 	filip.increaseGrade(19);
 }
 
+void test7()
+{
+	Form first;
+	std::cout << first << std::endl;
+}
+
 int main()
 {
 	try
@@ -83,7 +90,10 @@ int main()
 		//test3();
 		//test4();
 		//test5();
-		test6();
+		//test6();
+		//--------exo1//
+		test7();
+
 	}
 	catch(std::exception &e)
 	{
