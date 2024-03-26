@@ -75,9 +75,21 @@ void test6()
 	filip.increaseGrade(19);
 }
 
+//proving that << works for form
 void test7()
 {
 	Form first;
+	std::cout << first << std::endl;
+
+	Form second("Forma2",100,80);
+	std::cout <<second << std::endl;
+}
+
+//grades outside range in constructor
+void test8()
+{
+	Form first("forma", 6, 1);
+	std::cout << "this shall not be printed if there is error" << std::endl;
 	std::cout << first << std::endl;
 }
 
@@ -92,7 +104,8 @@ int main()
 		//test5();
 		//test6();
 		//--------exo1//
-		test7();
+		//test7();
+		test8();
 
 	}
 	catch(std::exception &e)
