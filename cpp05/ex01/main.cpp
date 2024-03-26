@@ -93,6 +93,18 @@ void test8()
 	std::cout << first << std::endl;
 }
 
+//testing besignedfunction.
+//as long as formgrade is higher it will be possible to sing
+void test9(int formgrade, int biroGrade)
+{
+	Form formToSing("Prijava", formgrade, 90);
+	Bureaucrat biros("Pera", biroGrade);
+	std::cout << formToSing << std::endl;
+	formToSing.beSigned(biros);
+	std::cout << "Form info after signing" << std::endl;
+	std::cout << formToSing << std::endl;
+}
+
 int main()
 {
 	try
@@ -105,7 +117,8 @@ int main()
 		//test6();
 		//--------exo1//
 		//test7();
-		test8();
+		//test8();
+		test9(700,2000);
 
 	}
 	catch(std::exception &e)
