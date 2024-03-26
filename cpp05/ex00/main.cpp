@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include <exception>
 #include <iostream>
+#include <ostream>
 
 //too high
 void test1()
@@ -44,13 +45,45 @@ void test3()
 	// std::cout << "My grade is " << filip.getGrade() << std::endl;
 }
 
+
+//decrease grade exception
+void test4()
+{
+	Bureaucrat filip("filip", 150);
+	std::cout << filip << std::endl;
+	filip.decreaseGrade();
+	std::cout << "This will not be printed if exception is thrown" << std::endl;
+}
+
+//increase grade exception
+void test5()
+{
+	Bureaucrat filip("filip", 1);
+	std::cout << filip << std::endl;
+	filip.increaseGrade();
+	std::cout << "This will not be printed if exception is thrown" << std::endl;
+}
+
+//increase and decrease overload
+void test6()
+{
+	Bureaucrat filip("filip", 12);
+	filip.decreaseGrade(5);
+	std::cout << filip << std::endl;
+	//filip.decreaseGrade(200);
+	filip.increaseGrade(19);
+}
+
 int main()
 {
 	try
 	{
-		test1();
+		//test1();
 		// test2();
-		test3();
+		//test3();
+		//test4();
+		//test5();
+		test6();
 	}
 	catch(std::exception &e)
 	{
