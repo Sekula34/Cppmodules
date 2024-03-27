@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include <exception>
 #include <iostream>
 #include <ostream>
@@ -179,6 +180,32 @@ void test15()
 	std::cout << "test15 text after execute" << std::endl;
 }
 
+//50 times failed 50 time success
+void test16()
+{
+	Bureaucrat biro("Filip",1);
+	RobotomyRequestForm shrub("PLAMENI JAZAVAC");
+	shrub.beSigned(biro);
+	std::cout <<shrub << std::endl;
+
+	shrub.execute(biro);
+	std::cout << "test15 text after execute" << std::endl;
+}
+
+//testing exectuon of robotrequest for
+//it will be exectued as long as birograde is lower than int 45
+void test17(int birograde)
+{
+	Bureaucrat biro("Filip",1);
+	Bureaucrat poorgug("Hej", birograde);
+	RobotomyRequestForm shrub("PLAMENI JAZAVAC");
+	shrub.beSigned(biro);
+	std::cout <<shrub << std::endl;
+
+	shrub.execute(poorgug);
+	std::cout << "test15 text after execute" << std::endl;
+}
+
 int main()
 {
 	try
@@ -200,9 +227,9 @@ int main()
 		//test12();
 		// test13();
 		// test14();
-		test15();
-
-
+		//test15();
+		//test16();
+		test17(45);
 	}
 	catch(std::exception &e)
 	{
