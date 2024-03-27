@@ -7,21 +7,21 @@
 #include <iostream>
 
 RobotomyRequestForm::RobotomyRequestForm()
-: AForm("DefaultRobotomyRequestForm", 72, 45)
+: AForm("Robotomy Request Form", 72, 45)
 {
-
+	_target = "<Default Robotomy Target>";
 }
 
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& source)
-: AForm(source.getName(), source.getGradeToSign(), source.getGradeToExecute())
+: AForm("Robotomy Request Form", source.getGradeToSign(), source.getGradeToExecute())
 {
-
+	_target = source._target;
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &source)
 {
-	(void) source;
+	this->_target = source._target;
 	return (*this);
 }
 
@@ -31,10 +31,11 @@ RobotomyRequestForm::~RobotomyRequestForm()
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-: AForm(target, 72, 45)
+: AForm("Robotomy Request Form", 72, 45)
 {
+	_target = target;
 	if(target.empty() == true)
-		throw std::runtime_error("From target name is empty");
+		throw std::runtime_error("Form target name is empty");
 }
 
 
@@ -51,7 +52,7 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor)
 	int variable = rand();
 	if(variable % 2 == 1)
 	{
-		std::cout << getName() << " has been robotomized" << std::endl;
+		std::cout << _target << " has been robotomized" << std::endl;
 	}
 	else
 	{

@@ -57,19 +57,20 @@ void ShrubberyCreationForm::_printingFiles()
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) :
-AForm("defualtSrhuberyname", 145, 137)
+AForm("Shrubbery Creation Form", 145, 137)
 {
-
+	_target = "<Default Shrubbery Creation>"; 
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& source)
+:AForm(source.getName(), source.getGradeToSign(), source.getGradeToExecute())
 {
-	(void)source;
+	_target = source._target;
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& source)
 {
-	(void)source;
+	this->_target = source._target;
 	return (*this);
 }
 
