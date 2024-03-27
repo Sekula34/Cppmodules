@@ -2,6 +2,7 @@ NAME = intern
 
 SOURCES =	main.cpp\
 			Bureaucrat.cpp\
+			Intern.cpp\
 			AForm.cpp \
 			PresidentialPardonForm.cpp\
 			RobotomyRequestForm.cpp\
@@ -9,6 +10,7 @@ SOURCES =	main.cpp\
 
 
 HEADERS =	Bureaucrat.hpp\
+			Intern.hpp\
 			AForm.hpp\
 			PresidentialPardonForm.hpp\
 			RobotomyRequestForm.hpp\
