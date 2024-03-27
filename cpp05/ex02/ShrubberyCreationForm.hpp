@@ -10,10 +10,10 @@ class ShrubberyCreationForm : public AForm
 	private:
 		std::string _target;
 		
-		std::ofstream _shrubberyFile;
-		void _printingFiles();
-		void _printingFolders(struct dirent* file);
-		void _printactualTree();
+		// std::ofstream _shrubberyFile;
+		void _printingFiles(std::ofstream& _shrubberyFile) const;
+		void _printingFolders(struct dirent* file, std::ofstream& _shrubberyFile) const;
+		void _printactualTree(std::ofstream& _shrubberyFile) const;
 
 	public :
 		//orthodox
@@ -23,7 +23,7 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm();
 
 		ShrubberyCreationForm(std::string target);
-		void execute(Bureaucrat const & executor);
+		void execute(Bureaucrat const & executor) const;
 };
 
 #endif

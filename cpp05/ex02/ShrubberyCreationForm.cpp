@@ -6,7 +6,7 @@
 #include <dirent.h>
 
 
-void ShrubberyCreationForm::_printactualTree()
+void ShrubberyCreationForm::_printactualTree(std::ofstream& _shrubberyFile) const
 {
     _shrubberyFile << "      *       " << "      *       " << "      *       " << "      *       " << "      *       " << std::endl;
     _shrubberyFile << "     ***      " << "     ***      " << "     ***      " << "     ***      " << "     ***      " << std::endl;
@@ -16,7 +16,7 @@ void ShrubberyCreationForm::_printactualTree()
     _shrubberyFile << "     |||      " << "     |||      " << "     |||      " << "     |||      " << "     |||      " << std::endl;
 }
 
-void ShrubberyCreationForm::_printingFolders(struct dirent* file)
+void ShrubberyCreationForm::_printingFolders(struct dirent* file, std::ofstream& _shrubberyFile) const
 {
 	if(file->d_name[0] == '.')
 		return;
@@ -28,7 +28,7 @@ void ShrubberyCreationForm::_printingFolders(struct dirent* file)
 	}
 }
 
-void ShrubberyCreationForm::_printingFiles()
+void ShrubberyCreationForm::_printingFiles(std::ofstream& _shrubberyFile) const
 {
 	DIR* dir;
 	struct dirent* file; 
@@ -44,7 +44,7 @@ void ShrubberyCreationForm::_printingFiles()
 	{
 		if(file->d_type == DT_DIR)
 		{
-			_printingFolders(file);
+			_printingFolders(file, _shrubberyFile);
 		}
 		if(file->d_type == DT_REG)
 		{
@@ -90,16 +90,17 @@ AForm(target, 145, 137)
 // • ShrubberyCreationForm: Required grades: sign 145, exec 137
 // Create a file <target>_shrubbery in the working directory, and writes ASCII trees
 // inside it
-void ShrubberyCreationForm::execute(Bureaucrat const & executor)
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if(this->getIsSgined() == false)
 		throw AForm::FormNotSignedException();
 	this->requiredGradeCheck(executor.getGrade(), this->getGradeToExecute());
 	std::cout << "Execution can start" << std::endl;
+	std::ofstream _shrubberyFile;
 	const std::string fileName(getName() + "_shrubbery");
 	_shrubberyFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
 	if(_shrubberyFile.fail() == true)
 		throw std::runtime_error("Openig file failed");
-	_printingFiles();
-	_printactualTree();
+	_printingFiles(_shrubberyFile);
+	_printactualTree(_shrubberyFile);
 }
