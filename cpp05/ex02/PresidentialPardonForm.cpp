@@ -2,6 +2,7 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include <stdexcept>
+#include <iostream>
 
 PresidentialPardonForm::PresidentialPardonForm(void)
 :AForm("Presidential Pardon Form", 25, 5)
@@ -31,11 +32,17 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target)
 {
 	_target = target;
 	if(_target.empty())
-		std::runtime_error("Target cannot be empty");
+		throw std::runtime_error("Target cannot be empty");
 }
 
 
+// Required grades: sign 25, exec 5
+// Informs that <target> has been pardoned by Zaphod Beeblebrox.
 void PresidentialPardonForm::execute(Bureaucrat const & executor)
 {
-	(void)executor;
+	if(getIsSgined() == false)
+		throw AForm::FormNotSignedException();
+	requiredGradeCheck(executor.getGrade(), getGradeToExecute());
+	std::cout << "Informing that " << _target << " has been pardoned by Zaphod Beeblerbrox";
+	std::cout << std::endl;
 }

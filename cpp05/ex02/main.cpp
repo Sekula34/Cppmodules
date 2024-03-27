@@ -4,6 +4,7 @@
 #include <exception>
 #include <iostream>
 #include <ostream>
+#include "PresidentialPardonForm.hpp"
 
 
 //too high
@@ -206,6 +207,34 @@ void test17(int birograde)
 	std::cout << "test15 text after execute" << std::endl;
 }
 
+//just creating Presidental form
+void test18()
+{
+	PresidentialPardonForm soriStari;
+	std::cout << soriStari << std::endl;
+}
+
+//executing not signed form
+void test19()
+{
+	Bureaucrat chef("boss",1);
+	PresidentialPardonForm soriStari("Filip");
+	soriStari.execute(chef);
+	std::cout << soriStari << std::endl;
+}
+
+//testing exectuon of presiden form
+void test20(int signGrade, int executeGrade)
+{
+	Bureaucrat chef("boss",signGrade);
+	Bureaucrat executor("executor", executeGrade);
+	PresidentialPardonForm soriStari("Filip");
+
+	soriStari.beSigned(chef);
+	soriStari.execute(executor);
+	std::cout << soriStari << std::endl;
+}
+
 int main()
 {
 	try
@@ -229,7 +258,10 @@ int main()
 		// test14();
 		//test15();
 		//test16();
-		test17(45);
+		//test17(45);
+		//test18();
+		//test19();
+		test20(5000, 60);
 	}
 	catch(std::exception &e)
 	{
