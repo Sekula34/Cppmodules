@@ -2,11 +2,17 @@ NAME = exec_form
 
 SOURCES =	main.cpp\
 			Bureaucrat.cpp\
-			AForm.cpp
+			AForm.cpp \
+			PresidentialPardonForm.cpp\
+			RobotomyRequestForm.cpp\
+			PresidentialPardonForm.cpp
 
 
 HEADERS =	Bureaucrat.hpp\
-			AForm.hpp
+			AForm.hpp\
+			PresidentialPardonForm.hpp\
+			RobotomyRequestForm.hpp\
+			PresidentialPardonForm.hpp
 
 		
 
