@@ -99,6 +99,7 @@ void Character::equip(AMateria* m)
 	if(spotIndex == -1)
 	{
 		std::cerr << "There is no available spot in inventory" << std::endl;
+		delete m;
 		return ; 
 	}
 	_materials[spotIndex] = m;

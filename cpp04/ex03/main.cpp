@@ -155,6 +155,8 @@ void test7(void)
 }
 
 //subject main
+//THERE IS PROBLEM WITH EQIP it should delete if there is no slot
+//corrected after felix evaluation, if there is no slot delete *m
 void test8(void)
 {
 	prinTest("8");
@@ -168,8 +170,19 @@ void test8(void)
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
+
 		tmp = src->createMateria("cure");
 		me->equip(tmp);
+
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+		
 
 		ICharacter *bob = new Character("bob");
 
@@ -243,8 +256,8 @@ int main()
 	// test5();
 	// test6();
 	// test7();
-	// test8();
+	 test8();
 	// test9();
-	test10();
+	//test10();
 	return (0);
 }
