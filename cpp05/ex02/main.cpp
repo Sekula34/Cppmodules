@@ -155,6 +155,7 @@ void test13()
 }
 
 //same as test13 but this time is signed
+//birocrat level to low to execute
 void test14()
 {
 	Bureaucrat biro("Filip",145);
@@ -164,6 +165,18 @@ void test14()
 
 	shrub.execute(biro);
 	std::cout << "test12 text after execute" << std::endl;
+}
+
+//birocrat level is high enough to execute form and form is signed
+void test15()
+{
+	Bureaucrat biro("Filip",137);
+	ShrubberyCreationForm shrub("moja forma");
+	shrub.beSigned(biro);
+	std::cout <<shrub << std::endl;
+
+	shrub.execute(biro);
+	std::cout << "test15 text after execute" << std::endl;
 }
 
 int main()
@@ -185,8 +198,9 @@ int main()
 		//------------AFORM is now abstract so i cant use testes from ex01
 		//-------------ex02
 		//test12();
-		//test13();
-		test14();
+		// test13();
+		// test14();
+		test15();
 
 
 	}
