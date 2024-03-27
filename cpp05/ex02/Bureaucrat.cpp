@@ -117,17 +117,21 @@ void Bureaucrat::executeForm(AForm const & form)
 	catch(AForm::FormNotSignedException)
 	{
 		std::cerr <<"Form is not executed beacause it is not signed" << std::endl;
-		std::cerr <<"You can sign" << form.getName() << "if you are grade ";
-		std::cerr << form.getGradeToSign() << "or higher" << std::endl;
+		std::cerr <<"You can sign " << form.getName() << " if you are grade ";
+		std::cerr << form.getGradeToSign() << " or higher" << std::endl;
+		return ;
 	}
-	catch(AForm::GradeTooLowException)
+	catch(Bureaucrat::GradeTooLowException)
 	{
 		std::cerr<<"Form is not executed beacuase birocrat " << _name;
-		std::cerr<<" grade is " << _grade << " but it should be ";
+		std::cerr<<" grade is " << _grade << " but it should be";
 		std::cerr<<" at least " << form.getGradeToExecute() << std::endl;
+		return ;
 	}
 	catch(std::exception &e)
 	{
+		std::cout << "I am here" << std::endl;
+		std::cout << e.what() << std::endl;
 		throw e;
 	}
 	std::cout << _name << " executed " << form.getName() << std::endl;

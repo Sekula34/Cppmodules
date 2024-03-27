@@ -224,6 +224,7 @@ void test19()
 }
 
 //testing exectuon of presiden form
+//function execute form cathes Briokrat too low exception and Form not signed exception
 void test20(int signGrade, int executeGrade)
 {
 	Bureaucrat chef("boss",signGrade);
@@ -231,8 +232,8 @@ void test20(int signGrade, int executeGrade)
 	PresidentialPardonForm soriStari("Filip");
 
 	soriStari.beSigned(chef);
-	soriStari.execute(executor);
-	std::cout << soriStari << std::endl;
+	executor.executeForm(soriStari);
+	//std::cout << soriStari << std::endl;
 }
 
 int main()
@@ -261,7 +262,7 @@ int main()
 		//test17(45);
 		//test18();
 		//test19();
-		//test20(5000, 60);
+		test20(1, 100);
 	}
 	catch(std::exception &e)
 	{
