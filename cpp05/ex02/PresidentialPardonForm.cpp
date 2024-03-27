@@ -38,7 +38,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target)
 
 // Required grades: sign 25, exec 5
 // Informs that <target> has been pardoned by Zaphod Beeblebrox.
-void PresidentialPardonForm::execute(Bureaucrat const & executor)
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	if(getIsSgined() == false)
 		throw AForm::FormNotSignedException();

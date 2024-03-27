@@ -1,5 +1,7 @@
 #include "Bureaucrat.hpp"
+#include <exception>
 #include <iostream>
+#include <sys/types.h>
 #include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("Default_name"), _grade(150)
@@ -99,6 +101,36 @@ void Bureaucrat::signForm(AForm &formToSign)
 	}
 	formToSign.beSigned(*this);
 	std::cout << this->_name << " signed " << formToSign.getName() << std::endl;
+}
+
+// Lastly, add the executeForm(AForm const & form) member function to the Bureaucrat. 
+// It must attempt to execute the form. If it’s successful, print something like:
+// <bureaucrat> executed <form>
+// If not, print an explicit error message.
+// Implement and turn in some tests to ensure everything works as expected.
+void Bureaucrat::executeForm(AForm const & form)
+{
+	try 
+	{
+		form.execute(*this);
+	}
+	catch(AForm::FormNotSignedException)
+	{
+		std::cerr <<"Form is not executed beacause it is not signed" << std::endl;
+		std::cerr <<"You can sign" << form.getName() << "if you are grade ";
+		std::cerr << form.getGradeToSign() << "or higher" << std::endl;
+	}
+	catch(AForm::GradeTooLowException)
+	{
+		std::cerr<<"Form is not executed beacuase birocrat " << _name;
+		std::cerr<<" grade is " << _grade << " but it should be ";
+		std::cerr<<" at least " << form.getGradeToExecute() << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		throw e;
+	}
+	std::cout << _name << " executed " << form.getName() << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHightException::what() const throw()

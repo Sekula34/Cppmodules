@@ -25,9 +25,9 @@ class AForm
 
 		AForm(std::string name, int gradeToSign, int gradeToExecute);
 
-		virtual void execute(Bureaucrat const & executor) = 0;
+		virtual void execute(Bureaucrat const & executor) const = 0;
 
-		void requiredGradeCheck(int grade, int requiredGrade);
+		void requiredGradeCheck(int grade, int requiredGrade) const;
 		//getters for all attributes
 		std::string getName() const;
 		bool getIsSgined() const;

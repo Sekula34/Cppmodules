@@ -21,7 +21,7 @@ void AForm::_checkGrades() const
 
 //check if grade is High enough to to something,
 // grade should be lower or equal than required one to no throw exception
-void AForm::requiredGradeCheck(int grade, int requiredGrade)
+void AForm::requiredGradeCheck(int grade, int requiredGrade) const
 {
 	if(grade > requiredGrade)
 		throw Bureaucrat::GradeTooLowException();
