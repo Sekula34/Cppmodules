@@ -21,10 +21,10 @@ void AForm::_checkGrades() const
 
 //check if grade is High enough to to something,
 // grade should be lower or equal than required one to no throw exception
-void AForm::_requiredGradeCheck(int grade, int requiredGrade)
+void AForm::requiredGradeCheck(int grade, int requiredGrade)
 {
 	if(grade > requiredGrade)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 AForm::AForm(void) : _name("DefaultFormName"), _isSigned(false),
@@ -78,7 +78,7 @@ void AForm::beSigned(const Bureaucrat& biro)
 {
 	if(_isSigned == false)
 	{
-		_requiredGradeCheck(biro.getGrade(), _gradeToSign);
+		requiredGradeCheck(biro.getGrade(), _gradeToSign);
 		_isSigned = true;
 	}
 	else
@@ -95,6 +95,12 @@ const char* AForm::GradeTooHighException::what() const throw()
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade is too low FORM");
+}
+
+
+const char* AForm::FormNotSignedException::what() const throw()
+{
+	return ("Form is not signed");
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& forma)

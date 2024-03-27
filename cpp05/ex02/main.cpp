@@ -1,8 +1,9 @@
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include <exception>
 #include <iostream>
 #include <ostream>
-#include "AForm.hpp"
+
 
 //too high
 void test1()
@@ -75,62 +76,94 @@ void test6()
 	filip.increaseGrade(19);
 }
 
-//proving that << works for form
-void test7()
-{
-	AForm first;
-	std::cout << first << std::endl;
+// //proving that << works for form
+// void test7()
+// {
+// 	AForm first;
+// 	std::cout << first << std::endl;
 
-	AForm second("Forma2",100,80);
-	std::cout <<second << std::endl;
+// 	AForm second("Forma2",100,80);
+// 	std::cout <<second << std::endl;
+// }
+
+// //grades outside range in constructor
+// void test8()
+// {
+// 	AForm first("forma", 6, 1);
+// 	std::cout << "this shall not be printed if there is error" << std::endl;
+// 	std::cout << first << std::endl;
+// }
+
+// //testing besignedfunction.
+// //as long as formgrade is higher it will be possible to sing
+// void test9(int formgrade, int biroGrade)
+// {
+// 	AForm formToSing("Prijava", formgrade, 90);
+// 	Bureaucrat biros("Pera", biroGrade);
+// 	std::cout << formToSing << std::endl;
+// 	formToSing.beSigned(biros);
+// 	std::cout << "Form info after signing" << std::endl;
+// 	std::cout << formToSing << std::endl;
+// }
+
+
+// //testing signFrom function
+// //form will be signed if biro is higher or equal grade(lower int)
+// void test10(int formgrade, int biroGrade)
+// {
+// 	Bureaucrat chef("Herr MR CHEF DR SC PHD", biroGrade);
+// 	AForm report("Report", formgrade, formgrade);
+// 	std::cout << "Form before signing" << std::endl;
+// 	std::cout << report << std::endl;
+// 	chef.signForm(report);
+// 	std::cout << "Form after signing" << std::endl;
+// 	std::cout << report << std::endl;
+// }
+
+// //if form is already signed
+// void test11(int formgrade, int biroGrade)
+// {
+// 	Bureaucrat chef("Herr MR CHEF DR SC PHD", 1);
+// 	Bureaucrat poorGuy("Poorguy", biroGrade);
+// 	AForm report("Report", formgrade, formgrade);
+// 	chef.signForm(report);
+// 	std::cout << "AForm before signing" << std::endl;
+// 	std::cout << report << std::endl;
+// 	poorGuy.signForm(report);
+// 	std::cout << "Form after signing" << std::endl;
+// 	std::cout << report << std::endl;
+// }
+
+//testing creation of shruber Form
+void test12()
+{
+	//ShrubberyCreationForm shruber(""); //this will throw runtime error
+	ShrubberyCreationForm defualt;
+	ShrubberyCreationForm shruber("ImeForme");
+	std::cout << shruber << std::endl;
 }
 
-//grades outside range in constructor
-void test8()
+//testing executing shrubbery
+//this will throw form not signed exception
+void test13()
 {
-	AForm first("forma", 6, 1);
-	std::cout << "this shall not be printed if there is error" << std::endl;
-	std::cout << first << std::endl;
+	Bureaucrat biro("Filip",2);
+	ShrubberyCreationForm shrub("moja forma");
+
+	shrub.execute(biro);
+	std::cout << "test12 text after execute" << std::endl;
 }
 
-//testing besignedfunction.
-//as long as formgrade is higher it will be possible to sing
-void test9(int formgrade, int biroGrade)
+//same as test13 but this time is signed
+void test14()
 {
-	AForm formToSing("Prijava", formgrade, 90);
-	Bureaucrat biros("Pera", biroGrade);
-	std::cout << formToSing << std::endl;
-	formToSing.beSigned(biros);
-	std::cout << "Form info after signing" << std::endl;
-	std::cout << formToSing << std::endl;
-}
+	Bureaucrat biro("Filip",145);
+	ShrubberyCreationForm shrub("moja forma");
+	shrub.beSigned(biro);
+	std::cout <<shrub << std::endl;
 
-
-//testing signFrom function
-//form will be signed if biro is higher or equal grade(lower int)
-void test10(int formgrade, int biroGrade)
-{
-	Bureaucrat chef("Herr MR CHEF DR SC PHD", biroGrade);
-	AForm report("Report", formgrade, formgrade);
-	std::cout << "Form before signing" << std::endl;
-	std::cout << report << std::endl;
-	chef.signForm(report);
-	std::cout << "Form after signing" << std::endl;
-	std::cout << report << std::endl;
-}
-
-//if form is already signed
-void test11(int formgrade, int biroGrade)
-{
-	Bureaucrat chef("Herr MR CHEF DR SC PHD", 1);
-	Bureaucrat poorGuy("Poorguy", biroGrade);
-	AForm report("Report", formgrade, formgrade);
-	chef.signForm(report);
-	std::cout << "AForm before signing" << std::endl;
-	std::cout << report << std::endl;
-	poorGuy.signForm(report);
-	std::cout << "Form after signing" << std::endl;
-	std::cout << report << std::endl;
+	shrub.execute(biro);
+	std::cout << "test12 text after execute" << std::endl;
 }
 
 int main()
@@ -147,8 +180,14 @@ int main()
 		//test7();
 		//test8();
 		//test9(700,2000);
-		test10(12, 9);
+		//test10(12, 9);
 		//test11(1, 1);
+		//------------AFORM is now abstract so i cant use testes from ex01
+		//-------------ex02
+		//test12();
+		//test13();
+		test14();
+
 
 	}
 	catch(std::exception &e)

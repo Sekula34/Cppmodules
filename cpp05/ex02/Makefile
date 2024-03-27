@@ -5,14 +5,14 @@ SOURCES =	main.cpp\
 			AForm.cpp \
 			PresidentialPardonForm.cpp\
 			RobotomyRequestForm.cpp\
-			PresidentialPardonForm.cpp
+			ShrubberyCreationForm.cpp
 
 
 HEADERS =	Bureaucrat.hpp\
 			AForm.hpp\
 			PresidentialPardonForm.hpp\
 			RobotomyRequestForm.hpp\
-			PresidentialPardonForm.hpp
+			ShrubberyCreationForm.hpp
 
 		
 

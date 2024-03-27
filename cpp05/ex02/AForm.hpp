@@ -14,7 +14,6 @@ class AForm
 		const int _gradeToExecute;
 
 		void _checkGrades() const;
-		void _requiredGradeCheck(int grade, int requiredGrade);
 
 	public :
 
@@ -22,10 +21,13 @@ class AForm
 		AForm();
 		AForm(const AForm& source);
 		AForm& operator=(const AForm& source);
-		~AForm();
+		virtual ~AForm();
 
 		AForm(std::string name, int gradeToSign, int gradeToExecute);
 
+		virtual void execute(Bureaucrat const & executor) = 0;
+
+		void requiredGradeCheck(int grade, int requiredGrade);
 		//getters for all attributes
 		std::string getName() const;
 		bool getIsSgined() const;
@@ -44,6 +46,13 @@ class AForm
 		class GradeTooLowException : public std::exception
 		{
 			public :
+				virtual const char* what() const throw();
+		};
+
+		
+		class FormNotSignedException : public std::exception
+		{
+			public:
 				virtual const char* what() const throw();
 		};
 };
