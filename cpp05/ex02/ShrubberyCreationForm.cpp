@@ -84,6 +84,7 @@ AForm(target, 145, 137)
 {
 	if(target.empty() == true)
 		throw std::runtime_error("Form name cannot be empty");
+	_target = target;
 }
 
 
@@ -97,7 +98,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	this->requiredGradeCheck(executor.getGrade(), this->getGradeToExecute());
 	std::cout << "Execution can start" << std::endl;
 	std::ofstream _shrubberyFile;
-	const std::string fileName(getName() + "_shrubbery");
+	const std::string fileName(_target + "_shrubbery");
 	_shrubberyFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
 	if(_shrubberyFile.fail() == true)
 		throw std::runtime_error("Openig file failed");

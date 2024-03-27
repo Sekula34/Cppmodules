@@ -255,13 +255,13 @@ int main()
 		//-------------ex02
 		//test12();
 		// test13();
-		// test14();
-		//test15();
+		//test14();
+		test15();
 		//test16();
 		//test17(45);
 		//test18();
 		//test19();
-		test20(5000, 60);
+		//test20(5000, 60);
 	}
 	catch(std::exception &e)
 	{
