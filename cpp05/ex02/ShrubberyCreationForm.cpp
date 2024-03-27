@@ -1,9 +1,49 @@
 #include "ShrubberyCreationForm.hpp"
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include <ios>
 #include <stdexcept>
 #include <iostream>
+#include <dirent.h>
+
+void ShrubberyCreationForm::_printingFolders(struct dirent* file)
+{
+	if(file->d_name[0] == '.')
+		return;
+	if(file->d_type == DT_DIR && file->d_name[0] != '.')
+	{
+		_shrubberyFile << "├─ ";
+		_shrubberyFile << file->d_name << "/";
+		_shrubberyFile << std::endl;
+	}
+}
+
+void ShrubberyCreationForm::_printingFiles()
+{
+	DIR* dir;
+	struct dirent* file; 
+
+	dir = opendir(".");
+	if(dir == NULL)
+	{
+		throw std::runtime_error("Cannot open curent director");
+	}
+	_shrubberyFile << "ex02/" << std::endl;
+	file = readdir(dir);
+	while(file != NULL)
+	{
+		if(file->d_type == DT_DIR)
+		{
+			_printingFolders(file);
+		}
+		if(file->d_type == DT_REG)
+		{
+			_shrubberyFile << "├─ ";
+			_shrubberyFile << file->d_name << std::endl;
+		}
+		file = readdir(dir);
+	}
+	closedir(dir);
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) :
 AForm("defualtSrhuberyname", 145, 137)
@@ -49,4 +89,5 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor)
 	if(_shrubberyFile.fail() == true)
 		throw std::runtime_error("Openig file failed");
 	_shrubberyFile << "Stavi nesto u fajl za sada" << std::endl;
+	_printingFiles();
 }

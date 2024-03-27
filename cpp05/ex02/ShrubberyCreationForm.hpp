@@ -9,6 +9,8 @@ class ShrubberyCreationForm : public AForm
 {
 	private:
 		std::ofstream _shrubberyFile;
+		void _printingFiles();
+		void _printingFolders(struct dirent* file);
 
 	public :
 		//orthodox
