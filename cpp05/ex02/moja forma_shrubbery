@@ -1,4 +1,3 @@
-Stavi nesto u fajl za sada
 ex02/
 ├─ Bureaucrat.cpp
 ├─ Bureaucrat.hpp
@@ -6,14 +5,14 @@ ex02/
 ├─ Makefile
 ├─ AForm.hpp
 ├─ AForm.cpp
-├─ ShrubberyCreationForm.hpp
-├─ ShrubberyCreationForm.cpp
 ├─ RobotomyRequestForm.hpp
 ├─ RobotomyRequestForm.cpp
 ├─ PresidentialPardonForm.hpp
 ├─ PresidentialPardonForm.cpp
 ├─ moja forma_shrubbery
 ├─ testfolder/
+├─ ShrubberyCreationForm.cpp
+├─ ShrubberyCreationForm.hpp
 ├─ main.o
 ├─ Bureaucrat.o
 ├─ AForm.o
@@ -21,3 +20,9 @@ ex02/
 ├─ RobotomyRequestForm.o
 ├─ ShrubberyCreationForm.o
 ├─ exec_form
+      *             *             *             *             *       
+     ***           ***           ***           ***           ***      
+    *****         *****         *****         *****         *****     
+   *******       *******       *******       *******       *******    
+  *********     *********     *********     *********     *********   
+     |||           |||           |||           |||           |||      

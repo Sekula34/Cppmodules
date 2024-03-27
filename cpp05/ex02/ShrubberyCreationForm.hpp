@@ -11,6 +11,7 @@ class ShrubberyCreationForm : public AForm
 		std::ofstream _shrubberyFile;
 		void _printingFiles();
 		void _printingFolders(struct dirent* file);
+		void _printactualTree();
 
 	public :
 		//orthodox

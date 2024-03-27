@@ -5,6 +5,17 @@
 #include <iostream>
 #include <dirent.h>
 
+
+void ShrubberyCreationForm::_printactualTree()
+{
+    _shrubberyFile << "      *       " << "      *       " << "      *       " << "      *       " << "      *       " << std::endl;
+    _shrubberyFile << "     ***      " << "     ***      " << "     ***      " << "     ***      " << "     ***      " << std::endl;
+    _shrubberyFile << "    *****     " << "    *****     " << "    *****     " << "    *****     " << "    *****     " << std::endl;
+    _shrubberyFile << "   *******    " << "   *******    " << "   *******    " << "   *******    " << "   *******    " << std::endl;
+    _shrubberyFile << "  *********   " << "  *********   " << "  *********   " << "  *********   " << "  *********   " << std::endl;
+    _shrubberyFile << "     |||      " << "     |||      " << "     |||      " << "     |||      " << "     |||      " << std::endl;
+}
+
 void ShrubberyCreationForm::_printingFolders(struct dirent* file)
 {
 	if(file->d_name[0] == '.')
@@ -88,6 +99,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor)
 	_shrubberyFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
 	if(_shrubberyFile.fail() == true)
 		throw std::runtime_error("Openig file failed");
-	_shrubberyFile << "Stavi nesto u fajl za sada" << std::endl;
 	_printingFiles();
+	_printactualTree();
 }
