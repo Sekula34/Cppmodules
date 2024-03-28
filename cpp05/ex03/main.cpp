@@ -282,9 +282,9 @@ int main()
 		// test21("robotomy request", ""); //no target exception not handled exception forwarded
 		//test21("presidential pardon", "filip"); //good
 		//test21("presidential pardon", ""); //exception forwarded
-		//test21("shrubbery creation", "filip"); // good
+		//test21("shruBBERy creation", "filip"); // good
 		//test21("shrubbery creation", ""); //empty target exception forwarded
-		test21("Actually doing something", "boss"); // exception throw and handled by make form
+		//test21("Actually doing something", "boss"); // exception throw and handled by make form
 		//test21("Actually doing something", "");
 
 	}

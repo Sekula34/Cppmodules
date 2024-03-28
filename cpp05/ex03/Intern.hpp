@@ -10,6 +10,7 @@ class Intern
 {
 
 	private :
+		std::string _toLowerString(std::string&  input) const;
 		int _getFormId(std::string formName) const;
 		void _sayIamdone(AForm *form) const;
 		AForm* _createShrub(std::string target);

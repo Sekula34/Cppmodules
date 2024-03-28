@@ -4,6 +4,8 @@
 #include "PresidentialPardonForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include <cctype>
+#include <cstddef>
 #include <exception>
 #include <string>
 #include <iostream>
@@ -29,6 +31,15 @@ Intern::~Intern()
 
 }
 
+std::string Intern::_toLowerString(std::string& input) const
+{
+	std::string lowerCased;
+	for(size_t i = 0; i < input.length(); i++)
+	{
+		lowerCased += std::tolower(input[i]);
+	}
+	return (lowerCased);
+}
 
 //get form Id
 //return 0 to N if form is foudn
@@ -43,7 +54,7 @@ int Intern::_getFormId(std::string formName) const
 
 	for(int i = 0; i < arraysize; i++)
 	{
-		if(allForms[i] == formName)
+		if(allForms[i] == _toLowerString(formName))
 			return (i);
 	}
 	throw NoSuchFormException();
@@ -152,7 +163,7 @@ AForm* Intern::makeForm(std::string nameOfForm, std::string targetForm)
 	catch (NoSuchFormException &e)
 	{
 		std::cerr<<e.what() << std::endl;
-		std::cerr <<"Sorry boss there is no such form as "<< nameOfForm << std::endl;
+		std::cerr <<"Sorry boss there is no such form as \'"<< nameOfForm << "\'"<< std::endl;
 	}
 	// catch(std::exception &e)
 	// {
