@@ -237,6 +237,7 @@ void test20(int signGrade, int executeGrade)
 	//std::cout << soriStari << std::endl;
 }
 
+//testing poor intern guy
 void test21(std::string formName, std::string targetForm)
 {
 	Intern student;
@@ -284,7 +285,7 @@ int main()
 		//test21("shrubbery creation", "filip"); // good
 		//test21("shrubbery creation", ""); //empty target exception forwarded
 		test21("Actually doing something", "boss"); // exception throw and handled by make form
-		test21("Actually doing something", "");
+		//test21("Actually doing something", "");
 
 	}
 	catch(std::exception &e)

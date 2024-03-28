@@ -54,7 +54,7 @@ void Intern::_sayIamdone(AForm *form) const
 	std::cout <<"Intern creates " << form->getName() << std::endl;
 }
 
-ShrubberyCreationForm* Intern::_createShrub(std::string target) const 
+AForm* Intern::_createShrub(std::string target) 
 {
 	ShrubberyCreationForm *shrubptr;
 
@@ -71,7 +71,7 @@ ShrubberyCreationForm* Intern::_createShrub(std::string target) const
 	return (shrubptr);
 }
 
-RobotomyRequestForm* Intern::_createRobot(std::string target) const 
+AForm* Intern::_createRobot(std::string target)
 {
 	RobotomyRequestForm *robPtr;
 
@@ -88,7 +88,7 @@ RobotomyRequestForm* Intern::_createRobot(std::string target) const
 	return (robPtr);
 }
 
-PresidentialPardonForm* Intern::_createPresidential(std::string target) const 
+AForm* Intern::_createPresidential(std::string target)
 {
 	PresidentialPardonForm *robPtr;
 
@@ -124,22 +124,27 @@ PresidentialPardonForm* Intern::_createPresidential(std::string target) const
 // (pool) anymore. As usual, you have to test that everything works as expected
 AForm* Intern::makeForm(std::string nameOfForm, std::string targetForm)
 {
+	
+	typedef AForm* (Intern::*FuncPtrCreate)(std::string);
+	FuncPtrCreate funcarr[3] = {&Intern::_createShrub, &Intern::_createRobot, 
+								&Intern::_createPresidential};
+
 	try
 	{
-		Form decison = static_cast<Form>(_getFormId(nameOfForm));
+		int decison = _getFormId(nameOfForm);
 		switch (decison) 
 		{
 			case SHRUB:
 			{
-				return (_createShrub(targetForm));
+				return (this->*(funcarr[SHRUB]))(targetForm);
 			}
 			case ROBOT:
 			{
-				return (_createRobot(targetForm));
+				return (this->*(funcarr[ROBOT] ) ) (targetForm);
 			}
-			case PRESIDENTIAL: //create presidential
+			case PRESIDENTIAL: 
 			{
-				return (_createPresidential(targetForm));
+				return (this->*(funcarr[PRESIDENTIAL] ) ) (targetForm);
 			}
 		
 		}

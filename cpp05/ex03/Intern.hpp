@@ -2,9 +2,6 @@
 # define INTERN_HPP
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
 #include <exception>
 
 enum Form {SHRUB, ROBOT, PRESIDENTIAL};
@@ -15,9 +12,9 @@ class Intern
 	private :
 		int _getFormId(std::string formName) const;
 		void _sayIamdone(AForm *form) const;
-		ShrubberyCreationForm* _createShrub(std::string target) const;
-		RobotomyRequestForm* _createRobot(std::string target) const;
-		PresidentialPardonForm* _createPresidential(std::string target) const;
+		AForm* _createShrub(std::string target);
+		AForm* _createRobot(std::string target);
+		AForm* _createPresidential(std::string target);
 
 	public :
 	//orthodox
