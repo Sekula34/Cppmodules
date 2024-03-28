@@ -88,6 +88,23 @@ RobotomyRequestForm* Intern::_createRobot(std::string target) const
 	return (robPtr);
 }
 
+PresidentialPardonForm* Intern::_createPresidential(std::string target) const 
+{
+	PresidentialPardonForm *robPtr;
+
+	try 
+	{
+		robPtr = new PresidentialPardonForm(target);
+	}
+	catch(std::exception &e)
+	{
+		std::cout <<e.what() <<std::endl;
+		throw e;
+	}
+	_sayIamdone(robPtr);
+	return (robPtr);
+}
+
 // However, the intern has one important capacity: the makeForm() function. 
 //It takestwo strings. 
 //The first one is the name of a form and the second one is the target of the
@@ -122,7 +139,7 @@ AForm* Intern::makeForm(std::string nameOfForm, std::string targetForm)
 			}
 			case PRESIDENTIAL: //create presidential
 			{
-				return (new PresidentialPardonForm(targetForm));
+				return (_createPresidential(targetForm));
 			}
 		
 		}

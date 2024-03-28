@@ -277,7 +277,14 @@ int main()
 		//test19();
 		//test20(1, 100);
 		//ex03
-		test21("robotomy request", "filip");
+		// test21("robotomy request", "filip"); //good
+		// test21("robotomy request", ""); //no target exception not handled exception forwarded
+		//test21("presidential pardon", "filip"); //good
+		//test21("presidential pardon", ""); //exception forwarded
+		//test21("shrubbery creation", "filip"); // good
+		//test21("shrubbery creation", ""); //empty target exception forwarded
+		test21("Actually doing something", "boss"); // exception throw and handled by make form
+		test21("Actually doing something", "");
 
 	}
 	catch(std::exception &e)
