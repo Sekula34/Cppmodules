@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include <exception>
@@ -236,6 +237,18 @@ void test20(int signGrade, int executeGrade)
 	//std::cout << soriStari << std::endl;
 }
 
+void test21(std::string formName, std::string targetForm)
+{
+	Intern student;
+	AForm* requestedForm;
+
+	requestedForm = student.makeForm(formName, targetForm);
+	if(requestedForm != NULL)
+		std::cout << *requestedForm << std::endl;
+	delete requestedForm;
+
+}
+
 int main()
 {
 	try
@@ -262,7 +275,10 @@ int main()
 		//test17(45);
 		//test18();
 		//test19();
-		test20(1, 100);
+		//test20(1, 100);
+		//ex03
+		test21("robotomy request", "filip");
+
 	}
 	catch(std::exception &e)
 	{

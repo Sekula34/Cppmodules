@@ -80,10 +80,10 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
-AForm(target, 145, 137)
+AForm("Shrubbery Creation Form", 145, 137)
 {
 	if(target.empty() == true)
-		throw std::runtime_error("Form name cannot be empty");
+		throw std::runtime_error("Form target cannot be empty");
 	_target = target;
 }
 
