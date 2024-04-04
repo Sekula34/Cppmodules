@@ -2,11 +2,17 @@
 #include <exception>
 #include <iostream>
 
+
+void test0(std::string parameter)
+{
+	ScalarConverter::convert(parameter);
+}
+
 int main()
 {
 	try 
 	{
-		ScalarConverter::convert("34.9");
+		test0("\n");
 		std::cout << "Hej from main" << std::endl;
 	}
 	catch (std::exception &e)

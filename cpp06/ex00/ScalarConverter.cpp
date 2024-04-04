@@ -1,8 +1,9 @@
 #include "ScalarConverter.hpp"
 #include <stdexcept>
-#include <iostream>
 #include <string>
-#include <sstream>
+#include <iostream>
+
+char ScalarConverter::_cValue;
 
 ScalarConverter::ScalarConverter(void)
 {
@@ -25,26 +26,30 @@ ScalarConverter::~ScalarConverter()
 
 }
 
+//throw runtime error if parameter is empty
+//return false if parameter size is not 1
+//set _cValue and return true if it is true
+bool ScalarConverter::_isParameterChar(std::string parameter)
+{
+	if(parameter.empty() == true)
+		throw std::runtime_error("Paramteter is empty in _isParameterChar function");
+	if(parameter.size() != 1)
+		return (false);
+	_cValue = parameter[0];
+	return (true);
+}
+
 void ScalarConverter::convert(std::string parameter)
 {
 	if(parameter.empty() == true)
 		throw std::runtime_error("Parameter in convert is empty");
-	std::cout << parameter << std::endl;
-	const char* c; 
-
-	c = parameter.c_str();
-	std::cout << "c is " << c << std::endl;
-
-	int value;
-	std::stringstream ss(parameter);
-	
-	if(ss >> value)
+	if(_isParameterChar(parameter) == true)
 	{
-		std::cout << "Int value is " << value << std::endl;
+		std::cout << "Parameter is char " <<_cValue << std::endl;
 	}
-	else 
+	else
 	{
-		throw std::runtime_error("this is imposible");
+		std::cout << "Parameter is not char [" << _cValue <<"]" <<std::endl;
 	}
 
 }
