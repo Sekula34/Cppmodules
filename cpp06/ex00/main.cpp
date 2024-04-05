@@ -5,6 +5,7 @@
 
 void test0(std::string parameter)
 {
+	std::cout << "Parameter is " << parameter << std::endl;
 	ScalarConverter::convert(parameter);
 }
 
@@ -12,7 +13,7 @@ int main()
 {
 	try 
 	{
-		test0("\n");
+		test0("  12.1f");
 		std::cout << "Hej from main" << std::endl;
 	}
 	catch (std::exception &e)
