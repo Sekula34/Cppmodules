@@ -28,7 +28,7 @@ class ScalarConverter
 		static bool _isParameterChar(std::string parameter);
 		static bool _isParameterInt(std::string parameter);
 		static bool _isParameterFloat(std::string paramter);
-		static bool _isParamterDobule(std::string paramter);
+		static bool _isParameterDouble(std::string paramter);
 
 
 

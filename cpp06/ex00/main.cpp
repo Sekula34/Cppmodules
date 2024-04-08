@@ -13,7 +13,7 @@ int main()
 {
 	try 
 	{
-		test0(" 1204.f");
+		test0(" 1204.56756476");
 		std::cout << "Hej from main" << std::endl;
 	}
 	catch (std::exception &e)

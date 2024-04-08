@@ -5,10 +5,12 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 char ScalarConverter::_cValue;
 int ScalarConverter::_iValue;
 float ScalarConverter:: _fValue;
+double ScalarConverter:: _dValue;
 
 ScalarConverter::ScalarConverter(void)
 {
@@ -170,7 +172,26 @@ bool ScalarConverter::_isParameterFloat(std::string parameter)
 		return false;
 	}
 	std::stringstream ss (parameter);
-	ss >> _fValue;
+	ss >> std::setprecision(7)>> _fValue;
+	if(ss.fail() == true)
+		throw std::runtime_error("Stringstream failed");
+	return true;
+}
+
+//check if parameter is double
+//to be double it should not end with 'f'
+//prerequisite is to not be empty, and to be number 
+//true if it is double , false if it is not
+bool ScalarConverter::_isParameterDouble(std::string parameter)
+{
+	if(_validNumberChecker(parameter) != true)
+		return false;
+	if(parameter[parameter.size() - 1] == 'f')
+	{
+		return false;
+	}
+	std::stringstream ss (parameter);
+	ss >>std::setprecision(15) >>  _dValue;
 	if(ss.fail() == true)
 		throw std::runtime_error("Stringstream failed");
 	return true;
@@ -216,5 +237,14 @@ void ScalarConverter::convert(std::string parameter)
 	{
 		std::cout << "Parameter is not float" << std::endl;
 	}
+	if(_isParameterDouble(parameter) == true)
+	{
+		std::cout << "dValue is [" << std::setprecision(15)<< _dValue << "]" << std::endl;
+	}
+	else
+	{
+		std::cout << "Parameter is not double" << std::endl;
+	}
+	
 
 }
