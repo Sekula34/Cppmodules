@@ -13,7 +13,7 @@ int main()
 {
 	try 
 	{
-		test0(" 0");
+		test0("42.0f");
 		std::cout << "Hej from main" << std::endl;
 	}
 	catch (std::exception &e)

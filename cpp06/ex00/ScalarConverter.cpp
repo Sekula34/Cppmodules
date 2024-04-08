@@ -247,10 +247,14 @@ void ScalarConverter::_convertFromType(double d)
 
 void ScalarConverter::_printAllTypes(void)
 {
-	std::cout << "Char: " << _cValue << std::endl;
-	std::cout << "Int: " << _iValue << std::endl;
-	std::cout << "Float: " << std::fixed << std::setprecision(1)<<_fValue << "f"<< std::endl;
-	std::cout << "Double: " << std::fixed << std::setprecision(1)<< _dValue << std::endl;
+	std::cout << "char: "; 
+	if(std::isprint(_cValue))
+		std::cout << "'"<< _cValue <<"'" <<std::endl;
+	else 
+		std::cout << "Non displayable" << std::endl;
+	std::cout << "int: " << _iValue  <<std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1)<<_fValue << "f"<< std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1)<< _dValue << std::endl;
 }
 
 void ScalarConverter::convert(std::string parameter)
