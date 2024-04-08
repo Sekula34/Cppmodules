@@ -18,6 +18,8 @@ class ScalarConverter
 		static float _fValue;
 		static double _dValue;
 
+		static std::string _removeLeadingspaces(std::string parameter);
+
 		static int _getNumberOfDecimalDot(std::string parameter);
 		static size_t _getPosOfFirstDigit(std::string parameter);
 		static bool _validNumberChecker(std::string parameter);
@@ -26,6 +28,7 @@ class ScalarConverter
 		static bool _isParameterInt(std::string parameter);
 		static bool _isParameterFloat(std::string paramter);
 		static bool _isParamterDobule(std::string paramter);
+
 
 
 	public:	

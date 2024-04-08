@@ -30,6 +30,28 @@ ScalarConverter::~ScalarConverter()
 
 }
 
+//removing leading spaces from parameter and return in clean
+//throw error if cleanString is empty or parameter is empty
+std::string ScalarConverter::_removeLeadingspaces(std::string parameter)
+{
+	std::string cleanString (parameter);
+
+	while(true)
+	{
+		if(cleanString[0] == ' ')
+		{
+			cleanString.erase(0,1);
+		}
+		else 
+		{
+			break;
+		}
+	}
+	if(cleanString.empty() == true)
+		throw std::runtime_error("after removing spaces there is nothing");
+	return (cleanString);
+}
+
 //count number of '.' in string
 int ScalarConverter::_getNumberOfDecimalDot(std::string parameter)
 {
@@ -116,6 +138,9 @@ void ScalarConverter::convert(std::string parameter)
 {
 	if(parameter.empty() == true)
 		throw std::runtime_error("Parameter in convert is empty");
+	std::string noSpaceString;
+	noSpaceString = _removeLeadingspaces(parameter);
+	std::cout << "parameter after cleaning is " << noSpaceString << std::endl;
 	if(_isParameterChar(parameter) == true)
 	{
 		std::cout << "Parameter is char " <<_cValue << std::endl;
