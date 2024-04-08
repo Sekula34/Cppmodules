@@ -8,6 +8,7 @@
 
 char ScalarConverter::_cValue;
 int ScalarConverter::_iValue;
+float ScalarConverter:: _fValue;
 
 ScalarConverter::ScalarConverter(void)
 {
@@ -52,6 +53,8 @@ std::string ScalarConverter::_removeLeadingspaces(std::string parameter)
 	return (cleanString);
 }
 
+//remove spaces from end
+//throw error if string is empty before or after cleaning
 std::string ScalarConverter::_removeTrailingSpaces(std::string parameter)
 {
 	std::string cleanString (parameter);
@@ -145,13 +148,32 @@ bool ScalarConverter::_isParameterInt(std::string parameter)
 {
 	if(parameter.empty() == true)
 		throw std::runtime_error("Parameter is empty");
-	if(_getNumberOfDecimalDot(parameter) != 0)
+	if(_getNumberOfDecimalDot(parameter) != 0 || parameter[parameter.size() - 1] == 'f')
 		return false;
 	std::stringstream ss(parameter);
 	ss >> _iValue;
 	if(ss.fail() == true)
 		return false;
 	return true; 
+}
+
+//check if parameter is float
+//to be float it needs to end with 'f'
+//prerequisite is to not be empty, and to be number 
+//true if it is float , false if it is not
+bool ScalarConverter::_isParameterFloat(std::string parameter)
+{
+	if(_validNumberChecker(parameter) != true)
+		return false;
+	if(parameter[parameter.size() - 1] != 'f')
+	{
+		return false;
+	}
+	std::stringstream ss (parameter);
+	ss >> _fValue;
+	if(ss.fail() == true)
+		throw std::runtime_error("Stringstream failed");
+	return true;
 }
 
 void ScalarConverter::convert(std::string parameter)
@@ -185,6 +207,14 @@ void ScalarConverter::convert(std::string parameter)
 	else
 	{
 		std::cout << "Parameter is not int" << std::endl;
+	}
+	if(_isParameterFloat(parameter) == true)
+	{
+		std::cout << "fValue is [" << _fValue << "]" << std::endl;
+	}
+	else
+	{
+		std::cout << "Parameter is not float" << std::endl;
 	}
 
 }
