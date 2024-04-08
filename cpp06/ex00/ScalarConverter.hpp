@@ -39,6 +39,8 @@ class ScalarConverter
 		static void _convertFromType(float f);
 		static void _convertFromType(double d);
 
+		static void _printChar(void);
+		static void _printInt(void);
 		static void _printAllTypes(void);
 
 

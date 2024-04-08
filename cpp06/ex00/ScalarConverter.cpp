@@ -1,5 +1,6 @@
 #include "ScalarConverter.hpp"
 #include <cctype>
+#include <cmath>
 #include <cstddef>
 #include <stdexcept>
 #include <string>
@@ -290,14 +291,41 @@ void ScalarConverter::_convertFromType(double d)
 }
 
 
+void ScalarConverter::_printChar(void)
+{
+	std::cout <<"char: ";
+	if(std::isinf(_dValue) || std::isinf(_fValue) || std::isnan(_dValue))
+	{
+		std::cout <<"impossible" << std::endl;
+		return ;
+	}
+	if(std::isprint(_cValue))
+	{
+		std::cout << "'"<< _cValue <<"'" <<std::endl;
+		return;
+	}
+	else  
+	{
+		std::cout << "Non displayable" << std::endl;
+		return;
+	}
+}
+
+void ScalarConverter::_printInt(void)
+{
+	std::cout <<"int: ";
+	if(std::isinf(_dValue) || std::isinf(_fValue) || std::isnan(_dValue))
+	{
+		std::cout <<"impossible" << std::endl;
+		return ;
+	}
+	std::cout << _iValue  << std::endl;
+}
+
 void ScalarConverter::_printAllTypes(void)
 {
-	std::cout << "char: "; 
-	if(std::isprint(_cValue))
-		std::cout << "'"<< _cValue <<"'" <<std::endl;
-	else 
-		std::cout << "Non displayable" << std::endl;
-	std::cout << "int: " << _iValue  <<std::endl;
+	_printChar();
+	_printInt();
 	std::cout << "float: " << std::fixed << std::setprecision(1)<<_fValue << "f"<< std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1)<< _dValue << std::endl;
 }

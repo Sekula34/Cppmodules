@@ -9,11 +9,17 @@ void test0(std::string parameter)
 	ScalarConverter::convert(parameter);
 }
 
-int main()
+int main(int argc, char** argv)
 {
+	if(argc != 2)
+	{
+		std::cerr << "One argument required" << std::endl;
+		return 1;
+	}
 	try 
 	{
-		test0("nan");
+
+		ScalarConverter::convert(argv[1]);
 		std::cout << "Hej from main" << std::endl;
 	}
 	catch (std::exception &e)
