@@ -137,7 +137,7 @@ bool ScalarConverter::_isParameterChar(std::string parameter)
 {
 	if(parameter.empty() == true)
 		throw std::runtime_error("Paramteter is empty in _isParameterChar function");
-	if(parameter.size() != 1)
+	if(parameter.size() != 1 || std::isdigit(parameter[0]))
 		return (false);
 	_cValue = parameter[0];
 	return (true);
