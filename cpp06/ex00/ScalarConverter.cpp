@@ -120,11 +120,15 @@ bool ScalarConverter::_validNumberChecker(std::string parameter)
 		{
 			if(i + 1 == onlyNumberpart.size() && onlyNumberpart[i] == 'f')
 			{
+				if(onlyNumberpart[i-1] == '.')
+					return false;
 				break;
 			}
 			return false;
 		}
 	}
+	if(onlyNumberpart[onlyNumberpart.size() - 1] == '.')
+		return false;
 	if(_getNumberOfDecimalDot(onlyNumberpart) > 1)
 		return false;
 	return true;
