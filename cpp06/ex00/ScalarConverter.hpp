@@ -30,6 +30,14 @@ class ScalarConverter
 		static bool _isParameterFloat(std::string paramter);
 		static bool _isParameterDouble(std::string paramter);
 
+		static originalType _getStringOriginalType(std::string parameter);
+		static void _convertFromType(char c);
+		static void _convertFromType(int i);
+		static void _convertFromType(float f);
+		static void _convertFromType(double d);
+
+		static void _printAllTypes(void);
+
 
 
 	public:	

@@ -197,54 +197,95 @@ bool ScalarConverter::_isParameterDouble(std::string parameter)
 	return true;
 }
 
+//check if parameter is CHAR INT FLOAT OR DOUBLE
+//throw runtime error if it is not valid number or if it is none of the options
+originalType ScalarConverter::_getStringOriginalType(std::string parameter)
+{
+	if(_isParameterChar(parameter) == true)
+		return CHAR;
+	parameter = _removeLeadingspaces(parameter);
+	parameter = _removeTrailingSpaces(parameter);
+	if(_validNumberChecker(parameter) == false)
+		throw std::runtime_error("Parameter(string) is not char and it is not valid number either");
+	if(_isParameterInt(parameter) == true)
+		return INT;
+	if(_isParameterFloat(parameter) == true)
+		return FLOAT;
+	if(_isParameterDouble(parameter) == true)
+		return DOUBLE;
+	throw std::runtime_error("Parameter is not char nor int nor float, nor double");
+}
+
+void ScalarConverter::_convertFromType(char c)
+{
+	_iValue = static_cast<int>(c);
+	_fValue = static_cast<float>(c);
+	_dValue = static_cast<double>(c);
+}
+
+void ScalarConverter::_convertFromType(int i)
+{
+	_cValue = static_cast<char>(i);
+	_fValue = static_cast<float>(i);
+	_dValue = static_cast<double>(i);
+}
+
+void ScalarConverter::_convertFromType(float f)
+{
+	_cValue = static_cast<char>(f);
+	_iValue = static_cast<int>(f);
+	_dValue = static_cast<double>(f);
+}
+
+void ScalarConverter::_convertFromType(double d)
+{
+	_cValue = static_cast<char>(d);
+	_iValue = static_cast<int>(d);
+	_fValue = static_cast<float>(d);
+}
+
+
+void ScalarConverter::_printAllTypes(void)
+{
+	std::cout << "Char: " << _cValue << std::endl;
+	std::cout << "Int: " << _iValue << std::endl;
+	std::cout << "Float: " << std::fixed << std::setprecision(1)<<_fValue << "f"<< std::endl;
+	std::cout << "Double: " << std::fixed << std::setprecision(1)<< _dValue << std::endl;
+}
+
 void ScalarConverter::convert(std::string parameter)
 {
 	if(parameter.empty() == true)
 		throw std::runtime_error("Parameter in convert is empty");
-	std::string noSpaceString;
-	parameter = _removeLeadingspaces(parameter);
-	parameter = _removeTrailingSpaces(parameter);
-	std::cout << "parameter after cleaning is " << parameter <<"]" << std::endl;
-	if(_isParameterChar(parameter) == true)
-	{
-		std::cout << "Parameter is char " <<_cValue << std::endl;
-	}
-	else
-	{
-		std::cout << "Parameter is not char [" << _cValue <<"]" <<std::endl;
-	}
-	if(_validNumberChecker(parameter) == true)
-	{
-		std::cout << "Parameter is number" << std::endl;
-	}
-	else 
-	{
-		std::cout << "Parameter is not number" << std::endl;
-	}
-	if(_isParameterInt(parameter) == true)
-	{
-		std::cout << "Ivalue is [" << _iValue << "]" << std::endl;
-	}
-	else
-	{
-		std::cout << "Parameter is not int" << std::endl;
-	}
-	if(_isParameterFloat(parameter) == true)
-	{
-		std::cout << "fValue is [" << _fValue << "]" << std::endl;
-	}
-	else
-	{
-		std::cout << "Parameter is not float" << std::endl;
-	}
-	if(_isParameterDouble(parameter) == true)
-	{
-		std::cout << "dValue is [" << std::setprecision(15)<< _dValue << "]" << std::endl;
-	}
-	else
-	{
-		std::cout << "Parameter is not double" << std::endl;
-	}
-	
+	originalType stringType;
 
+	stringType = _getStringOriginalType(parameter);
+	switch (stringType)
+	{
+		case CHAR :
+		{
+			_convertFromType(_cValue);
+			break;
+		}
+		case INT :
+		{
+			_convertFromType(_iValue);
+			break;
+		}
+		case FLOAT :
+		{
+			_convertFromType(_fValue);
+			break ;
+		}
+		case DOUBLE :
+		{
+			_convertFromType(_dValue);
+			break;
+		}
+		default:
+		{
+			throw std::runtime_error("No type matched");
+		}
+	}
+	_printAllTypes();
 }
