@@ -13,7 +13,7 @@ int main()
 {
 	try 
 	{
-		test0("  12.1f");
+		test0(" 12.04f   ");
 		std::cout << "Hej from main" << std::endl;
 	}
 	catch (std::exception &e)

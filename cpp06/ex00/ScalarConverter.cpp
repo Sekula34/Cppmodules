@@ -52,6 +52,26 @@ std::string ScalarConverter::_removeLeadingspaces(std::string parameter)
 	return (cleanString);
 }
 
+std::string ScalarConverter::_removeTrailingSpaces(std::string parameter)
+{
+	std::string cleanString (parameter);
+	
+	while(true)
+	{
+		if(cleanString[cleanString.size() - 1] == ' ')
+		{
+			cleanString.erase(cleanString.size() - 1, 1);
+		}
+		else  
+		{
+			break;
+		}
+	}
+	if(cleanString.empty() == true)
+		throw std::runtime_error("after removing spaces at the end there is nothing");
+	return (cleanString);
+}
+
 //count number of '.' in string
 int ScalarConverter::_getNumberOfDecimalDot(std::string parameter)
 {
@@ -139,8 +159,9 @@ void ScalarConverter::convert(std::string parameter)
 	if(parameter.empty() == true)
 		throw std::runtime_error("Parameter in convert is empty");
 	std::string noSpaceString;
-	noSpaceString = _removeLeadingspaces(parameter);
-	std::cout << "parameter after cleaning is " << noSpaceString << std::endl;
+	parameter = _removeLeadingspaces(parameter);
+	parameter = _removeTrailingSpaces(parameter);
+	std::cout << "parameter after cleaning is " << parameter <<"]" << std::endl;
 	if(_isParameterChar(parameter) == true)
 	{
 		std::cout << "Parameter is char " <<_cValue << std::endl;
@@ -149,14 +170,6 @@ void ScalarConverter::convert(std::string parameter)
 	{
 		std::cout << "Parameter is not char [" << _cValue <<"]" <<std::endl;
 	}
-	if(_isParameterInt(parameter) == true)
-	{
-		std::cout << "Ivalue is [" << _iValue << "]" << std::endl;
-	}
-	else
-	{
-		std::cout << "Parameter is not int" << std::endl;
-	}
 	if(_validNumberChecker(parameter) == true)
 	{
 		std::cout << "Parameter is number" << std::endl;
@@ -164,6 +177,14 @@ void ScalarConverter::convert(std::string parameter)
 	else 
 	{
 		std::cout << "Parameter is not number" << std::endl;
+	}
+	if(_isParameterInt(parameter) == true)
+	{
+		std::cout << "Ivalue is [" << _iValue << "]" << std::endl;
+	}
+	else
+	{
+		std::cout << "Parameter is not int" << std::endl;
 	}
 
 }

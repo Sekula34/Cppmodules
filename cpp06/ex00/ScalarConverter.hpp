@@ -19,6 +19,7 @@ class ScalarConverter
 		static double _dValue;
 
 		static std::string _removeLeadingspaces(std::string parameter);
+		static std::string _removeTrailingSpaces(std::string parameter);
 
 		static int _getNumberOfDecimalDot(std::string parameter);
 		static size_t _getPosOfFirstDigit(std::string parameter);
