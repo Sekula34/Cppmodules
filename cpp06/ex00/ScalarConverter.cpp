@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <limits>
 
 char ScalarConverter::_cValue;
 int ScalarConverter::_iValue;
@@ -134,6 +135,42 @@ bool ScalarConverter::_validNumberChecker(std::string parameter)
 	return true;
 }
 
+bool ScalarConverter::_specialCasesFloat(std::string parameter)
+{
+
+	if(parameter == "-inff")
+	{
+		_fValue = -std::numeric_limits<float>::infinity();
+		return true;
+	}
+	else if (parameter == "+inff")
+	{
+		_fValue = std::numeric_limits<float>::infinity();
+		return true;
+	}
+	return false;
+}
+
+bool ScalarConverter::_specialCasesDouble(std::string parameter)
+{
+	if(parameter == "-inf")
+	{
+		_dValue = -std::numeric_limits<double>::infinity();
+		return true;
+	}
+	else if(parameter == "+inf")
+	{
+		_dValue = std::numeric_limits<double>::infinity();
+		return true;
+	}
+	else if(parameter == "nan")
+	{
+		_dValue = std::numeric_limits<double>::quiet_NaN();
+		return true;
+	}
+	return false;
+}
+
 //throw runtime error if parameter is empty
 //return false if parameter size is not 1
 //set _cValue and return true if it is true
@@ -209,6 +246,10 @@ originalType ScalarConverter::_getStringOriginalType(std::string parameter)
 		return CHAR;
 	parameter = _removeLeadingspaces(parameter);
 	parameter = _removeTrailingSpaces(parameter);
+	if(_specialCasesDouble(parameter) == true)
+		return DOUBLE;
+	if(_specialCasesFloat(parameter) == true)
+		return FLOAT;
 	if(_validNumberChecker(parameter) == false)
 		throw std::runtime_error("Parameter(string) is not char and it is not valid number either");
 	if(_isParameterInt(parameter) == true)

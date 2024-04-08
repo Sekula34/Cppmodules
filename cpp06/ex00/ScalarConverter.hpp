@@ -24,6 +24,9 @@ class ScalarConverter
 		static int _getNumberOfDecimalDot(std::string parameter);
 		static size_t _getPosOfFirstDigit(std::string parameter);
 		static bool _validNumberChecker(std::string parameter);
+		static bool _specialCasesFloat(std::string parameter);
+		static bool _specialCasesDouble(std::string parameter);
+
 
 		static bool _isParameterChar(std::string parameter);
 		static bool _isParameterInt(std::string parameter);

@@ -13,7 +13,7 @@ int main()
 {
 	try 
 	{
-		test0("12.1.2");
+		test0("nan");
 		std::cout << "Hej from main" << std::endl;
 	}
 	catch (std::exception &e)
