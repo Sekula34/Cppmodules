@@ -8,7 +8,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			"program": "/nfs/homes/fseles/common_core/Progress/circle_4/cpp/CPP00/ex01/./phone",
+			"program": "/home/fseles/42/cppmodules/cpp06/ex00/./converter",
 			"args": [],
 			"cwd": "${workspaceFolder}"
 		}
