@@ -42,7 +42,7 @@ int main() {
   Awesome tab2[5];
 
   iter( tab, 5, print<const int> );
-  iter( tab2, 5, print<const Awesome> );
+  iter( tab2, 5, print<Awesome> );
 
   return 0;
 }
