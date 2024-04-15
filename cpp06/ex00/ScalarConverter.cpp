@@ -98,7 +98,7 @@ size_t ScalarConverter::_getPosOfFirstDigit(std::string parameter)
 {
 	for(size_t i = 0; i < parameter.size(); i++)
 	{
-		if(std::isdigit(parameter[i]) == true)
+		if(std::isdigit(parameter[i]))
 		{
 			return (i);
 		}
