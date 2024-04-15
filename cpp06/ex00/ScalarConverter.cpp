@@ -118,7 +118,7 @@ bool ScalarConverter::_validNumberChecker(std::string parameter)
 
 	for(size_t i = 0; i < onlyNumberpart.size(); i++)
 	{
-		if(std::isdigit(onlyNumberpart[i]) == false && onlyNumberpart[i] != '.')
+		if( !std::isdigit(onlyNumberpart[i]) && onlyNumberpart[i] != '.')
 		{
 			if(i + 1 == onlyNumberpart.size() && onlyNumberpart[i] == 'f')
 			{
