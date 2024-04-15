@@ -30,7 +30,7 @@ uintptr_t Serializer::serialize(Data *ptr)
 	return (returnValue);
 }
 
-Data* deserialize(uintptr_t raw)
+Data* Serializer::deserialize(uintptr_t raw)
 {
 	Data* returnPtr;
 	returnPtr = reinterpret_cast<Data *>(raw);

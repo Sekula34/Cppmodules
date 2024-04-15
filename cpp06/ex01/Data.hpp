@@ -4,9 +4,10 @@
 
 struct Data
 {
-	int iValue;
-	float fValue;
-	std::string name; 
+	public:
+		int iValue;
+		float fValue;
+		std::string name; 
 };
 
 #endif
