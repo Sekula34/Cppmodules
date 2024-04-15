@@ -1,6 +1,6 @@
 #include "Serializer.hpp"
 #include "Data.hpp"
-#include <cstdint>
+#include <stdint.h>
 
 Serializer::Serializer(void)
 {
@@ -9,11 +9,12 @@ Serializer::Serializer(void)
 
 Serializer::Serializer(const Serializer& source)
 {
-
+	(void) source;
 };
 
 Serializer& Serializer::operator=(const Serializer& source)
 {
+	(void) source;
 	return (*this);
 }
 

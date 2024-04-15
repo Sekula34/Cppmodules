@@ -1,10 +1,11 @@
 //#include "Serializer.hpp"
-#include <cstdint>
+
+#include <stdint.h>
 #include <iostream>
 
 int main()
 {
-	uintptr_t a;
+	uintptr_t a(90);
 	std::cout << a << std::endl;
 	return 0;
 }

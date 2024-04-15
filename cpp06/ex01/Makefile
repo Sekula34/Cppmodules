@@ -1,18 +1,19 @@
 NAME = serializer
 
 SOURCES =	main.cpp\
-			Serializer.cpp\
+			Serializer.cpp
+	
 
 
-HEADERS = Serializer.hpp\
-		Data.hpp
-
+HEADERS = Data.hpp \
+		Serializer.hpp
+		
 		
 
 
 CXX = c++
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g -pedantic
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 OBJS := $(SOURCES:%.cpp=%.o)
 
