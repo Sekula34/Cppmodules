@@ -7,7 +7,6 @@
 #include <exception>
 #include <stdexcept>
 #include <iostream>
-#include <typeinfo>
 
 
 Base* generate(void)
@@ -75,7 +74,7 @@ void identfy(Base &p)
 		std::cout <<"(REF) Actual type of object is: A" << std::endl;
 		return;
 	}
-	catch (std::bad_cast& e)
+	catch (std::exception& e)
 	{
 		try 
 		{
@@ -83,7 +82,7 @@ void identfy(Base &p)
 			std::cout <<"(REF) Actual type of object is: B" << std::endl;
 			return;
 		}
-		catch(std::bad_cast& e)
+		catch(std::exception& e)
 		{
 			(void)dynamic_cast<C&>(p);
 			std::cout <<"(REF) Actual type of object is: C" << std::endl;
