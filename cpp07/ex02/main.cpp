@@ -1,30 +1,87 @@
-#include <exception>
 #include <iostream>
 #include "Array.hpp"
 
 
-class myClass
+#define MAX_VAL 750
+#include <cstdlib>
+int main(int, char**)
 {
-	public:
-		int a;
-		double b;
-};
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
-int main()
-{
-	try 
-	{
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-		Array<myClass> myArray(5);
-	 	myClass value = myArray[100];
-		std::cout << value.a <<std::endl;
-	}
-	catch(std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return 1;
-	}
-	// int * a = new int();
-	// std::cout << *a << std::endl;
-	return (0);
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;
 }
+
+
+//my main
+// class myClass
+// {
+// 	public:
+// 		int a;
+// 		double b;
+// };
+
+// int main()
+// {
+// 	try 
+// 	{
+
+// 		Array<int> myArray(5);
+//         myArray[1] = 78;
+// 	 	int value = myArray[1];
+// 		std::cout << value <<std::endl;
+
+//         Array<myClass> complexArray(1);
+//         std::cout << complexArray[0].a << std::endl;
+// 	}
+// 	catch(std::exception &e)
+// 	{
+// 		std::cerr << e.what() << std::endl;
+// 		return 1;
+// 	}
+// 	// int * a = new int();
+// 	// std::cout << *a << std::endl;
+// 	return (0);
+// }
