@@ -20,7 +20,7 @@ void printData(Data *ptr)
 void subjectTest()
 {
 	Data objectData;
-	objectData.fValue = 1.0f;
+	objectData.fValue = 1.2f;
 	objectData.iValue = -12;
 	objectData.name = "SUBJECT NAME";
 
