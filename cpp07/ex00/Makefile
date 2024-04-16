@@ -3,7 +3,7 @@ NAME = template
 SOURCES =	main.cpp\
 
 
-HEADERS = Templates.hpp\
+HEADERS = whatever.hpp\
 
 
 CXX = c++
