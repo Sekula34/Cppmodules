@@ -8,38 +8,36 @@ class Array
 {
 	private:
 		unsigned int _arrSize;
-	public:
 		T *templateArray;
+	public:
 
 		Array()
 		{
+			_arrSize = 0; 
 			templateArray = new T[0]();
-			_arrSize = 0;
 		}
 
 		Array(unsigned int n)
 		{
+			_arrSize = n; 
 			templateArray = new T[n]();
-			_arrSize = n;
 		}
 
 		Array(const Array<T>&source)
 		{
-			unsigned int sourceSize;
-			sourceSize = source.size();
-			this->templateArray = new T[sourceSize];
-			for(unsigned int i = 0; i < sourceSize; i ++)
-			{
-				this->templateArray[i] = source.templateArray[i];
-			}
+			templateArray = NULL;
+			*this = source;
 		}
 
 		Array& operator=(const Array<T>&source)
 		{
-			unsigned int sourceSize;
-			sourceSize = source.size();
-			this->templateArray = new T[sourceSize];
-			for(unsigned int i = 0; i < sourceSize; i ++)
+
+			if (templateArray)
+				delete [] templateArray;
+
+			this->templateArray = new T[source.size()]();
+			this->_arrSize = source._arrSize;
+			for(unsigned int i = 0; i < source.size(); i ++)
 			{
 				this->templateArray[i] = source.templateArray[i];
 			}
