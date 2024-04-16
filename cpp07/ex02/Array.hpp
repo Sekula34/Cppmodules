@@ -55,7 +55,7 @@ class Array
 		{
 			if(index >= this->size())
 			{
-				throw std::exception();
+				throw TooBigIndexException();
 			}
 			return (templateArray[index]);
 		}
@@ -65,6 +65,16 @@ class Array
 		{
 			return (_arrSize);
 		}
+
+		class TooBigIndexException : public std::exception
+		{
+			public :
+				virtual const char * what() const throw()
+				{
+					return ("Index is out of range of array");
+				}
+		};
 };
+
 
 #endif

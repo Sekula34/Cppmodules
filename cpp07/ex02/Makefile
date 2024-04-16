@@ -1,6 +1,6 @@
 NAME = array
 
-SOURCES =	main.cpp\
+SOURCES =	intramain.cpp\
 
 
 HEADERS = Array.hpp\
