@@ -8,8 +8,8 @@ class Array
 {
 	private:
 		unsigned int _arrSize;
-		T *templateArray;
 	public:
+		T *templateArray;
 
 		Array()
 		{
