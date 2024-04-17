@@ -9,11 +9,11 @@ int main()
 	std::vector<int>::iterator myIterator;
 	try 
 	{
-		myIterator = easyfind(myVector, 2);
+		myIterator = ::easyfind(myVector, 1);
 	}
 	catch (std::exception &e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Something bad happpend" << std::endl;
 		return (1);
 	}
 	std::cout << *myIterator <<std::endl;
