@@ -3,7 +3,7 @@ NAME = easyfind
 SOURCES =	main.cpp\
 
 
-HEADERS = easy.hpp\
+HEADERS = easyfind.hpp\
 
 
 CXX = c++
