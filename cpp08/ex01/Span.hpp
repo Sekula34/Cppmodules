@@ -22,7 +22,7 @@ class Span
 	
 	void addNumber(int number);
 	void addManyNumbers(myIterator begin, myIterator end);
-	void shortestSpan();
+	int shortestSpan();
 	void longestSpan();
 
 	void printVector(void) const;

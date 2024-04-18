@@ -1,4 +1,5 @@
 #include "Span.hpp"
+#include <algorithm>
 #include <iostream>
 
 Span::Span(void) : N(0)
@@ -47,6 +48,17 @@ void Span::addManyNumbers(myIterator begin, myIterator end)
 	if(sizeToAdd + myVector.size() > N)
 		throw SpanOverflowException();
 	myVector.insert(myVector.end(), begin, end);
+}
+
+int Span::shortestSpan()
+{
+	std::sort(myVector.begin(), myVector.end());
+	myIterator it;
+	it = std::adjacent_find(myVector.begin(), myVector.end());
+	if(it != myVector.end())
+		return (0)
+	
+	
 }
 
 
