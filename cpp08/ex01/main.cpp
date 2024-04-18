@@ -1,6 +1,15 @@
 #include "Span.hpp"
 #include <iostream>
+#include <cstdlib>
 
+void fillVector(std::vector<int>& vec, int numberOfValues)
+{
+	for(int i = 0; i < numberOfValues; i++)
+	{
+		void srand();
+		vec.push_back(rand() %1000 );
+	}
+}
 
 //testing printing and exception
 void test0()
@@ -14,7 +23,8 @@ void test0()
 void test1()
 {
 	Span a(100);
-	std::vector<int> toAdd(10, 18);
+	std::vector<int> toAdd;
+	fillVector(toAdd, 100);
 	a.addManyNumbers(toAdd.begin(), toAdd.end());
 	a.printVector();
 }
