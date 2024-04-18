@@ -1,6 +1,5 @@
 #include "Span.hpp"
 #include <iostream>
-#include <cstdlib>
 
 Span::Span(void) : N(0)
 {
@@ -39,14 +38,15 @@ void Span::addNumber(int number)
 	myVector.push_back(number);
 }
 
-void Span::addManyNumbers(void)
+// Last but not least, it would be wonderful to fill your Span using a range of iterators.
+// Making thousands calls to addNumber() is so annoying. Implement a member function
+// to add many numbers to your Span in one cal
+void Span::addManyNumbers(myIterator begin, myIterator end)
 {
-	void srand();
-	while(myVector.size() < N)
-	{
-		int randomNum = rand() % 1000;
-		myVector.push_back((randomNum));
-	}
+	unsigned int sizeToAdd = end - begin;
+	if(sizeToAdd + myVector.size() > N)
+		throw SpanOverflowException();
+	myVector.insert(myVector.end(), begin, end);
 }
 
 

@@ -14,7 +14,8 @@ void test0()
 void test1()
 {
 	Span a(100);
-	a.addManyNumbers();
+	std::vector<int> toAdd(10, 18);
+	a.addManyNumbers(toAdd.begin(), toAdd.end());
 	a.printVector();
 }
 

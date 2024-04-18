@@ -3,6 +3,7 @@
 #include <exception>
 # include <vector>
 
+typedef std::vector<int>::iterator myIterator;
 
 class Span
 {
@@ -20,7 +21,7 @@ class Span
 	Span(unsigned int n);
 	
 	void addNumber(int number);
-	void addManyNumbers(void);
+	void addManyNumbers(myIterator begin, myIterator end);
 	void shortestSpan();
 	void longestSpan();
 
