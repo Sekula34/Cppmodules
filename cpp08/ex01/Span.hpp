@@ -20,6 +20,7 @@ class Span
 	Span(unsigned int n);
 	
 	void addNumber(int number);
+	void addManyNumbers(void);
 	void shortestSpan();
 	void longestSpan();
 

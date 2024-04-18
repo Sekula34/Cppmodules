@@ -1,5 +1,7 @@
 #include "Span.hpp"
 #include <iostream>
+#include <cstdlib>
+
 Span::Span(void) : N(0)
 {
 
@@ -35,6 +37,16 @@ void Span::addNumber(int number)
 	if(myVector.size() == N)
 		throw SpanOverflowException();
 	myVector.push_back(number);
+}
+
+void Span::addManyNumbers(void)
+{
+	void srand();
+	while(myVector.size() < N)
+	{
+		int randomNum = rand() % 1000;
+		myVector.push_back((randomNum));
+	}
 }
 
 
