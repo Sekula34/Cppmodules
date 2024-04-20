@@ -1,3 +1,4 @@
+#include "BitcoinExchange.hpp"
 #include <exception>
 #include <iostream>
 #include <stdexcept>
@@ -22,8 +23,8 @@ int main(int argc, char** argv)
 	try 
 	{
 		std::string inputFile;
-		std::cout<<"Hello" << std::endl;
 		inputFile = getInputFileName(argc, argv);
+		BitcoinExchange bitCoin(inputFile);
 		std::cout <<"Input file name is :[" << inputFile <<"]"<<std::endl;
 	}
 	catch (std::exception &e)
