@@ -4,14 +4,14 @@
 
 
 //return name of inputFile
-//throw runtime error if number of arguments is different than 2
+//throw runtime error if number of arguments is different than 2 or fileName is empty
 std::string getInputFileName(int argc, char** argv)
 {
 	std::string fileName;
-	if(argc != 2)
+	if (argc != 2)
 		throw std::runtime_error("Program need only input file as agument");
 	fileName = argv[1];
-	if(fileName.empty())
+	if (fileName.empty())
 		throw std::runtime_error("File name is empty");
 	return (fileName);
 }
