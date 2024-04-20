@@ -25,7 +25,7 @@ class Span
 	void addNumber(int number);
 	void addManyNumbers(myIterator begin, myIterator end);
 	int shortestSpan();
-	void longestSpan();
+	int longestSpan();
 	void printVector(void) const;
 
 	class SpanOverflowException : public std::exception

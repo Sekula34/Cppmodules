@@ -1,13 +1,13 @@
 #include "Span.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 void fillVector(std::vector<int>& vec, int numberOfValues)
 {
 	for(int i = 0; i < numberOfValues; i++)
 	{
-		void srand();
-		vec.push_back(rand() %1000 );
+		vec.push_back(rand());
 	}
 }
 
@@ -36,8 +36,14 @@ void test2()
 	Span a(100);
 	std::cout << a.shortestSpan() << std::endl;
 }
+//same as test2 but with longestSpan
+void test2a()
+{
+	Span a(100);
+	std::cout << a.longestSpan() << std::endl;
+}
 
-//subject main for shortest span
+//subject main for shortest span and longest span
 void test3()
 {
 	Span sp = Span(5);
@@ -47,15 +53,30 @@ void test3()
 	sp.addNumber(9);
 	sp.addNumber(11);
 	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+}
+
+void test4()
+{
+	Span a(12 * 1000);
+	std::vector<int> filler;
+	fillVector(filler, (12 * 1000));
+	a.addManyNumbers(filler.begin(), filler.end());
+	std::cout << a.shortestSpan() << std::endl;
+	std::cout << a.longestSpan() << std::endl;
+	//a.printVector();
 }
 
 int main()
 {
 	try
 	{
+		std::srand(static_cast<unsigned int>(std::time(0)));
 		//test1();
 		//test2();
-		test3();
+		//test2a();
+		//test3();
+		test4();
 	}
 	catch(std::exception& e)
 	{

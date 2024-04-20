@@ -89,6 +89,16 @@ int Span::shortestSpan()
 		return (0);
 	return (_findSmallestDiff());
 }
+//find longest span aka difference between max and min element
+//throw TooSmallForSpanException if there is not at least two elements in vector
+int Span::longestSpan()
+{
+	if(myVector.size() < 2)
+		throw TooSmallForSpanException();
+	myIterator max = std::max_element(myVector.begin(), myVector.end());
+	myIterator min = std::min_element(myVector.begin(), myVector.end());
+	return (std::abs(*max - *min));
+}
 
 
 void Span::printVector(void) const
