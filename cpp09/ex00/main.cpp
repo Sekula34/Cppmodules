@@ -22,6 +22,7 @@ int main(int argc, char** argv)
 {
 	try 
 	{
+
 		std::string inputFile;
 		inputFile = getInputFileName(argc, argv);
 		BitcoinExchange bitCoin(inputFile);

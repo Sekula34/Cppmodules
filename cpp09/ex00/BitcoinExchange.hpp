@@ -1,5 +1,6 @@
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
+#include <fstream>
 # include <string>
 
 class BitcoinExchange
@@ -7,9 +8,13 @@ class BitcoinExchange
 	private:
 
 		const std::string _inputFileName;
+		std::ifstream _inFile;
+
 		//orthodox1
 		BitcoinExchange(void);
 		BitcoinExchange& operator=(const BitcoinExchange& source);
+		
+		void _openInputFile(void);
 
 	public:
 		//orthodox2
