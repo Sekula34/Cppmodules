@@ -4,7 +4,7 @@ SOURCES =	main.cpp\
 			BitcoinExchange.cpp
 
 
-HEADERS = MutantStack.hpp\
+HEADERS = BitcoinExchange.hpp\
 
 
 CXX = c++
