@@ -29,11 +29,33 @@ void test1()
 	a.printVector();
 }
 
+//testing smalles span
+//throw exception. There is max of 100 elems but there is not two elems needded
+void test2()
+{
+	Span a(100);
+	std::cout << a.shortestSpan() << std::endl;
+}
+
+//subject main for shortest span
+void test3()
+{
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+}
+
 int main()
 {
 	try
 	{
-		test1();
+		//test1();
+		//test2();
+		test3();
 	}
 	catch(std::exception& e)
 	{

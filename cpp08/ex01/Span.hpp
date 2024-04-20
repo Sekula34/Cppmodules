@@ -11,6 +11,8 @@ class Span
 		unsigned int N;
 		std::vector<int> myVector;
 
+		int _findSmallestDiff();
+
 	public:
 	//orthodox
 	Span(void);
@@ -24,7 +26,6 @@ class Span
 	void addManyNumbers(myIterator begin, myIterator end);
 	int shortestSpan();
 	void longestSpan();
-
 	void printVector(void) const;
 
 	class SpanOverflowException : public std::exception
@@ -32,6 +33,12 @@ class Span
 		public :
 			virtual const char * what() const throw();
 	};
+
+	class TooSmallForSpanException : public std::exception
+	{
+		public :
+			virtual const char * what() const throw();
+	} ;
 };
 
 #endif

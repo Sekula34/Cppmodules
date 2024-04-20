@@ -1,6 +1,31 @@
 #include "Span.hpp"
 #include <algorithm>
 #include <iostream>
+#include <cmath>
+
+//find smallestDiffernce beetween two elem in vector
+//prerequisite atleast two elements and sorted vector
+//return smallest differnce in vector
+int Span::_findSmallestDiff()
+{
+	myIterator firstElem;
+	myIterator secondElem;
+	int smallestDiff(0);
+
+	for(firstElem = myVector.begin(); firstElem < myVector.end() - 1; firstElem++)
+	{
+		secondElem = firstElem + 1;
+		if(firstElem == myVector.begin())
+			smallestDiff = std::abs(*firstElem - *secondElem);
+		else
+		{
+			int currentDiff = std::abs(*firstElem - *secondElem);
+			if(currentDiff < smallestDiff)
+				smallestDiff = currentDiff;
+		}
+	}
+	return (smallestDiff);
+}
 
 Span::Span(void) : N(0)
 {
@@ -50,15 +75,19 @@ void Span::addManyNumbers(myIterator begin, myIterator end)
 	myVector.insert(myVector.end(), begin, end);
 }
 
+//find out the shortest span
+//throw TooSmallForSpanException if there is not 2 elements
+//sorts vector and return smallest difference beetween two elements
 int Span::shortestSpan()
 {
+	if(myVector.size() < 2)
+		throw TooSmallForSpanException();
 	std::sort(myVector.begin(), myVector.end());
 	myIterator it;
 	it = std::adjacent_find(myVector.begin(), myVector.end());
 	if(it != myVector.end())
-		return (0)
-	
-	
+		return (0);
+	return (_findSmallestDiff());
 }
 
 
@@ -75,4 +104,9 @@ void Span::printVector(void) const
 const char* Span::SpanOverflowException::what() const throw()
 {
 	return ("Span is full exception");
+}
+
+const char* Span::TooSmallForSpanException::what() const throw()
+{
+	return ("There is not enough element to find span. At least 2 elements needed");
 }
