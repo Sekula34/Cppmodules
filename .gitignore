@@ -1,4 +1,3 @@
 *.o
 cpp09/data.csv
-cpp09/*.txt
-cpp09/todo
+cpp09/ignore
