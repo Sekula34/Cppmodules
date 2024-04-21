@@ -32,7 +32,9 @@ class BitcoinExchange
 		void _fillMap(void);
 		size_t _getNumberofChar(std::string word, char c) const;
 		bool _isStringDigit(std::string& word) const;
-		bool _isDateValid(int year, int month, int day) const;
+		bool _isDateValid(int& year, int& month, int& day) const;
+		bool _isDayValid(int &day, int& month, int& year) const;
+		bool _isLeapYear(int year) const;
 		void _openInputFile(void);
 		int _stringToInt(std::string& word) const;
 

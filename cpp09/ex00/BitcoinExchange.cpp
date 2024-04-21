@@ -49,9 +49,11 @@ void BitcoinExchange::_checkCsvData(std::string& line, size_t& lineNumber) const
 	size_t commaPos = line.find_first_of(',');
 	datePart = line.substr(0,commaPos);
 	valuePart = line.substr(commaPos + 1);
-	std::cout <<"date part is :" << datePart << std::endl;
-	std::cout <<"Value part is :" << valuePart << std::endl;
-	_checkDateFormat(datePart);
+	if(_checkDateFormat(datePart) == false)
+	{
+		std::cerr <<"Invalid date in file "<< DATABASENAME << " in line: "<< lineNumber << std::endl; 
+		throw InvalidDataBaseException();
+	}
 }
 
 //check if every line in .csv(database) file is valid
@@ -113,14 +115,13 @@ bool BitcoinExchange::_checkDateFormat(std::string& stringDate) const
 	month = stringDate.substr(year.size() + 1, posMinus2 - (year.size() + 1));
 	day = stringDate.substr(year.size() + month.size() + 2, stringDate.npos);
 
-	std::cout << "Year is " << year <<std::endl;
-	std::cout << "Month is " << month <<std::endl;
-	std::cout << "Day is " << day <<std::endl;
-	_checkDate(year, month, day);
+	if(_checkDate(year, month, day) == false)
+		return false;
 	return true;
 }
 
 //check if year month and day are digit
+//check if date is Valid in terms of is it in future and leapyear limits and so on
 //return false if it is not
 bool BitcoinExchange::_checkDate(std::string& year, std::string& month, std::string& day) const
 {
@@ -129,11 +130,8 @@ bool BitcoinExchange::_checkDate(std::string& year, std::string& month, std::str
 	int comparingYear = _stringToInt(year);
 	int comparingMonth = _stringToInt(month);
 	int comparingDay = _stringToInt(day);
-
-	std::cout << "Year as int is " << comparingYear << std::endl;
-	std::cout << "Month as int is " << comparingMonth << std::endl;
-	std::cout << "Day as int is " << comparingDay << std::endl;
-
+	if(_isDateValid(comparingYear, comparingMonth, comparingDay) == false)
+		return false;
 	return true;
 }
 
@@ -176,15 +174,85 @@ bool BitcoinExchange::_isStringDigit(std::string& word) const
 	return (true);
 }
 
-bool BitcoinExchange::_isDateValid(int year, int month, int day) const
+//check if year is leap and determine if day is between 1 and 30/31/28/29 depending on month and year
+bool BitcoinExchange::_isDayValid(int& day, int& month, int& year) const
+{
+	int maxDay;
+	switch (month)
+	{
+		case 2:
+		{
+			if(_isLeapYear(year) == true)
+				maxDay = 29;
+			else 
+				maxDay = 28;
+			break;
+		}
+		case 4:
+		{
+		}
+		case 6:
+		{
+		}
+		case 9:
+		{
+		}
+		case 11:
+		{
+			maxDay = 30;
+			break;
+		}
+		default:
+		{
+			maxDay = 31;
+			break;
+		}
+	}
+	if(day < 1 || day > maxDay)
+		return false;
+	return true;
+}
+
+
+bool BitcoinExchange::_isLeapYear(int year) const
+{
+	if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+	{
+        return true;
+    }
+	return false;
+}
+
+//check if date is valid 
+//valid date have year month and day within limits and it is not in future 
+//return true if date is valid
+//return false if any check fail
+bool BitcoinExchange::_isDateValid(int& year, int& month, int& day) const
 {
 	const std::time_t current = std::time(0);
 	int currentYear = std::localtime(&current)->tm_year + 1900;
+	int currentMonth = std::localtime(&current)->tm_mon;
+	int currentDay = std::localtime(&current)->tm_mday;
 	if(year > currentYear)
-		return false;
+		return (false);
 	if(month < 1 || month > 12)
+		return (false);
+	if(_isDayValid(day, month, year) == false)
 		return false;
-	
+	//check if i am in future
+	if(currentYear == year)
+	{
+		if(month > currentMonth)
+		{
+			return false;
+		}
+		else if(month == currentMonth && day > currentDay)
+		{
+			return false;
+		}
+	}
+	return true;
+
 }
 //function that tries to open input file and check first line
 //throw exception if open failed or file does not begin with
