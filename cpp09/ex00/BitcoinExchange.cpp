@@ -176,6 +176,11 @@ bool BitcoinExchange::_checkStringValue(std::string value) const
 }
 
 
+//function that open database
+//check if everyhing in database file is in valid format
+//fill map 
+//it anything fails in this error will be thrown  
+//possible error std::runtime, InvalidDataBaseException
 void BitcoinExchange::_fillMap(void)
 {
 	std::ifstream dataFile;
