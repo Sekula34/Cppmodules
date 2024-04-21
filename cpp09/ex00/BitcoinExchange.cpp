@@ -96,6 +96,8 @@ void BitcoinExchange::_checkCsvHeader(std::string& firstLine) const
 }
 
 //check if string Date is in format 2009-01-02 aka year, MONTH, DAte
+//perform additional check for date to make sure it is valid
+//leap year in future and so on
 //return true if it is 
 //return false if it is not
 bool BitcoinExchange::_checkDateFormat(std::string& stringDate) const
@@ -254,6 +256,7 @@ bool BitcoinExchange::_isDateValid(int& year, int& month, int& day) const
 	return true;
 
 }
+
 //function that tries to open input file and check first line
 //throw exception if open failed or file does not begin with
 void BitcoinExchange::_openInputFile()
@@ -263,6 +266,8 @@ void BitcoinExchange::_openInputFile()
 		throw std::runtime_error("Opening input file failed");
 }
 
+//reuturn string as integer 
+//throw std::runtime error if stringsteam to value failed
 int BitcoinExchange::_stringToInt(std::string& word) const
 {
 	int value;
