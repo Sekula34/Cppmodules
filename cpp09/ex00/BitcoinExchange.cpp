@@ -20,6 +20,29 @@ _inputFileName(source._inputFileName)
 {
 
 }
+
+//check if comma exist and if there is only one comma
+//throw InvalidDataBaseException if there is no comma or more than one
+void BitcoinExchange::_checkCsvComma(std::string& line, size_t& lineNumber) const
+{
+	size_t commaPos;
+	size_t commaPosB;
+
+	commaPos = line.find_first_of(',');
+	commaPosB = line.find_last_of(',');
+	if(commaPos == std::string::npos || commaPos != commaPosB)
+	{
+		std::cerr << "Multiple or no comma seperator in file: " << DATABASENAME;
+		std::cerr << " in line " << lineNumber << std::endl;
+		throw InvalidDataBaseException();
+	}
+}
+
+void BitcoinExchange::_checkCsvData(std::string& line, size_t& lineNumber) const 
+{
+	_checkCsvComma(line, lineNumber);
+}
+
 //check if every line in .csv(database) file is valid
 //file must start with header date, exchange_rate
 //every other line must be correct format
@@ -36,7 +59,7 @@ void BitcoinExchange::_checkCsvFile(std::ifstream& dataBase)
 		}
 		else
 		{
-			//check data seperated by coma
+			_checkCsvData(fileLine, lineNum);
 		}
 		lineNum ++;
 	}
@@ -95,5 +118,5 @@ BitcoinExchange::~BitcoinExchange()
 
 const char* BitcoinExchange::InvalidDataBaseException::what() const throw()
 {
-	return ("Data in DataBase is in invalid format");
+	return ("Exception: Data in DataBase is in invalid format");
 }
