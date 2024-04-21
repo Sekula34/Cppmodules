@@ -27,7 +27,6 @@ _inputFileName(source._inputFileName)
 void BitcoinExchange::_checkCsvFile(std::ifstream& dataBase)
 {
 	std::string fileLine;
-	std::cout << "StartReading file" << std::endl;
 	size_t lineNum(1);
 	while(std::getline(dataBase, fileLine))
 	{
@@ -70,7 +69,6 @@ void BitcoinExchange::_fillMap(void)
 		std::cerr<<"Canot open/find file in current folder with name " << DATABASENAME << std::endl;
 		throw std::runtime_error("Open failed");
 	}
-	std::cout <<"database opened" << std::endl;
 	_checkCsvFile(dataFile);
 }
 //function that tries to open input file and check first line

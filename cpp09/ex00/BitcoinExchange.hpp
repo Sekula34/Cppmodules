@@ -7,7 +7,7 @@
 # include <string>
 
 #define CSVHEADER "date,exchange_rate"
-#define DATABASENAME "data.csv" //change this for testing invalid database etc
+#define DATABASENAME "ignore/ExceptionTriggers/InvalidHeader.csv" //change this for testing invalid database etc
 
 class BitcoinExchange
 {
