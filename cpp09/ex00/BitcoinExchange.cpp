@@ -1,9 +1,12 @@
 #include "BitcoinExchange.hpp"
+#include <cctype>
 #include <cstddef>
 #include <fstream>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <iostream>
+#include <ctime>
 
 BitcoinExchange::BitcoinExchange(void)
 {
@@ -41,6 +44,14 @@ void BitcoinExchange::_checkCsvComma(std::string& line, size_t& lineNumber) cons
 void BitcoinExchange::_checkCsvData(std::string& line, size_t& lineNumber) const 
 {
 	_checkCsvComma(line, lineNumber);
+	std::string datePart;
+	std::string valuePart;
+	size_t commaPos = line.find_first_of(',');
+	datePart = line.substr(0,commaPos);
+	valuePart = line.substr(commaPos + 1);
+	std::cout <<"date part is :" << datePart << std::endl;
+	std::cout <<"Value part is :" << valuePart << std::endl;
+	_checkDateFormat(datePart);
 }
 
 //check if every line in .csv(database) file is valid
@@ -82,6 +93,50 @@ void BitcoinExchange::_checkCsvHeader(std::string& firstLine) const
 	}
 }
 
+//check if string Date is in format 2009-01-02 aka year, MONTH, DAte
+//return true if it is 
+//return false if it is not
+bool BitcoinExchange::_checkDateFormat(std::string& stringDate) const
+{
+	std::string year;
+	std::string month;
+	std::string day;
+
+	size_t numberOfMinus(0);
+	if(stringDate.empty())
+		return (false);
+	numberOfMinus = _getNumberofChar(stringDate, '-');
+	if(numberOfMinus != 2)
+		return (false);
+	year = stringDate.substr(0,stringDate.find('-'));
+	size_t posMinus2 = stringDate.find('-',year.size() + 1);
+	month = stringDate.substr(year.size() + 1, posMinus2 - (year.size() + 1));
+	day = stringDate.substr(year.size() + month.size() + 2, stringDate.npos);
+
+	std::cout << "Year is " << year <<std::endl;
+	std::cout << "Month is " << month <<std::endl;
+	std::cout << "Day is " << day <<std::endl;
+	_checkDate(year, month, day);
+	return true;
+}
+
+//check if year month and day are digit
+//return false if it is not
+bool BitcoinExchange::_checkDate(std::string& year, std::string& month, std::string& day) const
+{
+	if(_isStringDigit(year) == false || _isStringDigit(month) == false || _isStringDigit(day) == false)
+		return (false);
+	int comparingYear = _stringToInt(year);
+	int comparingMonth = _stringToInt(month);
+	int comparingDay = _stringToInt(day);
+
+	std::cout << "Year as int is " << comparingYear << std::endl;
+	std::cout << "Month as int is " << comparingMonth << std::endl;
+	std::cout << "Day as int is " << comparingDay << std::endl;
+
+	return true;
+}
+
 void BitcoinExchange::_fillMap(void)
 {
 	std::ifstream dataFile;
@@ -94,6 +149,43 @@ void BitcoinExchange::_fillMap(void)
 	}
 	_checkCsvFile(dataFile);
 }
+
+//count the number of c in word
+//return 0 or number of char c
+size_t BitcoinExchange::_getNumberofChar(std::string word, char c) const
+{
+	size_t cOccur(0);
+	for(size_t i = 0; i < word.size(); i++)
+	{
+		if(word[i] == c)
+			cOccur++;
+	}
+	return (cOccur);
+
+}
+
+//check if every char c in word is digit
+//return true if it is, fales if is not
+bool BitcoinExchange::_isStringDigit(std::string& word) const
+{
+	for(size_t i = 0; i < word.size(); i++)
+	{
+		if(!std::isdigit(word[i]))
+			return false;
+	}
+	return (true);
+}
+
+bool BitcoinExchange::_isDateValid(int year, int month, int day) const
+{
+	const std::time_t current = std::time(0);
+	int currentYear = std::localtime(&current)->tm_year + 1900;
+	if(year > currentYear)
+		return false;
+	if(month < 1 || month > 12)
+		return false;
+	
+}
 //function that tries to open input file and check first line
 //throw exception if open failed or file does not begin with
 void BitcoinExchange::_openInputFile()
@@ -101,6 +193,15 @@ void BitcoinExchange::_openInputFile()
 	_inFile.open(_inputFileName.c_str(), std::fstream::in);
 	if(_inFile.fail())
 		throw std::runtime_error("Opening input file failed");
+}
+
+int BitcoinExchange::_stringToInt(std::string& word) const
+{
+	int value;
+	std::stringstream ss(word);
+	if(!(ss >> value))
+		throw std::runtime_error("Stringstream failed");
+	return (value);
 }
 
 BitcoinExchange::BitcoinExchange(std::string inputFileName):
