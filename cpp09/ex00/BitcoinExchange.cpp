@@ -8,6 +8,7 @@
 #include <iostream>
 #include <ctime>
 
+
 BitcoinExchange::BitcoinExchange(void)
 {
 }
@@ -52,6 +53,11 @@ void BitcoinExchange::_checkCsvData(std::string& line, size_t& lineNumber) const
 	if(_checkDateFormat(datePart) == false)
 	{
 		std::cerr <<"Invalid date in file "<< DATABASENAME << " in line: "<< lineNumber << std::endl; 
+		throw InvalidDataBaseException();
+	}
+	if(_checkStringValue(valuePart) == false)
+	{
+		std::cerr <<"Invalid value in file " << DATABASENAME << " in line: "<< lineNumber << std::endl;
 		throw InvalidDataBaseException();
 	}
 }
@@ -136,6 +142,39 @@ bool BitcoinExchange::_checkDate(std::string& year, std::string& month, std::str
 		return false;
 	return true;
 }
+
+
+//check if value is empty, have more than 1 dots
+//check if everyhing is digit 
+//put value in double and check if it is bigger or equal 0
+//if any check failed return false 
+//if all ok return true
+bool BitcoinExchange::_checkStringValue(std::string value) const 
+{
+	if(value.empty())
+		return (false);
+	size_t numOfDots = _getNumberofChar(value, '.');
+	if(numOfDots > 1)
+		return (false);
+	if(numOfDots == 0 && _isStringDigit(value) == false)
+		return (false);
+	if(numOfDots == 1)
+	{
+		std::string wholeNumber = value.substr(0,value.find('.'));
+		if(wholeNumber.empty())
+			return false;
+		std::string decimalPart = value.substr(wholeNumber.size() + 1);
+		if(decimalPart.empty())
+			return false;
+		if(_isStringDigit(wholeNumber) == false || _isStringDigit(decimalPart) == false)
+			return (false);
+	}
+	double dValue = _stringToDouble(value);
+	if(dValue < 0)
+		return false;
+	return true;
+}
+
 
 void BitcoinExchange::_fillMap(void)
 {
@@ -275,6 +314,16 @@ int BitcoinExchange::_stringToInt(std::string& word) const
 	if(!(ss >> value))
 		throw std::runtime_error("Stringstream failed");
 	return (value);
+}
+
+double BitcoinExchange::_stringToDouble(std::string& value) const 
+{
+	double dValue;
+	std::stringstream ss(value);
+	ss >> dValue;
+	if(ss.fail())
+		throw std::runtime_error("stringstream to double failed");
+	return dValue;
 }
 
 BitcoinExchange::BitcoinExchange(std::string inputFileName):

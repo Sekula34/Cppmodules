@@ -8,7 +8,7 @@
 # include <string>
 
 #define CSVHEADER "date,exchange_rate"
-#define DATABASENAME "data.csv" //change this for testing invalid database etc
+#define DATABASENAME "./ignore/ExceptionTriggers/InvalidValue.csv" //change this for testing invalid database etc
 
 
 class BitcoinExchange
@@ -29,6 +29,7 @@ class BitcoinExchange
 		void _checkCsvHeader(std::string& firstLine) const;
 		bool _checkDateFormat(std::string& stringDate) const;
 		bool _checkDate(std::string& year, std::string& month, std::string& day) const;
+		bool _checkStringValue(std::string value) const;
 		void _fillMap(void);
 		size_t _getNumberofChar(std::string word, char c) const;
 		bool _isStringDigit(std::string& word) const;
@@ -37,6 +38,7 @@ class BitcoinExchange
 		bool _isLeapYear(int year) const;
 		void _openInputFile(void);
 		int _stringToInt(std::string& word) const;
+		double _stringToDouble(std::string& value) const;
 
 
 	public:
