@@ -1,9 +1,13 @@
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 #include <ctime>
+#include <exception>
 #include <fstream>
 #include <map>
 # include <string>
+
+#define CSVHEADER "date,exchange_rate"
+#define DATABASENAME "data.csv" //change this for testing invalid database etc
 
 class BitcoinExchange
 {
@@ -17,14 +21,24 @@ class BitcoinExchange
 		BitcoinExchange(void);
 		BitcoinExchange& operator=(const BitcoinExchange& source);
 		
-		void _openInputFile(void);
+		void _checkCsvFile(std::ifstream& dataBase);
+		void _checkCsvHeader(std::string& firstLine) const;
 		void _fillMap(void);
+		void _openInputFile(void);
+
 
 	public:
 		//orthodox2
 		BitcoinExchange(std::string inputFileName);
 		BitcoinExchange(const BitcoinExchange& source);
 		~BitcoinExchange();
+
+		class InvalidDataBaseException : public std::exception
+		{
+			public :
+				const char* what() const throw();
+		};
+
 };
 
 #endif

@@ -30,3 +30,6 @@ fclean: clean
 	rm -f $(NAME);
 
 re: fclean all
+
+test : $(name)
+	./btc ignore/input.txt 
