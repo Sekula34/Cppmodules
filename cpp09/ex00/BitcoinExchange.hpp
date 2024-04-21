@@ -8,7 +8,7 @@
 # include <string>
 
 #define CSVHEADER "date,exchange_rate"
-#define DATABASENAME "./ignore/ExceptionTriggers/InvalidValue.csv" //change this for testing invalid database etc
+#define DATABASENAME "data.csv" //change this for testing invalid database etc
 
 
 class BitcoinExchange
@@ -17,7 +17,7 @@ class BitcoinExchange
 
 		const std::string _inputFileName;
 		std::ifstream _inFile;
-		std::map<std::time_t, double> _dataBaseMap;
+		std::map<std::string, double> _dataBaseMap;
 
 		//orthodox1
 		BitcoinExchange(void);

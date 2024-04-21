@@ -179,6 +179,7 @@ bool BitcoinExchange::_checkStringValue(std::string value) const
 void BitcoinExchange::_fillMap(void)
 {
 	std::ifstream dataFile;
+	size_t i(0);
 
 	dataFile.open(DATABASENAME, std::fstream::in);
 	if (dataFile.fail())
@@ -187,6 +188,25 @@ void BitcoinExchange::_fillMap(void)
 		throw std::runtime_error("Open failed");
 	}
 	_checkCsvFile(dataFile);
+	std::string line;
+    dataFile.clear();
+    dataFile.seekg(0, std::ios::beg);
+	while(std::getline(dataFile,line))
+	{
+		if(i != 0)
+		{
+			std::string key = line.substr(0,line.find(','));
+			std::string sValue = line.substr(key.size() + 1);
+			double dValue = _stringToDouble(sValue);
+			_dataBaseMap[key]=dValue;
+			std::cout <<"database is " << _dataBaseMap[key];
+		}
+		i++;
+	}
+	std::cout <<"print me" << std::endl;
+	for (std::map<std::string, double>::iterator it = _dataBaseMap.begin(); it != _dataBaseMap.end(); ++it) {
+        std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
+    }
 }
 
 //count the number of c in word
