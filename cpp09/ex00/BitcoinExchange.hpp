@@ -32,9 +32,11 @@ class BitcoinExchange
 		void _checkInputHeader(const std::string& firstLine) const;
 		bool _checkInputLineFormat(const std::string& line) const;
 		bool _checkStringValue(std::string value) const;
+		bool _checkStringValue(std::string value, double& dValue) const;
 		void _fillMap(void);
 		size_t _getNumberofChar(std::string word, char c) const;
 		bool _isStringDigit(std::string& word) const;
+		bool _isStringDigit(std::string& word, bool negative) const;
 		bool _isDateValid(int& year, int& month, int& day) const;
 		bool _isDayValid(int &day, int& month, int& year) const;
 		bool _isLeapYear(int year) const;

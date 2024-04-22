@@ -171,21 +171,29 @@ bool BitcoinExchange::_checkInputLineFormat(const std::string& line) const
 {
 	std::string datePart;
 	std::string valuePart;
+	double value;
 	if(line.empty())
 	{
 		std::cerr << "Error: bad input => " << "[EMPTY_LINE]" << std::endl;
 		return false;
 	}
-	size_t posOfPipe = line.find('|', 0);
+	size_t posOfPipe = line.find(" | ", 0);
 	size_t nOfPipe = _getNumberofChar(line, '|');
-	if(nOfPipe != 1 || posOfPipe == 0)
+	if(nOfPipe != 1 || posOfPipe == 0 || posOfPipe + 1 == line.size())
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return false;
 	}
-	datePart = line.substr(0, posOfPipe - 1);
+	datePart = line.substr(0, posOfPipe);
 	std::cout << "Date part in line " << line << " is [" << datePart <<"]" <<std::endl;
 	if(_checkDateFormat(datePart) == false)
+	{
+		std::cerr << "Error: bad input => " << line << std::endl;
+		return false;
+	}
+	valuePart = line.substr(posOfPipe  + 3);
+	std::cout << "Value part is [" << valuePart <<"]" <<std::endl;
+	if(_checkStringValue(valuePart, value) == false)
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return false;
@@ -221,6 +229,36 @@ bool BitcoinExchange::_checkStringValue(std::string value) const
 	double dValue = _stringToDouble(value);
 	if(dValue < 0)
 		return false;
+	return true;
+}
+
+//check if value is empty, have more than 1 dots
+//check if everyhing is digit 
+//put value in double do not check if dValue is less than 0 in this case
+//if any check failed return false 
+//if all ok return true
+//store value in dValue
+bool BitcoinExchange::_checkStringValue(std::string value, double& dValue) const 
+{
+	if(value.empty())
+		return (false);
+	size_t numOfDots = _getNumberofChar(value, '.');
+	if(numOfDots > 1)
+		return (false);
+	if(numOfDots == 0 && _isStringDigit(value, true) == false)
+		return (false);
+	if(numOfDots == 1)
+	{
+		std::string wholeNumber = value.substr(0,value.find('.'));
+		if(wholeNumber.empty())
+			return false;
+		std::string decimalPart = value.substr(wholeNumber.size() + 1);
+		if(decimalPart.empty())
+			return false;
+		if(_isStringDigit(wholeNumber) == false || _isStringDigit(decimalPart) == false)
+			return (false);
+	}
+	dValue = _stringToDouble(value);
 	return true;
 }
 
@@ -282,6 +320,23 @@ bool BitcoinExchange::_isStringDigit(std::string& word) const
 {
 	for(size_t i = 0; i < word.size(); i++)
 	{
+		if(!std::isdigit(word[i]))
+			return false;
+	}
+	return (true);
+}
+//check if every char c in word is digit
+//return true if it is, fales if is not
+//if negative is true ignore first minus
+bool BitcoinExchange::_isStringDigit(std::string& word, bool negative) const
+{
+	for(size_t i = 0; i < word.size(); i++)
+	{
+		if(negative == true)
+		{
+			if(i == 0 && word[0] == '-')
+				continue;
+		}
 		if(!std::isdigit(word[i]))
 			return false;
 	}
