@@ -185,6 +185,11 @@ bool BitcoinExchange::_checkInputLineFormat(const std::string& line) const
 	}
 	datePart = line.substr(0, posOfPipe - 1);
 	std::cout << "Date part in line " << line << " is [" << datePart <<"]" <<std::endl;
+	if(_checkDateFormat(datePart) == false)
+	{
+		std::cerr << "Error: bad input => " << line << std::endl;
+		return false;
+	}
 	return true;
 }
 
@@ -340,7 +345,7 @@ bool BitcoinExchange::_isDateValid(int& year, int& month, int& day) const
 {
 	const std::time_t current = std::time(0);
 	int currentYear = std::localtime(&current)->tm_year + 1900;
-	int currentMonth = std::localtime(&current)->tm_mon;
+	int currentMonth = std::localtime(&current)->tm_mon + 1;
 	int currentDay = std::localtime(&current)->tm_mday;
 	if(year > currentYear)
 		return (false);
