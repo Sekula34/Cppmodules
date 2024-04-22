@@ -36,3 +36,6 @@ test : $(NAME)
 
 test2 : $(NAME)
 	./btc ignore/InvalidHeader.txt
+
+test3 : $(NAME)
+	./btc ignore/InvalidPipe.txt

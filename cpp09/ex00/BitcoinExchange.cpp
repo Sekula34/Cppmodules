@@ -163,6 +163,31 @@ void BitcoinExchange::_checkInputHeader(const std::string& firstLine) const
 	}
 }
 
+//check if line foromat is 2011-01-09 | 1
+// Error: not a positive number.
+// Error: bad input => 2001-42-42
+// Error: too large a number.
+bool BitcoinExchange::_checkInputLineFormat(const std::string& line) const
+{
+	std::string datePart;
+	std::string valuePart;
+	if(line.empty())
+	{
+		std::cerr << "Error: bad input => " << "[EMPTY_LINE]" << std::endl;
+		return false;
+	}
+	size_t posOfPipe = line.find('|', 0);
+	size_t nOfPipe = _getNumberofChar(line, '|');
+	if(nOfPipe != 1 || posOfPipe == 0)
+	{
+		std::cerr << "Error: bad input => " << line << std::endl;
+		return false;
+	}
+	datePart = line.substr(0, posOfPipe - 1);
+	std::cout << "Date part in line " << line << " is [" << datePart <<"]" <<std::endl;
+	return true;
+}
+
 //check if value is empty, have more than 1 dots
 //check if everyhing is digit 
 //put value in double and check if it is bigger or equal 0
@@ -363,11 +388,23 @@ void BitcoinExchange::_processInputFile(void)
 		}
 		else 
 		{
+			_processInputLine(oneLine);
+			//proccessLine
 			//checkLine
 		}
 		i++;
-		std::cout << oneLine << std::endl;
+		//std::cout << oneLine << std::endl;
 	}
+}
+
+//process one Line of input
+//perform all checks
+//if all checks are good print 
+//2011-01-03 => 3 = 0.9
+void BitcoinExchange::_processInputLine(const std::string& line) const 
+{
+	//std::cout << "Line to process:" << line << std::endl;
+	_checkInputLineFormat(line);
 }
 
 //reuturn string as integer 

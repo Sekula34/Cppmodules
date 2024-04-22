@@ -30,6 +30,7 @@ class BitcoinExchange
 		bool _checkDateFormat(std::string& stringDate) const;
 		bool _checkDate(std::string& year, std::string& month, std::string& day) const;
 		void _checkInputHeader(const std::string& firstLine) const;
+		bool _checkInputLineFormat(const std::string& line) const;
 		bool _checkStringValue(std::string value) const;
 		void _fillMap(void);
 		size_t _getNumberofChar(std::string word, char c) const;
@@ -39,6 +40,7 @@ class BitcoinExchange
 		bool _isLeapYear(int year) const;
 		void _openInputFile(std::ifstream& inFile);
 		void _processInputFile(void);
+		void _processInputLine(const std::string& line) const;
 		int _stringToInt(std::string& word) const;
 		double _stringToDouble(std::string& value) const;
 
