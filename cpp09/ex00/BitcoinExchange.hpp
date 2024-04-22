@@ -30,7 +30,7 @@ class BitcoinExchange
 		bool _checkDateFormat(std::string& stringDate) const;
 		bool _checkDate(std::string& year, std::string& month, std::string& day) const;
 		void _checkInputHeader(const std::string& firstLine) const;
-		bool _checkInputLineFormat(const std::string& line) const;
+		bool _checkInputLineFormat(const std::string& line, double& value) const;
 		bool _checkStringValue(std::string value) const;
 		bool _checkStringValue(std::string value, double& dValue) const;
 		void _fillMap(void);

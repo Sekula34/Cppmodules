@@ -167,11 +167,11 @@ void BitcoinExchange::_checkInputHeader(const std::string& firstLine) const
 // Error: not a positive number.
 // Error: bad input => 2001-42-42
 // Error: too large a number.
-bool BitcoinExchange::_checkInputLineFormat(const std::string& line) const
+//store value in &value
+bool BitcoinExchange::_checkInputLineFormat(const std::string& line, double& value) const
 {
 	std::string datePart;
 	std::string valuePart;
-	double value;
 	if(line.empty())
 	{
 		std::cerr << "Error: bad input => " << "[EMPTY_LINE]" << std::endl;
@@ -473,8 +473,12 @@ void BitcoinExchange::_processInputFile(void)
 //2011-01-03 => 3 = 0.9
 void BitcoinExchange::_processInputLine(const std::string& line) const 
 {
+	std::string datePart;
+	double value;
 	//std::cout << "Line to process:" << line << std::endl;
-	_checkInputLineFormat(line);
+	if(_checkInputLineFormat(line, value) == false)
+		return;
+	std::cout << "Line to process: " << line << std::endl;
 }
 
 //reuturn string as integer 
