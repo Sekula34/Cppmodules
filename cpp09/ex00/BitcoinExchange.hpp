@@ -7,6 +7,7 @@
 #include <map>
 # include <string>
 
+#define INPUTHEADER "date | value"
 #define CSVHEADER "date,exchange_rate"
 #define DATABASENAME "data.csv" //change this for testing invalid database etc
 
@@ -28,6 +29,7 @@ class BitcoinExchange
 		void _checkCsvHeader(std::string& firstLine) const;
 		bool _checkDateFormat(std::string& stringDate) const;
 		bool _checkDate(std::string& year, std::string& month, std::string& day) const;
+		void _checkInputHeader(const std::string& firstLine) const;
 		bool _checkStringValue(std::string value) const;
 		void _fillMap(void);
 		size_t _getNumberofChar(std::string word, char c) const;
@@ -48,6 +50,12 @@ class BitcoinExchange
 		~BitcoinExchange();
 
 		class InvalidDataBaseException : public std::exception
+		{
+			public :
+				const char* what() const throw();
+		};
+
+		class InvalidInputFileException : public std::exception
 		{
 			public :
 				const char* what() const throw();

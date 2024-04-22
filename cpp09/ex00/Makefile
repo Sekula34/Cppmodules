@@ -31,5 +31,8 @@ fclean: clean
 
 re: fclean all
 
-test : $(name)
+test : $(NAME)
 	./btc ignore/input.txt 
+
+test2 : $(NAME)
+	./btc ignore/InvalidHeader.txt

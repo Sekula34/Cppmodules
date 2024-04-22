@@ -144,6 +144,25 @@ bool BitcoinExchange::_checkDate(std::string& year, std::string& month, std::str
 }
 
 
+//check if First line in header is same as defined in INPUTHEADER
+//if it is empty or different that that throw InvalidInputFileException
+void BitcoinExchange::_checkInputHeader(const std::string& firstLine) const
+{
+	if(firstLine.empty())
+	{
+		std::cerr <<"Header of Input file:" <<_inputFileName <<" is empty, ";
+		std::cerr <<"But it should be " << INPUTHEADER << std::endl;
+		throw InvalidInputFileException();
+	}
+	if(firstLine != INPUTHEADER)
+	{
+		std::cerr << "Invalid header in "<< _inputFileName <<std::endl;
+		std::cerr << "Expected header: [" << INPUTHEADER <<"]"<< std::endl;
+		std::cerr << "Provided header: [" << firstLine <<"]"<< std::endl;
+		throw InvalidInputFileException();
+	}
+}
+
 //check if value is empty, have more than 1 dots
 //check if everyhing is digit 
 //put value in double and check if it is bigger or equal 0
@@ -331,11 +350,22 @@ void BitcoinExchange::_openInputFile(std::ifstream& inFile)
 }
 void BitcoinExchange::_processInputFile(void)
 {
+	size_t i(1);
 	std::ifstream inFile;
 	_openInputFile(inFile);
 	 std::string oneLine;
 	while(std::getline(inFile, oneLine))
 	{
+		if(i == 1)
+		{
+			_checkInputHeader(oneLine);
+			std::cout << "Input header good" << std::endl;
+		}
+		else 
+		{
+			//checkLine
+		}
+		i++;
 		std::cout << oneLine << std::endl;
 	}
 }
@@ -379,4 +409,9 @@ BitcoinExchange::~BitcoinExchange()
 const char* BitcoinExchange::InvalidDataBaseException::what() const throw()
 {
 	return ("Exception: Data in DataBase is in invalid format");
+}
+
+const char* BitcoinExchange::InvalidInputFileException::what() const throw()
+{
+	return("Exception: Invalid Input File");
 }
