@@ -325,9 +325,12 @@ bool BitcoinExchange::_isDateValid(int& year, int& month, int& day) const
 //throw exception if open failed or file does not begin with
 void BitcoinExchange::_openInputFile()
 {
-	_inFile.open(_inputFileName.c_str(), std::fstream::in);
-	if(_inFile.fail())
+	std::ifstream inFile;
+	inFile.open(_inputFileName.c_str(), std::fstream::in);
+	if(inFile.fail())
 		throw std::runtime_error("Opening input file failed");
+	inFile.close();
+	
 }
 
 //reuturn string as integer 
@@ -360,7 +363,6 @@ _inputFileName(inputFileName)
 
 BitcoinExchange::~BitcoinExchange()
 {
-	_inFile.close();
 }
 
 
