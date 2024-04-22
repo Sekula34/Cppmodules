@@ -35,7 +35,8 @@ class BitcoinExchange
 		bool _isDateValid(int& year, int& month, int& day) const;
 		bool _isDayValid(int &day, int& month, int& year) const;
 		bool _isLeapYear(int year) const;
-		void _openInputFile(void);
+		void _openInputFile(std::ifstream& inFile);
+		void _processInputFile(void);
 		int _stringToInt(std::string& word) const;
 		double _stringToDouble(std::string& value) const;
 

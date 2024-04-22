@@ -204,14 +204,13 @@ void BitcoinExchange::_fillMap(void)
 			std::string sValue = line.substr(key.size() + 1);
 			double dValue = _stringToDouble(sValue);
 			_dataBaseMap[key]=dValue;
-			std::cout <<"database is " << _dataBaseMap[key];
 		}
 		i++;
 	}
 	std::cout <<"print me" << std::endl;
-	for (std::map<std::string, double>::iterator it = _dataBaseMap.begin(); it != _dataBaseMap.end(); ++it) {
-        std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
-    }
+	// for (std::map<std::string, double>::iterator it = _dataBaseMap.begin(); it != _dataBaseMap.end(); ++it) {
+    //     std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
+    // }
 }
 
 //count the number of c in word
@@ -323,14 +322,22 @@ bool BitcoinExchange::_isDateValid(int& year, int& month, int& day) const
 
 //function that tries to open input file and check first line
 //throw exception if open failed or file does not begin with
-void BitcoinExchange::_openInputFile()
+//open file is store in &inFile
+void BitcoinExchange::_openInputFile(std::ifstream& inFile)
 {
-	std::ifstream inFile;
 	inFile.open(_inputFileName.c_str(), std::fstream::in);
 	if(inFile.fail())
 		throw std::runtime_error("Opening input file failed");
-	inFile.close();
-	
+}
+void BitcoinExchange::_processInputFile(void)
+{
+	std::ifstream inFile;
+	_openInputFile(inFile);
+	 std::string oneLine;
+	while(std::getline(inFile, oneLine))
+	{
+		std::cout << oneLine << std::endl;
+	}
 }
 
 //reuturn string as integer 
@@ -357,8 +364,11 @@ double BitcoinExchange::_stringToDouble(std::string& value) const
 BitcoinExchange::BitcoinExchange(std::string inputFileName):
 _inputFileName(inputFileName)
 {
-	_openInputFile();
+	std::ifstream inFile;
+	_openInputFile(inFile);
+	inFile.close();
 	_fillMap();
+	_processInputFile();
 }
 
 BitcoinExchange::~BitcoinExchange()
