@@ -185,17 +185,27 @@ bool BitcoinExchange::_checkInputLineFormat(const std::string& line) const
 		return false;
 	}
 	datePart = line.substr(0, posOfPipe);
-	std::cout << "Date part in line " << line << " is [" << datePart <<"]" <<std::endl;
+	//std::cout << "Date part in line " << line << " is [" << datePart <<"]" <<std::endl;
 	if(_checkDateFormat(datePart) == false)
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return false;
 	}
 	valuePart = line.substr(posOfPipe  + 3);
-	std::cout << "Value part is [" << valuePart <<"]" <<std::endl;
+	//std::cout << "Value part is [" << valuePart <<"]" <<std::endl;
 	if(_checkStringValue(valuePart, value) == false)
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
+		return false;
+	}
+	if(value < 0)
+	{
+		std::cerr << "Error: not a positive number." << std::endl;
+		return false;
+	}
+	if(value > 1000)
+	{
+		std::cerr << "Error: too large a number." << std::endl;
 		return false;
 	}
 	return true;
