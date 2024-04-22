@@ -471,7 +471,7 @@ void BitcoinExchange::_processInputFile(void)
 //perform all checks
 //if all checks are good print 
 //2011-01-03 => 3 = 0.9
-void BitcoinExchange::_processInputLine(const std::string& line) const 
+void BitcoinExchange::_processInputLine(const std::string& line)
 {
 	std::string datePart;
 	double value;
@@ -479,6 +479,9 @@ void BitcoinExchange::_processInputLine(const std::string& line) const
 	if(_checkInputLineFormat(line, value) == false)
 		return;
 	std::cout << "Line to process: " << line << std::endl;
+	datePart = line.substr(0, line.find(" | "));
+	//_dataBaseMap[datePart] = 2;
+	std::cout << "data " << _dataBaseMap[datePart] << std::endl;
 }
 
 //reuturn string as integer 

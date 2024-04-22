@@ -42,7 +42,7 @@ class BitcoinExchange
 		bool _isLeapYear(int year) const;
 		void _openInputFile(std::ifstream& inFile);
 		void _processInputFile(void);
-		void _processInputLine(const std::string& line) const;
+		void _processInputLine(const std::string& line);
 		int _stringToInt(std::string& word) const;
 		double _stringToDouble(std::string& value) const;
 
