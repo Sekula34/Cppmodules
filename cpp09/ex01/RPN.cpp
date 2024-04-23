@@ -1,8 +1,11 @@
 #include "RPN.hpp"
 #include <cctype>
+#include <climits>
 #include <cstddef>
 #include <stack>
 #include <iostream>
+#include <stdexcept>
+
 RPN::RPN(void)
 {
 
@@ -48,6 +51,7 @@ void RPN::_checkFormatInput(std::string& input)
 		throw InvalidInputException();
 }
 
+
 //check if char c is  + - * /
 //true if it is 
 //false if it is not
@@ -61,6 +65,47 @@ bool RPN::_isValidOperator(char c)
 			return true;
 	}
 	return false;
+}
+
+void RPN::_operatorFunction(char op, std::stack<long>& myStack)
+{
+	long result(0);
+	if(myStack.size() < 2)
+		throw InvalidInputException();
+	long secondNumber = myStack.top();
+	myStack.pop();
+	long firstNumber = myStack.top();
+	myStack.pop();
+	switch (op)
+	{
+		case '+' :
+		{
+			result = firstNumber + secondNumber;
+			break;
+		}
+		case '-' :
+		{
+			result = firstNumber - secondNumber;
+			break;
+		}
+		case '*' :
+		{
+			result = firstNumber * secondNumber;
+			break;
+		}
+		case '/' :
+		{
+			result = firstNumber / secondNumber;
+			break;
+		}
+		default:
+			std::runtime_error("Invalid operator");
+	}
+	if(result > INT_MAX)
+	{
+		std::runtime_error("Integer overflow");
+	}
+	myStack.push(result);
 }
 
 //remove leading and trailing spaces from input
@@ -91,10 +136,26 @@ void RPN::_removeSpaces(std::string& input)
 
 long RPN::calculate(std::string ReversePolishNotation)
 {
+	long endRes;
 	std::stack<long> myStack;
 	if(ReversePolishNotation.empty())
 		throw InvalidInputException();
-	return 34;
+	_checkFormatInput(ReversePolishNotation);
+	for(size_t i = 0; i < ReversePolishNotation.size(); i++)
+	{
+		if(std::isdigit(ReversePolishNotation[i]))
+		{
+			myStack.push(ReversePolishNotation[i] - '0');
+		}
+		else if(_isValidOperator(ReversePolishNotation[i]))
+		{
+			_operatorFunction(ReversePolishNotation[i], myStack);
+		}
+	}
+	if(myStack.size() != 1)
+		throw InvalidInputException();
+	endRes = myStack.top();
+	return (endRes);
 }
 
 const char* RPN::InvalidInputException::what() const throw()

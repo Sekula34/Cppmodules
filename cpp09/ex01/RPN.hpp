@@ -2,6 +2,7 @@
 # define RPN_HPP
 #include <exception>
 # include <string>
+#include <stack>
 
 class RPN 
 {
@@ -14,6 +15,7 @@ class RPN
 
 		static void _checkFormatInput(std::string& input);
 		static bool _isValidOperator(char c);
+		static void _operatorFunction(char op, std::stack<long>& myStack);
 		static void _removeSpaces(std::string& input);
 	public :
 		static long calculate(std::string ReversePolishNotation);
