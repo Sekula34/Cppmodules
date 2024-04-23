@@ -82,7 +82,6 @@ void BitcoinExchange::_checkCsvFile(std::ifstream& dataBase)
 		}
 		lineNum ++;
 	}
-	std::cout << "I read everything" << std::endl;
 }
 //throw error if first line is empty or not equal to requested headear
 void BitcoinExchange::_checkCsvHeader(std::string& firstLine) const
@@ -304,10 +303,6 @@ void BitcoinExchange::_fillMap(void)
 		}
 		i++;
 	}
-	std::cout <<"print me" << std::endl;
-	// for (std::map<std::string, double>::iterator it = _dataBaseMap.begin(); it != _dataBaseMap.end(); ++it) {
-    //     std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
-    // }
 }
 
 //count the number of c in word
@@ -454,7 +449,6 @@ void BitcoinExchange::_processInputFile(void)
 		if(i == 1)
 		{
 			_checkInputHeader(oneLine);
-			std::cout << "Input header good" << std::endl;
 		}
 		else 
 		{
