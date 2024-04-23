@@ -26,7 +26,6 @@ int main(int argc, char** argv)
 		std::string inputFile;
 		inputFile = getInputFileName(argc, argv);
 		BitcoinExchange bitCoin(inputFile);
-		std::cout <<"Input file name is :[" << inputFile <<"]"<<std::endl;
 	}
 	catch (std::exception &e)
 	{
