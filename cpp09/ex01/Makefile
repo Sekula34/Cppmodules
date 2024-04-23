@@ -30,3 +30,15 @@ fclean: clean
 	rm -f $(NAME);
 
 re: fclean all
+
+test1 : $(NAME)
+	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
+
+test2 : $(NAME)
+	./$(NAME) "7 7 * 7 -"
+
+test3 : $(NAME)
+	./$(NAME) "1 2 * 2 / 2 * 2 4 - +"
+
+test4 : $(NAME)
+	./$(NAME)  "(1 + 1)"

@@ -2,12 +2,16 @@
 #include <iostream>
 #include "RPN.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
-	std::string input("(1 + 1)");
+	if(argc != 2)
+	{
+		std::cerr << "Only one argument required" << std::endl;
+		return 1;
+	}
 	try 
 	{
-		std::cout << RPN::calculate(input) << std::endl;
+		std::cout << RPN::calculate(argv[1]) << std::endl;
 	}
 	catch(RPN::InvalidInputException &e)
 	{
