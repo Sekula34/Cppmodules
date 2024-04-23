@@ -478,10 +478,20 @@ void BitcoinExchange::_processInputLine(const std::string& line)
 	//std::cout << "Line to process:" << line << std::endl;
 	if(_checkInputLineFormat(line, value) == false)
 		return;
-	std::cout << "Line to process: " << line << std::endl;
+	//std::cout << "Line to process: " << line << std::endl;
 	datePart = line.substr(0, line.find(" | "));
 	//_dataBaseMap[datePart] = 2;
-	std::cout << "data " << _dataBaseMap[datePart] << std::endl;
+	//std::cout << "data " << _dataBaseMap[datePart] << std::endl;
+	std::map<std::string, double>::iterator it;
+	it = _dataBaseMap.lower_bound(datePart);
+	if(it == _dataBaseMap.begin() && it->first != datePart)
+	{
+		std::cerr<<"Error: No data for" << datePart << std::endl;
+		return;
+	}
+	if(it->first != datePart)
+		it--;
+	std::cout << datePart <<" => " << value << " = " << value * it->second << std::endl;
 }
 
 //reuturn string as integer 
@@ -512,6 +522,11 @@ _inputFileName(inputFileName)
 	_openInputFile(inFile);
 	inFile.close();
 	_fillMap();
+	if(_dataBaseMap.size() < 1)
+	{
+		std::cerr<<"Database is empty" << std::endl;
+		throw InvalidDataBaseException();
+	}
 	_processInputFile();
 }
 
