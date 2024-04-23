@@ -95,6 +95,8 @@ void RPN::_operatorFunction(char op, std::stack<long>& myStack)
 		}
 		case '/' :
 		{
+			if(secondNumber == 0)
+				throw std::runtime_error("Division by zero is not defined");
 			result = firstNumber / secondNumber;
 			break;
 		}

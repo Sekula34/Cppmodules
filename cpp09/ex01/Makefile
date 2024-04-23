@@ -42,3 +42,6 @@ test3 : $(NAME)
 
 test4 : $(NAME)
 	./$(NAME)  "(1 + 1)"
+	
+test5 : $(NAME)
+	./$(NAME)  "1 0 /"
