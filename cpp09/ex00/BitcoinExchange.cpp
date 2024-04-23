@@ -491,7 +491,7 @@ void BitcoinExchange::_processInputLine(const std::string& line)
 	}
 	if(it->first != datePart)
 		it--;
-	std::cout << datePart <<" => " << value << " = " << value * it->second << std::endl;
+	std::cout << datePart <<" => " << value << " = " << (value * it->second) << std::endl;
 }
 
 //reuturn string as integer 

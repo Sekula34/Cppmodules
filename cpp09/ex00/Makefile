@@ -39,3 +39,6 @@ test2 : $(NAME)
 
 test3 : $(NAME)
 	./btc ignore/InvalidPipe.txt
+
+test4 : $(NAME)
+	./btc ignore/TestingInput.txt
