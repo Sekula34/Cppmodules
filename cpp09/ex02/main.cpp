@@ -15,14 +15,23 @@ int main()
 {
 	PmergeMe merge;
 	std::vector<int> myVector;
-	myVector.push_back(1);
-	myVector.push_back(3);
-	myVector.push_back(5);
-	myVector.push_back(7);
+	myVector.push_back(2);
+    myVector.push_back(4);
+    myVector.push_back(6);
+    myVector.push_back(8);
+    myVector.push_back(10);
+    myVector.push_back(12);
+    myVector.push_back(14);
+    myVector.push_back(16);
+    myVector.push_back(18);
+    myVector.push_back(20);
+    myVector.push_back(22);
+    myVector.push_back(24);
+    myVector.push_back(26);
 
 	std::cout << "I am here " << std::endl;
 	std::cout << "Comparison counter is "<<merge.getComparisonCounter() << std::endl;
-	merge._binaryInsertion(4, myVector);
+	merge._binaryInsertion(3, myVector);
 	std::cout <<"Comparison counter after is " << merge.getComparisonCounter() << std::endl;
 	printVec(myVector);
 	return 0;

@@ -25,6 +25,10 @@ PmergeMe::~PmergeMe()
 
 }
 
+//prerequiste for this is sorted vector
+//finds position where to insert value, and count the number of comparisons
+//insrt value
+//Maybe will need some modificaton that will tell end iterator for looking
 void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec)
 {
 	if(vec.size() == 0)
