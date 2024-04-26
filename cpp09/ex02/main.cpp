@@ -15,7 +15,7 @@ void printVec(std::vector<int>& vec)
 void testingBInsertSequence()
 {
 	PmergeMe object;
-	std::vector<int> bInsertSeq = object._getBInsertSequence(4, false);
+	std::vector<int> bInsertSeq = object._getBInsertSequence(10, false);
 	printVec(bInsertSeq);
 }
 
@@ -38,7 +38,7 @@ int main()
     myVector.push_back(24);
     myVector.push_back(26);
 
-	std::cout << "I am here " << std::endl;
+	//std::cout << "I am here " << std::endl;
 	std::cout << "Comparison counter is "<<merge.getComparisonCounter() << std::endl;
 	//merge._binaryInsertion(3, myVector);
 	std::cout <<"Comparison counter after is " << merge.getComparisonCounter() << std::endl;

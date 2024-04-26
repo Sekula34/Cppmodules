@@ -3,7 +3,6 @@
 #include <cstddef>
 #include <stdexcept>
 #include <vector>
-#include <iostream>
 
 unsigned int PmergeMe::_comparisonCounter = 0;
 
@@ -54,7 +53,6 @@ std::vector<int> PmergeMe::_getBInsertSequence(int numberOfPairs, bool lastBAlon
 		indexSequence.push_back(3);
 		indexSequence.push_back(2);
 	}
-	std::cout <<sequenceSize << std::endl;
 	_insertRestOfSequence(indexSequence, sequenceSize);
 	//filrest
 	// while(indexSequence.size() < sequenceSize)
@@ -91,7 +89,6 @@ void PmergeMe::_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSi
 	size_t freeSize = finalSizeOfVector - bSequence.size();
 	while(bSequence.size() != finalSizeOfVector)
 	{
-		std::cout << "here" << std::endl;
 		while(numberOfCurrentInserts > freeSize)
 		{
 			neuJacobNumber --;
