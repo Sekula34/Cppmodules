@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <stdexcept>
 #include <vector>
+#include <iostream>
 
 unsigned int PmergeMe::_comparisonCounter = 0;
 
@@ -39,7 +40,7 @@ std::vector<int> PmergeMe::_getBInsertSequence(int numberOfPairs, bool lastBAlon
 	size_t sequenceSize(numberOfPairs);
 	if(lastBAlone)
 		sequenceSize++;
-	std::vector<int> indexSequence(sequenceSize);
+	std::vector<int> indexSequence;
 	indexSequence.push_back(1);
 	if(sequenceSize == 1)
 		return indexSequence;
@@ -53,6 +54,8 @@ std::vector<int> PmergeMe::_getBInsertSequence(int numberOfPairs, bool lastBAlon
 		indexSequence.push_back(3);
 		indexSequence.push_back(2);
 	}
+	std::cout <<sequenceSize << std::endl;
+	_insertRestOfSequence(indexSequence, sequenceSize);
 	//filrest
 	// while(indexSequence.size() < sequenceSize)
 	// {
@@ -77,6 +80,35 @@ unsigned int PmergeMe:: _getJacobsthalNumber(int n)
 	unsigned int oneBeforeN = _getJacobsthalNumber(n - 1);
 	unsigned int twoBeforeN = _getJacobsthalNumber(n - 2);
 	return (oneBeforeN +  (2 * twoBeforeN) );
+}
+
+void PmergeMe::_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector)
+{
+	int nMemberOfJacobSequence = 4; // Jacob sequence start with 5 J(4) = 5
+	unsigned int lastJacobNumber = 3;
+	unsigned int neuJacobNumber = _getJacobsthalNumber(nMemberOfJacobSequence); //ne number 5
+	size_t numberOfCurrentInserts = neuJacobNumber - lastJacobNumber; //will try to insert 2 numbers
+	size_t freeSize = finalSizeOfVector - bSequence.size();
+	while(bSequence.size() != finalSizeOfVector)
+	{
+		std::cout << "here" << std::endl;
+		while(numberOfCurrentInserts > freeSize)
+		{
+			neuJacobNumber --;
+			numberOfCurrentInserts --;
+		}
+		bSequence.push_back(neuJacobNumber);
+		freeSize--;
+		neuJacobNumber--;
+		numberOfCurrentInserts--;
+		if(numberOfCurrentInserts == 0 && freeSize > 0)
+		{
+			lastJacobNumber = _getJacobsthalNumber(nMemberOfJacobSequence);
+			nMemberOfJacobSequence ++;
+			neuJacobNumber = _getJacobsthalNumber(nMemberOfJacobSequence);
+			numberOfCurrentInserts = neuJacobNumber - lastJacobNumber;
+		}
+	}
 }
 
 //prerequiste for this is sorted vector

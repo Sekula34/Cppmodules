@@ -1,5 +1,6 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
+#include <cstddef>
 # include <vector>
 
 class PmergeMe
@@ -8,7 +9,6 @@ class PmergeMe
 		static unsigned int _comparisonCounter;
 
 		void _binaryInsertion(int valueToInsert, std::vector<int>& vec);
-		std::vector<int> _getBInsertSequence(int numberOfPairs, bool lastBAlone);
 		unsigned int _getJacobsthalNumber(int n);
 	public :
 	//orthodox
@@ -16,6 +16,9 @@ class PmergeMe
 		PmergeMe(const PmergeMe& source);
 		PmergeMe& operator=(const PmergeMe& source);
 		~PmergeMe();
+
+		std::vector<int> _getBInsertSequence(int numberOfPairs, bool lastBAlone);
+		void _insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector);
 
 		unsigned int getComparisonCounter(void) const;
 

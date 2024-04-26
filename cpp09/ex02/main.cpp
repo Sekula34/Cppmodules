@@ -12,6 +12,13 @@ void printVec(std::vector<int>& vec)
 }
 
 
+void testingBInsertSequence()
+{
+	PmergeMe object;
+	std::vector<int> bInsertSeq = object._getBInsertSequence(4, false);
+	printVec(bInsertSeq);
+}
+
 
 int main()
 {
@@ -39,6 +46,7 @@ int main()
 	// {
 	// 	std::cout << merge._getJacobsthalNumber(i) << std::endl;
 	// }
-	printVec(myVector);
+	testingBInsertSequence();
+	//printVec(myVector);
 	return 0;
 }
