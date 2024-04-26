@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(void)
+PmergeMe::PmergeMe(void):_comparisonCounter(0)
 {
 
 }
@@ -19,4 +19,9 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& source)
 PmergeMe::~PmergeMe()
 {
 
+}
+
+unsigned int PmergeMe::getComparisonCounter(void) const 
+{
+	return (_comparisonCounter);
 }
