@@ -11,6 +11,8 @@ void printVec(std::vector<int>& vec)
 	std::cout << std::endl;
 }
 
+
+
 int main()
 {
 	PmergeMe merge;
@@ -31,8 +33,12 @@ int main()
 
 	std::cout << "I am here " << std::endl;
 	std::cout << "Comparison counter is "<<merge.getComparisonCounter() << std::endl;
-	merge._binaryInsertion(3, myVector);
+	//merge._binaryInsertion(3, myVector);
 	std::cout <<"Comparison counter after is " << merge.getComparisonCounter() << std::endl;
+	// for(int i = 0; i < 10; i ++)
+	// {
+	// 	std::cout << merge._getJacobsthalNumber(i) << std::endl;
+	// }
 	printVec(myVector);
 	return 0;
 }

@@ -6,6 +6,10 @@ class PmergeMe
 {
 	private :
 		static unsigned int _comparisonCounter;
+
+		void _binaryInsertion(int valueToInsert, std::vector<int>& vec);
+		std::vector<int> _getBInsertSequence(int numberOfPairs, bool lastBAlone);
+		unsigned int _getJacobsthalNumber(int n);
 	public :
 	//orthodox
 		PmergeMe(void);
@@ -14,7 +18,6 @@ class PmergeMe
 		~PmergeMe();
 
 		unsigned int getComparisonCounter(void) const;
-		void _binaryInsertion(int valueToInsert, std::vector<int>& vec);
 
 
 		struct Compare
