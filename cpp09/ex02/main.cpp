@@ -15,8 +15,9 @@ void printVec(std::vector<int>& vec)
 void testingBInsertSequence()
 {
 	PmergeMe object;
-	std::vector<int> bInsertSeq = object._getBInsertSequence(10, false);
-	printVec(bInsertSeq);
+	//make it public to test outside main
+	//std::vector<int> bInsertSeq = object._getBInsertSequence(10, false);
+	//printVec(bInsertSeq);
 }
 
 

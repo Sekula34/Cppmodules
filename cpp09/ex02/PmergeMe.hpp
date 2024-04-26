@@ -8,8 +8,10 @@ class PmergeMe
 	private :
 		static unsigned int _comparisonCounter;
 
-		void _binaryInsertion(int valueToInsert, std::vector<int>& vec);
-		unsigned int _getJacobsthalNumber(int n);
+		void				_binaryInsertion(int valueToInsert, std::vector<int>& vec);
+		std::vector<int>	_getBInsertSequence(int numberOfPairs, bool lastBAlone);
+		unsigned int		_getJacobsthalNumber(int n);
+		void				_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector);
 	public :
 	//orthodox
 		PmergeMe(void);
@@ -17,8 +19,6 @@ class PmergeMe
 		PmergeMe& operator=(const PmergeMe& source);
 		~PmergeMe();
 
-		std::vector<int> _getBInsertSequence(int numberOfPairs, bool lastBAlone);
-		void _insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector);
 
 		unsigned int getComparisonCounter(void) const;
 

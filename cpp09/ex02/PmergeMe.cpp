@@ -26,6 +26,22 @@ PmergeMe::~PmergeMe()
 {
 
 }
+//prerequiste for this is sorted vector
+//finds position where to insert value, and count the number of comparisons
+//insrt value
+//Maybe will need some modificaton that will tell end iterator for looking
+void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec)
+{
+	if(vec.size() == 0)
+	{
+		vec.insert(vec.begin(), valueToInsert);
+		return;
+	}
+	std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), vec.end(), valueToInsert,Compare());
+
+	vec.insert(Positon, valueToInsert);
+	return;
+}
 
 
 //b3,b2; b5,b4; b11,b10, ... ,b5; ... ; btk,btk-1, ... ,btk-1+1; 
@@ -54,19 +70,14 @@ std::vector<int> PmergeMe::_getBInsertSequence(int numberOfPairs, bool lastBAlon
 		indexSequence.push_back(2);
 	}
 	_insertRestOfSequence(indexSequence, sequenceSize);
-	//filrest
-	// while(indexSequence.size() < sequenceSize)
-	// {
-
-	// }
 	return (indexSequence);
-
 }
 // return n-th member of JacobsthalNumber
 //n 0 = 0
 //n 1 = 1;
 //n n = n- 1 * 2(n-2)
 //0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691,
+//throws runtimeerror if N is more than 20 for potenital crash reasons
 unsigned int PmergeMe:: _getJacobsthalNumber(int n)
 {
 	if(n > 20)
@@ -80,6 +91,12 @@ unsigned int PmergeMe:: _getJacobsthalNumber(int n)
 	return (oneBeforeN +  (2 * twoBeforeN) );
 }
 
+//function that feesl bsequence vector with numbers until it reaches the final size
+//it start with jacob number 5 and try to insert in in vector
+//order 5,4,11,10,9.....
+//if size is smaller that much jacobNumbers are discard
+//example final size is 4, but jacob numbers are 
+//1 3 2,    5 is discarded and 4 is put
 void PmergeMe::_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector)
 {
 	int nMemberOfJacobSequence = 4; // Jacob sequence start with 5 J(4) = 5
@@ -108,22 +125,6 @@ void PmergeMe::_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSi
 	}
 }
 
-//prerequiste for this is sorted vector
-//finds position where to insert value, and count the number of comparisons
-//insrt value
-//Maybe will need some modificaton that will tell end iterator for looking
-void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec)
-{
-	if(vec.size() == 0)
-	{
-		vec.insert(vec.begin(), valueToInsert);
-		return;
-	}
-	std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), vec.end(), valueToInsert,Compare());
-
-	vec.insert(Positon, valueToInsert);
-	return;
-}
 
 
 unsigned int PmergeMe::getComparisonCounter(void) const 
