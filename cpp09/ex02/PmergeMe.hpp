@@ -24,6 +24,7 @@ class PmergeMe
 		std::vector<int>	_getBInsertSequence(int numberOfPairs, bool lastBAlone);
 		unsigned int		_getJacobsthalNumber(int n);
 		std::vector<pair> _getUnsortedPairs(std::vector<int> unsortedVec);
+		void 			_insertBs(std::vector<pair>unsortedPairs);
 		void				_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector);
 		pair			_makeOnePair(int value1, int value2);
 		pair			_makeOnePair(int valueB);
