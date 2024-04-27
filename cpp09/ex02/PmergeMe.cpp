@@ -44,12 +44,26 @@ void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec)
 	return;
 }
 
-std::vector<pair> _getUnsortedPairs(std::vector<int> unsortedVec)
+//function that takes unsored vec of int and makes pair of them
+//return the list of all pairs.
+//if number of elements in unsored vec is odd
+//last pair have value a set to -1, and b is last element of vector
+std::vector<pair> PmergeMe::_getUnsortedPairs(std::vector<int> unsortedVec)
 {
 	std::vector<pair> toReturn;
-	if(unsortedVec.size() % 2 == 1)
+	bool odd = (unsortedVec.size() % 2);
+	size_t numberOfPairs = unsortedVec.size() / 2;
+	pair onePair;
+	int j = 0;
+	for(size_t i = 0; i < numberOfPairs; j += 2, i++)
 	{
-
+		onePair = _makeOnePair(unsortedVec[j], unsortedVec[j + 1]);
+		toReturn.push_back(onePair);
+	}
+	if(odd == true)
+	{
+		onePair = _makeOnePair(*(unsortedVec.end() - 1));
+		toReturn.push_back(onePair);
 	}
 	return (toReturn);
 }

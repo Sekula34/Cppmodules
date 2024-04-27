@@ -33,11 +33,6 @@ void testingJohnson(std::vector<int>& myVector)
 {
 	PmergeMe merge;
 	merge.mergeInsertSort(myVector);
-	pair onePair = merge._makeOnePair(myVector[0], myVector[1]);
-	pair lasPair = merge._makeOnePair(*(myVector.end() - 1) );
-	printVec(myVector);
-	printPair(onePair);
-	printPair(lasPair);
 	return;
 }
 

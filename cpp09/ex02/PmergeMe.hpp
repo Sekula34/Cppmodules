@@ -16,13 +16,14 @@ class PmergeMe
 		std::vector<int> sortedVec;
 
 		void				_binaryInsertion(int valueToInsert, std::vector<int>& vec);
-		std::vector<pair> _getUnsortedPairs(std::vector<int> unsortedVec);
 		std::vector<int>	_getBInsertSequence(int numberOfPairs, bool lastBAlone);
 		unsigned int		_getJacobsthalNumber(int n);
+		std::vector<pair> _getUnsortedPairs(std::vector<int> unsortedVec);
 		void				_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector);
-	public :
 		pair			_makeOnePair(int value1, int value2);
 		pair			_makeOnePair(int valueB);
+	
+	public :
 	//orthodox
 		PmergeMe(void);
 		PmergeMe(const PmergeMe& source);
