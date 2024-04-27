@@ -215,8 +215,9 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 {
 	if(unsortedVec.size() < 2)
 		throw std::runtime_error("Called merge Insert with less than 2 elements");
-	int numberOfPairs = unsortedVec.size()/2;
-	std::vector<pair> unsortedPairs;
+	//int numberOfPairs = unsortedVec.size()/2;
+	std::vector<pair> unsortedPairs = _getUnsortedPairs(unsortedVec);
+	_printPairList(unsortedPairs);
 	return;
 }
 
