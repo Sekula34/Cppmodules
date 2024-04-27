@@ -27,6 +27,32 @@ PmergeMe::~PmergeMe()
 {
 
 }
+
+void PmergeMe::_printVec(std::vector<int> vec)
+{	
+	std::cout << "Vector values are :" << std::endl;
+	for(std::vector<int>::iterator it =vec.begin(); it != vec.end(); it ++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+}
+
+void PmergeMe::_printOnePair(pair onePair)
+{
+	std::cout << "A [bigger value] is " << onePair.a << std::endl;
+	std::cout << "B [smaller value] is " << onePair.b << std::endl;
+	std::cout << "-------------------------------------" << std::endl; 
+}
+
+void PmergeMe::_printPairList(std::vector<pair> pairList)
+{
+	for(std::vector<pair>::iterator it = pairList.begin(); it != pairList.end(); it++)
+	{
+		_printOnePair(*it);
+	}
+}
+
 //prerequiste for this is sorted vector
 //finds position where to insert value, and count the number of comparisons
 //insrt value
@@ -191,7 +217,6 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 		throw std::runtime_error("Called merge Insert with less than 2 elements");
 	int numberOfPairs = unsortedVec.size()/2;
 	std::vector<pair> unsortedPairs;
-	std::cout << "Number of pairs is " << numberOfPairs <<" and size of vec is " << unsortedVec.size() << std::endl;
 	return;
 }
 
