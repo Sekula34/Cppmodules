@@ -44,6 +44,16 @@ void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec)
 	return;
 }
 
+std::vector<pair> _getUnsortedPairs(std::vector<int> unsortedVec)
+{
+	std::vector<pair> toReturn;
+	if(unsortedVec.size() % 2 == 1)
+	{
+
+	}
+	return (toReturn);
+}
+
 
 //b3,b2; b5,b4; b11,b10, ... ,b5; ... ; btk,btk-1, ... ,btk-1+1; 
 //function that creates and retunr the sequence of indexes in which b should be inserted in a
@@ -126,6 +136,39 @@ void PmergeMe::_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSi
 	}
 }
 
+//function that takes two values and return pair
+//bigger value is putted in .a while smaller is always in .b
+//function have overload if only one value is provided than that value is in .b
+//a in that case is undefinded
+pair PmergeMe::_makeOnePair(int value1, int value2)
+{
+	pair onePair;
+	_comparisonCounter++;
+	if(value1 > value2)
+	{
+		onePair.a = value1;
+		onePair.b = value2;
+	}
+	else
+	{
+		onePair.a = value2;
+		onePair.b = value1;
+	}
+	return onePair;
+}
+//overload
+//function that takes two values and return pair
+//bigger value is putted in .a while smaller is always in .b
+//function have overload if only one value is provided than that value is in .b
+//a in that case is -1 (value set to not trigger conditional jump, but should not be used)
+pair PmergeMe::_makeOnePair(int valueB)
+{
+	pair OnePair;
+	OnePair.a = -1;
+	OnePair.b = valueB;
+	return OnePair;
+}
+
 
 
 void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
@@ -133,6 +176,7 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 	if(unsortedVec.size() < 2)
 		throw std::runtime_error("Called merge Insert with less than 2 elements");
 	int numberOfPairs = unsortedVec.size()/2;
+	std::vector<pair> unsortedPairs;
 	std::cout << "Number of pairs is " << numberOfPairs <<" and size of vec is " << unsortedVec.size() << std::endl;
 	return;
 }

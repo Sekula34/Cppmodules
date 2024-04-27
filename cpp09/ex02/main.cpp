@@ -5,11 +5,19 @@
 
 void printVec(std::vector<int>& vec)
 {
+	std::cout << "Vector values are :" << std::endl;
 	for(std::vector<int>::iterator it =vec.begin(); it != vec.end(); it ++)
 	{
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
+}
+
+void printPair(pair onePair)
+{
+	std::cout << "A [bigger value] is " << onePair.a << std::endl;
+	std::cout << "B [smaller value] is " << onePair.b << std::endl;
+	std::cout << "-------------------------------------" << std::endl; 
 }
 
 
@@ -25,6 +33,11 @@ void testingJohnson(std::vector<int>& myVector)
 {
 	PmergeMe merge;
 	merge.mergeInsertSort(myVector);
+	pair onePair = merge._makeOnePair(myVector[0], myVector[1]);
+	pair lasPair = merge._makeOnePair(*(myVector.end() - 1) );
+	printVec(myVector);
+	printPair(onePair);
+	printPair(lasPair);
 	return;
 }
 
