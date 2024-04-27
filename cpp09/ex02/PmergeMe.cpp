@@ -226,6 +226,16 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 		std::cout<<"Base case called" << std::endl;
 		return;
 	}
+	else
+	{
+		std::vector<int> unsortedAs;
+		//fillunsrtedAs
+		//call mergeInsertSort(unsortedAs)
+	
+	}
+	//fill b ; goes through sorted vec, apply binnaryInsertion on correct index
+	//find value on index in sorted vec, then find ther b pair and apply Binary 
+	//insertion on b, (you are putting b on sortedvec)
 	return;
 }
 
