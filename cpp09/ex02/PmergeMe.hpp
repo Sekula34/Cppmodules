@@ -7,6 +7,7 @@ class PmergeMe
 {
 	private :
 		static unsigned int _comparisonCounter;
+		std::vector<int> sortedVec;
 
 		void				_binaryInsertion(int valueToInsert, std::vector<int>& vec);
 		std::vector<int>	_getBInsertSequence(int numberOfPairs, bool lastBAlone);
@@ -19,9 +20,11 @@ class PmergeMe
 		PmergeMe& operator=(const PmergeMe& source);
 		~PmergeMe();
 
+		void mergeInsertSort(std::vector<int> unsortedVec);
+
 
 		unsigned int getComparisonCounter(void) const;
-
+		void printSortedVec(void);
 
 		struct Compare
 		{

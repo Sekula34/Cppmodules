@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <stdexcept>
 #include <vector>
+#include <iostream>
 
 unsigned int PmergeMe::_comparisonCounter = 0;
 
@@ -130,4 +131,19 @@ void PmergeMe::_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSi
 unsigned int PmergeMe::getComparisonCounter(void) const 
 {
 	return (_comparisonCounter);
+}
+
+
+void PmergeMe::printSortedVec(void)
+{
+	if(sortedVec.empty())
+		throw std::runtime_error("Sorted vec is empty");
+	std::vector<int>::iterator it;
+	for(it = sortedVec.begin(); it != sortedVec.end(); it++)
+	{
+		std::cout << *it;
+		if(it + 1 != sortedVec.end())
+			std::cout <<", ";
+	}
+	std::cout << std::endl;
 }
