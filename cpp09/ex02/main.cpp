@@ -32,6 +32,8 @@ void testingBInsertSequence()
 void testingJohnson(std::vector<int>& myVector)
 {
 	PmergeMe merge;
+	std::cout << "Unsorted values are ";
+	printVec(myVector);
 	merge.mergeInsertSort(myVector);
 	printVec(merge.sortedVec);
 	std::cout <<"Number of comparison is " << merge.getComparisonCounter() << std::endl;
@@ -70,17 +72,39 @@ int main()
 		//testingBInsertSequence();
 		//merge.printSortedVec();
 		std::vector<int>baseCase;
+		baseCase.push_back(6);
+		baseCase.push_back(8);
 		baseCase.push_back(3);
-		baseCase.push_back(2);
-		baseCase.push_back(1);
 		std::vector<int> nonBaseCase;
+		nonBaseCase.push_back(16);
+		nonBaseCase.push_back(15);
+		nonBaseCase.push_back(12);
 		nonBaseCase.push_back(13);
+		nonBaseCase.push_back(5);
+
+		nonBaseCase.push_back(7);
+		nonBaseCase.push_back(2);
 		nonBaseCase.push_back(6);
-		nonBaseCase.push_back(8);
-		nonBaseCase.push_back(3);
-		nonBaseCase.push_back(10);
-		nonBaseCase.push_back(4);
+		nonBaseCase.push_back(19);
+		nonBaseCase.push_back(20);
+
 		nonBaseCase.push_back(1);
+		nonBaseCase.push_back(21);
+		nonBaseCase.push_back(3);
+		nonBaseCase.push_back(11);
+		nonBaseCase.push_back(4);
+
+		nonBaseCase.push_back(10);
+		nonBaseCase.push_back(9);
+		nonBaseCase.push_back(18);
+		nonBaseCase.push_back(17);
+		nonBaseCase.push_back(14);
+
+		nonBaseCase.push_back(8);
+		// nonBaseCase.push_back(3);
+		// nonBaseCase.push_back(10);
+		// nonBaseCase.push_back(4);
+		// nonBaseCase.push_back(1);
 		testingJohnson(nonBaseCase);
 
 	}
