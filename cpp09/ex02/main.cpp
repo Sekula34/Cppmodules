@@ -33,6 +33,8 @@ void testingJohnson(std::vector<int>& myVector)
 {
 	PmergeMe merge;
 	merge.mergeInsertSort(myVector);
+	printVec(merge.sortedVec);
+	std::cout <<"Number of comparison is " << merge.getComparisonCounter() << std::endl;
 	return;
 }
 
@@ -67,7 +69,10 @@ int main()
 		// }
 		//testingBInsertSequence();
 		//merge.printSortedVec();
-		testingJohnson(myVector);
+		std::vector<int>baseCase;
+		baseCase.push_back(1);
+		baseCase.push_back(12);
+		testingJohnson(baseCase);
 
 	}
 	catch(std::exception &e)

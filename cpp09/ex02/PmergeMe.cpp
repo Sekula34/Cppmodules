@@ -218,6 +218,14 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 	//int numberOfPairs = unsortedVec.size()/2;
 	std::vector<pair> unsortedPairs = _getUnsortedPairs(unsortedVec);
 	_printPairList(unsortedPairs);
+	//base case
+	if(unsortedVec.size() == 2)
+	{
+		sortedVec.push_back(unsortedPairs[0].a);
+		sortedVec.push_back(unsortedPairs[0].b);
+		std::cout<<"Base case called" << std::endl;
+		return;
+	}
 	return;
 }
 

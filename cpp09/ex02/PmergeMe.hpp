@@ -13,7 +13,6 @@ class PmergeMe
 {
 	private :
 		static unsigned int _comparisonCounter;
-		std::vector<int> sortedVec;
 
 		//debuggers
 		void _printVec(std::vector<int> vec);
@@ -35,6 +34,7 @@ class PmergeMe
 		PmergeMe& operator=(const PmergeMe& source);
 		~PmergeMe();
 
+		std::vector<int> sortedVec;
 		void mergeInsertSort(std::vector<int> unsortedVec);
 
 
