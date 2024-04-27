@@ -112,11 +112,36 @@ std::vector<pair> PmergeMe::_getUnsortedPairs(std::vector<int> unsortedVec)
 	return (toReturn);
 }
 
+//goes through unsorted pairs
+//use _binaryInsertion on correc index of A 
+void PmergeMe::_insertBs(std::vector<pair>unsortedPairs)
+{
+	size_t numberOfPairs = unsortedPairs.size();
+	std::vector<pair> copyOgPairs(unsortedPairs);
+	std::cout << "Number of pairs is " << numberOfPairs <<std::endl;
+	std::vector<int> bIndexSequence = _getBInsertSequence(numberOfPairs, false);
+	std::cout << "B index sequence is " << std::endl;
+	_printVec(bIndexSequence);
+	std::vector<int>::iterator aItSorted;
+	for(size_t i = 0; i < copyOgPairs.size(); i++)
+	{
+		size_t index = bIndexSequence[i] - 1;
+		int valuA = copyOgPairs[index].a;
+		int valueB = copyOgPairs[index].b;
+		if(valuA != -1)
+			aItSorted = std::find(sortedVec.begin(), sortedVec.end(), valuA);
+		else
+			aItSorted =sortedVec.end();
+		_binaryInsertion(valueB, sortedVec, aItSorted);
+	}
+}
+
 
 //b3,b2; b5,b4; b11,b10, ... ,b5; ... ; btk,btk-1, ... ,btk-1+1; 
 //function that creates and retunr the sequence of indexes in which b should be inserted in a
 //size of that vector is always the same size as number of pairs
 //only if last b dont have pair it the size is increased by one
+//maybe i can remove second argument // keep it false all the time also good
 std::vector<int> PmergeMe::_getBInsertSequence(int numberOfPairs, bool lastBAlone)
 {
 	if(numberOfPairs < 1)
@@ -255,6 +280,9 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 	std::cout << "Unsorted as are "<< std::endl;
 	_printVec(unsortedAs);
 	mergeInsertSort(unsortedAs);
+	std::cout << "sorted vec is :";
+	_printVec(sortedVec);
+	_insertBs(unsortedPairs);
 		//call mergeInsertSort(unsortedAs)
 	
 	//fill b ; goes through sorted vec, apply binnaryInsertion on correct index
