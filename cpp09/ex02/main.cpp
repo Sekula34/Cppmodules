@@ -73,7 +73,15 @@ int main()
 		baseCase.push_back(3);
 		baseCase.push_back(2);
 		baseCase.push_back(1);
-		testingJohnson(baseCase);
+		std::vector<int> nonBaseCase;
+		nonBaseCase.push_back(13);
+		nonBaseCase.push_back(6);
+		nonBaseCase.push_back(8);
+		nonBaseCase.push_back(3);
+		nonBaseCase.push_back(10);
+		nonBaseCase.push_back(4);
+		nonBaseCase.push_back(1);
+		testingJohnson(nonBaseCase);
 
 	}
 	catch(std::exception &e)

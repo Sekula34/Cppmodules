@@ -72,6 +72,22 @@ void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec, std::v
 	return;
 }
 
+//function that goes through unsortedPairs and put only a in vector
+//of unsoreted as. if a valu is -1 that means that we have pair that has b but not a
+//aka odd number of values
+std::vector<int> PmergeMe:: _fillUnsortedAs(std::vector<pair> unsortedPairs)
+{
+	std::vector<int> unsortedAs;
+	std::vector<pair>::iterator it = unsortedPairs.begin();
+	for(; it != unsortedPairs.end(); it++)
+	{
+		int value = it->a;
+		if(value != -1)
+			unsortedAs.push_back(value);
+	}
+	return (unsortedAs);
+}
+
 //function that takes unsored vec of int and makes pair of them
 //return the list of all pairs.
 //if number of elements in unsored vec is odd
@@ -235,7 +251,11 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 	}
 	else
 	{
+		std::cout << "Non Base Case" << std::endl;
 		std::vector<int> unsortedAs;
+		unsortedAs = _fillUnsortedAs(unsortedPairs);
+		std::cout << "Unsorted as are "<< std::endl;
+		_printVec(unsortedAs);
 		//fillunsrtedAs
 		//call mergeInsertSort(unsortedAs)
 	

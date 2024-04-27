@@ -20,6 +20,7 @@ class PmergeMe
 		void _printPairList(std::vector<pair> pairList);
 
 		void				_binaryInsertion(int valueToInsert, std::vector<int>& vec, std::vector<int>::iterator posOfA);
+		std::vector<int> _fillUnsortedAs(std::vector<pair> unsortedPairs);
 		std::vector<int>	_getBInsertSequence(int numberOfPairs, bool lastBAlone);
 		unsigned int		_getJacobsthalNumber(int n);
 		std::vector<pair> _getUnsortedPairs(std::vector<int> unsortedVec);
