@@ -249,17 +249,14 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 		std::cout<<"Base case called" << std::endl;
 		return;
 	}
-	else
-	{
-		std::cout << "Non Base Case" << std::endl;
-		std::vector<int> unsortedAs;
-		unsortedAs = _fillUnsortedAs(unsortedPairs);
-		std::cout << "Unsorted as are "<< std::endl;
-		_printVec(unsortedAs);
-		//fillunsrtedAs
+	std::cout << "Non Base Case" << std::endl;
+	std::vector<int> unsortedAs;
+	unsortedAs = _fillUnsortedAs(unsortedPairs);
+	std::cout << "Unsorted as are "<< std::endl;
+	_printVec(unsortedAs);
+	mergeInsertSort(unsortedAs);
 		//call mergeInsertSort(unsortedAs)
 	
-	}
 	//fill b ; goes through sorted vec, apply binnaryInsertion on correct index
 	//find value on index in sorted vec, then find ther b pair and apply Binary 
 	//insertion on b, (you are putting b on sortedvec)
