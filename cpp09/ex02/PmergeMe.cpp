@@ -57,14 +57,16 @@ void PmergeMe::_printPairList(std::vector<pair> pairList)
 //finds position where to insert value, and count the number of comparisons
 //insrt value
 //Maybe will need some modificaton that will tell end iterator for looking
-void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec)
+//third paramater is position of A value in vector whic tell function below
+//which iterator he can start looking
+void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec, std::vector<int>::iterator posOfA)
 {
 	if(vec.size() == 0)
 	{
 		vec.insert(vec.begin(), valueToInsert);
 		return;
 	}
-	std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), vec.end(), valueToInsert,Compare());
+	std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), posOfA, valueToInsert,Compare());
 
 	vec.insert(Positon, valueToInsert);
 	return;
@@ -219,10 +221,15 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 	std::vector<pair> unsortedPairs = _getUnsortedPairs(unsortedVec);
 	_printPairList(unsortedPairs);
 	//base case
-	if(unsortedVec.size() == 2)
+	if(unsortedVec.size() == 2 || unsortedVec.size() == 3)
 	{
-		sortedVec.push_back(unsortedPairs[0].a);
 		sortedVec.push_back(unsortedPairs[0].b);
+		sortedVec.push_back(unsortedPairs[0].a);
+		if(unsortedVec.size() == 3)
+		{
+			std::cout <<"three elements" << std::endl;
+			_binaryInsertion(unsortedPairs[1].b, sortedVec, sortedVec.end());
+		}
 		std::cout<<"Base case called" << std::endl;
 		return;
 	}

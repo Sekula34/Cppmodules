@@ -70,8 +70,9 @@ int main()
 		//testingBInsertSequence();
 		//merge.printSortedVec();
 		std::vector<int>baseCase;
+		baseCase.push_back(3);
+		baseCase.push_back(2);
 		baseCase.push_back(1);
-		baseCase.push_back(12);
 		testingJohnson(baseCase);
 
 	}
