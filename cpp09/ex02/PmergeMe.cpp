@@ -128,6 +128,15 @@ void PmergeMe::_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSi
 
 
 
+void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
+{
+	if(unsortedVec.size() < 2)
+		throw std::runtime_error("Called merge Insert with less than 2 elements");
+	int numberOfPairs = unsortedVec.size()/2;
+	std::cout << "Number of pairs is " << numberOfPairs <<" and size of vec is " << unsortedVec.size() << std::endl;
+	return;
+}
+
 unsigned int PmergeMe::getComparisonCounter(void) const 
 {
 	return (_comparisonCounter);

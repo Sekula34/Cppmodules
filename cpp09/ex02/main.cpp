@@ -21,6 +21,13 @@ void testingBInsertSequence()
 	//printVec(bInsertSeq);
 }
 
+void testingJohnson(std::vector<int>& myVector)
+{
+	PmergeMe merge;
+	merge.mergeInsertSort(myVector);
+	return;
+}
+
 
 int main()
 {
@@ -51,7 +58,8 @@ int main()
 		// 	std::cout << merge._getJacobsthalNumber(i) << std::endl;
 		// }
 		//testingBInsertSequence();
-		merge.printSortedVec();
+		//merge.printSortedVec();
+		testingJohnson(myVector);
 
 	}
 	catch(std::exception &e)
