@@ -49,5 +49,3 @@ test5 : $(NAME)
 	echo $(ARGS)
 	./$(NAME) $(ARGS)
 
-test6 : $(NAME)
-	./$(NAME) 3661 19772 32109 47479 58078
