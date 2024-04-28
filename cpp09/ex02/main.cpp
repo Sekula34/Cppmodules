@@ -78,8 +78,7 @@ int getIntfromString(std::string oneArg)
 	{
 		if(!std::isdigit(oneArg[i]) )
 		{
-			std::cerr<<"Invalid argument :" << oneArg << std::endl;
-			throw std::runtime_error("Found something that is not digit in input");
+			throw std::runtime_error("Error");
 		}
 	}
 	if(oneArg.size() > 10)
@@ -175,7 +174,6 @@ int main(int argc, char **argv)
 	}
 	catch(std::exception &e)
 	{
-		std::cerr <<"EXCEPTION CATCHED" <<std::endl;
 		std::cerr << e.what() << std::endl;
 		return 1;
 	}

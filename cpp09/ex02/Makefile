@@ -42,9 +42,12 @@ test2 : $(NAME)
 test3 : $(NAME) 
 	./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 
-test4 : $(NAME)
+test4 : $(NAME) 
+	./$(NAME) "-1" "2"
+
+test7 : $(NAME)
 	echo $(ARGS)
 	./$(NAME) $(ARGS)
 
-test5 : $(NAME)
+test8 : $(NAME)
 	./$(NAME) 3661 19772 32109 47479 58078
