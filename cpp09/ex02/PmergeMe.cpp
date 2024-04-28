@@ -77,8 +77,8 @@ void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec, std::v
 		vec.insert(vec.begin(), valueToInsert);
 		return;
 	}
-	std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), posOfA, valueToInsert,Compare());
-
+	//std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), posOfA, valueToInsert,Compare());
+	std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), posOfA, valueToInsert);
 	vec.insert(Positon, valueToInsert);
 	return;
 }
@@ -96,7 +96,8 @@ void PmergeMe::_binaryInsertion(int valueToInsert, std::list<int>::iterator posO
 		sortedList.insert(sortedList.begin(), valueToInsert);
 		return;
 	}
-	std::list<int>::iterator Positon = std::lower_bound(sortedList.begin(), posOfA, valueToInsert,Compare());
+	// std::list<int>::iterator Positon = std::lower_bound(sortedList.begin(), posOfA, valueToInsert,Compare());
+	std::list<int>::iterator Positon = std::lower_bound(sortedList.begin(), posOfA, valueToInsert);
 
 	sortedList.insert(Positon, valueToInsert);
 	return;

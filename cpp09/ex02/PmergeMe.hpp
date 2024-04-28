@@ -49,13 +49,13 @@ class PmergeMe
 		unsigned int getComparisonCounter(void) const;
 		void printSortedVec(void);
 
-		struct Compare
-		{
-        bool operator()(int a, int b) {
-            _comparisonCounter++;
-            return a < b;
-        }
-    };
+		// struct Compare
+		// {
+		// 	bool operator()(int a, int b) {
+		// 		_comparisonCounter++;
+		// 		return a < b;
+		// 	}
+    	// };
 
 
 };

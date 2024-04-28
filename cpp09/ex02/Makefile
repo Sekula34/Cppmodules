@@ -13,7 +13,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g -pedantic
 
 OBJS := $(SOURCES:%.cpp=%.o)
 
-ARGS := $(shell shuf -i 1-100000 -n 3000 | tr "\n" " ")
+ARGS := $(shell shuf -i 1-100000 -n 4 | tr "\n" " ")
 
 %.o : %.cpp $(HEADERS)
 	$(CXX) $(CPPFLAGS) -c $< -o $@

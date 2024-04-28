@@ -134,14 +134,12 @@ void subjectOutput(int argc, char** argv)
 	PmergeMe johnsonSort;
 	std::vector<int> userVector;
 	getUserInput(argc, argv, userVector);
+
 	std::cout <<"Before: ";
 	printVec(userVector);
 	time_t startTime = getTimeInMicroseconds();
 	johnsonSort.mergeInsertSort(userVector);
 	time_t endTime = getTimeInMicroseconds();
-
-    // Convert seconds to microseconds (1 second = 1,000,000 microseconds)
-
 	std::cout <<"After: ";
 	printVec(johnsonSort.sortedVec);
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::vector : ";
@@ -153,6 +151,7 @@ void subjectOutput(int argc, char** argv)
 	time_t listEndTime = getTimeInMicroseconds();
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::list : ";
 	std::cout << listEndTime - listStartTime <<" μs" << std::endl;
+	std::cout <<listSort.getComparisonCounter() << std::endl;
 	//printList(listSort.sortedList);
 
 }
