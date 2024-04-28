@@ -1,6 +1,10 @@
 #include "PmergeMe.hpp"
+#include <cctype>
+#include <cstddef>
 #include <exception>
 #include <iostream>
+#include <sstream>
+#include <stdexcept>
 #include <vector>
 
 void printVec(std::vector<int>& vec)
@@ -40,8 +44,51 @@ void testingJohnson(std::vector<int>& myVector)
 	return;
 }
 
+void testingUserInput(int argc, char **argv)
+{
+	std::cout << "User inputed " << argc << " number of arguments" << std::endl;
+	for(int i = 0; i < argc; i++)
+	{
+		std::cout << "Argument " << i << " is " << argv[i] << std::endl;
+	}
+}
 
-int main()
+int getIntfromString(std::string oneArg)
+{
+	int value;
+	//std::cout << "One arg as string is " << oneArg << std::endl;
+	for(size_t i = 0; i < oneArg.size(); i++)
+	{
+		if(!std::isdigit(oneArg[i]) )
+		{
+			std::cerr<<"Invalid argument :" << oneArg << std::endl;
+			throw std::runtime_error("Found something that is not digit in input");
+		}
+	}
+	if(oneArg.size() > 10)
+		throw std::runtime_error("Argument is bigger than 10 chars which will cause int overflow if converted");
+	if(oneArg.size() == 10 && oneArg > "2147483647")
+		throw std::runtime_error("User tried to put integer bigger than MAXINT 2147483647 ");
+	std::stringstream ss(oneArg);
+	if( !(ss >> value))
+		throw std::runtime_error("StringStream in getIntFromString failed");
+	return value;
+}
+
+void getUserInput(int argc, char** argv)
+{
+
+	if(argc == 1)
+		throw std::runtime_error("User didnt provide any input for mergeInsertSort");
+	for(int i = 1; i < argc; i++)
+	{
+		int value = getIntfromString(argv[i]);
+		std::cout << "Int value is " << value << std::endl;
+	}
+}
+
+
+int main(int argc, char **argv)
 {
 	try 
 	{
@@ -62,9 +109,9 @@ int main()
 		myVector.push_back(26);
 
 		//std::cout << "I am here " << std::endl;
-		std::cout << "Comparison counter is "<<merge.getComparisonCounter() << std::endl;
+		//std::cout << "Comparison counter is "<<merge.getComparisonCounter() << std::endl;
 		//merge._binaryInsertion(3, myVector);
-		std::cout <<"Comparison counter after is " << merge.getComparisonCounter() << std::endl;
+		//std::cout <<"Comparison counter after is " << merge.getComparisonCounter() << std::endl;
 		// for(int i = 0; i < 10; i ++)
 		// {
 		// 	std::cout << merge._getJacobsthalNumber(i) << std::endl;
@@ -105,7 +152,11 @@ int main()
 		// nonBaseCase.push_back(10);
 		// nonBaseCase.push_back(4);
 		// nonBaseCase.push_back(1);
-		testingJohnson(nonBaseCase);
+
+		//testingJohnson(nonBaseCase);
+		getUserInput(argc, argv);
+		testingUserInput(argc, argv);
+		
 
 	}
 	catch(std::exception &e)
