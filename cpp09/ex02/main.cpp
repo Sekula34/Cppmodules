@@ -33,7 +33,7 @@ double log2Factorial(int n) {
 void minCompneeded(int n)
 {
 	int minCompNumber;
-	minCompNumber = log2Factorial(n);
+	minCompNumber = log2Factorial(n) + 1;
 	std::cout << "Min comp needed " << minCompNumber << std::endl;
 }
 void printVec(std::vector<int>& vec)
