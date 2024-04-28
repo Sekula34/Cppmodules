@@ -6,7 +6,36 @@
 #include <sstream>
 #include <stdexcept>
 #include <vector>
+#include <cmath>
 
+
+
+// Function to calculate the factorial of a number
+unsigned  long factorial(int n) {
+    if (n == 0 || n == 1)
+        return 1;
+    unsigned  long fact = 1;
+    for (int i = 2; i <= n; ++i) {
+        fact *= i;
+    }
+    return fact;
+}
+
+// Function to calculate log2(n!)
+double log2Factorial(int n) {
+    double result = 0.0;
+    for (int i = 1; i <= n; ++i) {
+        result += log2((double)i);
+    }
+    return result;
+}
+
+void minCompneeded(int n)
+{
+	int minCompNumber;
+	minCompNumber = log2Factorial(n);
+	std::cout << "Min comp needed " << minCompNumber << std::endl;
+}
 void printVec(std::vector<int>& vec)
 {
 	std::cout << "Vector values are :" << std::endl;
@@ -41,6 +70,7 @@ void testingJohnson(std::vector<int>& myVector)
 	merge.mergeInsertSort(myVector);
 	printVec(merge.sortedVec);
 	std::cout <<"Number of comparison is " << merge.getComparisonCounter() << std::endl;
+	minCompneeded(myVector.size());
 	return;
 }
 
