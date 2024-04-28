@@ -149,10 +149,7 @@ void PmergeMe::_insertBs(std::vector<pair>unsortedPairs)
 {
 	size_t numberOfPairs = unsortedPairs.size();
 	std::vector<pair> copyOgPairs(unsortedPairs);
-	//std::cout << "Number of pairs is " << numberOfPairs <<std::endl;
 	std::vector<int> bIndexSequence = _getBInsertSequence(numberOfPairs, false);
-	//std::cout << "B index sequence is " << std::endl;
-	//_printVec(bIndexSequence);
 	std::vector<int>::iterator aItSorted;
 	for(size_t i = 0; i < copyOgPairs.size(); i++)
 	{
@@ -174,10 +171,7 @@ void PmergeMe::_insertBs(std::vector<pair>unsortedPairs, bool list)
 	(void) list;
 	size_t numberOfPairs = unsortedPairs.size();
 	std::vector<pair> copyOgPairs(unsortedPairs);
-	//std::cout << "Number of pairs is " << numberOfPairs <<std::endl;
 	std::vector<int> bIndexSequence = _getBInsertSequence(numberOfPairs, false);
-	//std::cout << "B index sequence is " << std::endl;
-	//_printVec(bIndexSequence);
 	std::list<int>::iterator aItSorted;
 	for(size_t i = 0; i < copyOgPairs.size(); i++)
 	{
@@ -315,9 +309,7 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 {
 	if(unsortedVec.size() < 2)
 		throw std::runtime_error("Called merge Insert with less than 2 elements");
-	//int numberOfPairs = unsortedVec.size()/2;
 	std::vector<pair> unsortedPairs = _getUnsortedPairs(unsortedVec);
-	//_printPairList(unsortedPairs);
 	//base case
 	if(unsortedVec.size() == 2 || unsortedVec.size() == 3)
 	{
@@ -325,26 +317,15 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 		sortedVec.push_back(unsortedPairs[0].a);
 		if(unsortedVec.size() == 3)
 		{
-			//std::cout <<"three elements" << std::endl;
 			_binaryInsertion(unsortedPairs[1].b, sortedVec, sortedVec.end());
 		}
-		//std::cout<<"Base case called" << std::endl;
 		return;
 	}
 	//std::cout << "Non Base Case" << std::endl;
 	std::vector<int> unsortedAs;
 	unsortedAs = _fillUnsortedAs(unsortedPairs);
-	//std::cout << "Unsorted as are "<< std::endl;
-	//_printVec(unsortedAs);
 	mergeInsertSort(unsortedAs);
-	//std::cout << "sorted vec is :";
-	//_printVec(sortedVec);
 	_insertBs(unsortedPairs);
-		//call mergeInsertSort(unsortedAs)
-	
-	//fill b ; goes through sorted vec, apply binnaryInsertion on correct index
-	//find value on index in sorted vec, then find ther b pair and apply Binary 
-	//insertion on b, (you are putting b on sortedvec)
 	return;
 }
 
@@ -352,7 +333,6 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 //put values in list
 void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec, bool list)
 {
-	//_printList(sortedList);
 	(void) list;
 	if(unsortedVec.size() < 2)
 		throw std::runtime_error("Called merge Insert with less than 2 elements");
