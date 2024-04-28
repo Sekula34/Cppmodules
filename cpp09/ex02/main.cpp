@@ -1,12 +1,14 @@
 #include "PmergeMe.hpp"
 #include <cctype>
 #include <cstddef>
+#include <ctime>
 #include <exception>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 #include <vector>
 #include <cmath>
+#include <sys/time.h>
 
 
 
@@ -38,7 +40,6 @@ void minCompneeded(int n)
 }
 void printVec(std::vector<int>& vec)
 {
-	std::cout << "Vector values are :" << std::endl;
 	for(std::vector<int>::iterator it =vec.begin(); it != vec.end(); it ++)
 	{
 		std::cout << *it << " ";
@@ -112,76 +113,37 @@ void getUserInput(int argc, char** argv, std::vector<int>& userVector)
 	}
 }
 
+ long getTimeInMicroseconds() {
+    struct timeval currentTime;
+    gettimeofday(&currentTime, NULL);
+    return currentTime.tv_sec * 1000000L + currentTime.tv_usec;
+}
+void subjectOutput(int argc, char** argv)
+{
+	PmergeMe johnsonSort;
+	std::vector<int> userVector;
+	getUserInput(argc, argv, userVector);
+	std::cout <<"Before: ";
+	printVec(userVector);
+	time_t startTime = getTimeInMicroseconds();
+	johnsonSort.mergeInsertSort(userVector);
+	time_t endTime = getTimeInMicroseconds();
+
+    // Convert seconds to microseconds (1 second = 1,000,000 microseconds)
+
+	std::cout <<"After: ";
+	printVec(johnsonSort.sortedVec);
+	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::vector : ";
+	std::cout << endTime - startTime <<" μs" << std::endl;
+}
+
 
 int main(int argc, char **argv)
 {
 	try 
 	{
-		PmergeMe merge;
-		std::vector<int> myVector;
-		myVector.push_back(2);
-		myVector.push_back(4);
-		myVector.push_back(6);
-		myVector.push_back(8);
-		myVector.push_back(10);
-		myVector.push_back(12);
-		myVector.push_back(14);
-		myVector.push_back(16);
-		myVector.push_back(18);
-		myVector.push_back(20);
-		myVector.push_back(22);
-		myVector.push_back(24);
-		myVector.push_back(26);
-
-		//std::cout << "I am here " << std::endl;
-		//std::cout << "Comparison counter is "<<merge.getComparisonCounter() << std::endl;
-		//merge._binaryInsertion(3, myVector);
-		//std::cout <<"Comparison counter after is " << merge.getComparisonCounter() << std::endl;
-		// for(int i = 0; i < 10; i ++)
-		// {
-		// 	std::cout << merge._getJacobsthalNumber(i) << std::endl;
-		// }
-		//testingBInsertSequence();
-		//merge.printSortedVec();
-		std::vector<int>userVector;
-		std::vector<int>baseCase;
-		baseCase.push_back(6);
-		baseCase.push_back(8);
-		baseCase.push_back(3);
-		std::vector<int> nonBaseCase;
-		nonBaseCase.push_back(16);
-		nonBaseCase.push_back(15);
-		nonBaseCase.push_back(12);
-		nonBaseCase.push_back(13);
-		nonBaseCase.push_back(5);
-
-		nonBaseCase.push_back(7);
-		nonBaseCase.push_back(2);
-		nonBaseCase.push_back(6);
-		nonBaseCase.push_back(19);
-		nonBaseCase.push_back(20);
-
-		nonBaseCase.push_back(1);
-		nonBaseCase.push_back(21);
-		nonBaseCase.push_back(3);
-		nonBaseCase.push_back(11);
-		nonBaseCase.push_back(4);
-
-		nonBaseCase.push_back(10);
-		nonBaseCase.push_back(9);
-		nonBaseCase.push_back(18);
-		nonBaseCase.push_back(17);
-		nonBaseCase.push_back(14);
-
-		nonBaseCase.push_back(8);
-		// nonBaseCase.push_back(3);
-		// nonBaseCase.push_back(10);
-		// nonBaseCase.push_back(4);
-		// nonBaseCase.push_back(1);
-
-		getUserInput(argc, argv, userVector);
-		testingJohnson(userVector);
-		
+		subjectOutput(argc, argv);
+		//testingJohnson(userVector);
 
 	}
 	catch(std::exception &e)
