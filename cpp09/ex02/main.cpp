@@ -47,6 +47,17 @@ void printVec(std::vector<int>& vec)
 	std::cout << std::endl;
 }
 
+void printList(std::list<int>& list)
+{
+	if(list.empty())
+		std::cout << "lista je prazna";
+	for(std::list<int>::iterator it =list.begin(); it != list.end(); it ++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+}
+
 void printPair(pair onePair)
 {
 	std::cout << "A [bigger value] is " << onePair.a << std::endl;
@@ -135,6 +146,15 @@ void subjectOutput(int argc, char** argv)
 	printVec(johnsonSort.sortedVec);
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::vector : ";
 	std::cout << endTime - startTime <<" μs" << std::endl;
+
+	PmergeMe listSort;
+	time_t listStartTime = getTimeInMicroseconds();
+	listSort.mergeInsertSort(userVector,true);
+	time_t listEndTime = getTimeInMicroseconds();
+	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::list : ";
+	std::cout << listEndTime - listStartTime <<" μs" << std::endl;
+	//printList(listSort.sortedList);
+
 }
 
 

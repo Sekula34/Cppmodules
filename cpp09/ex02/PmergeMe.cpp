@@ -28,6 +28,17 @@ PmergeMe::~PmergeMe()
 
 }
 
+void PmergeMe:: _printList(std::list<int>& list)
+{
+	if(list.empty())
+		std::cout << "lista je prazna";
+	for(std::list<int>::iterator it =list.begin(); it != list.end(); it ++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+}
+
 void PmergeMe::_printVec(std::vector<int> vec)
 {	
 	std::cout << "Vector values are :" << std::endl;
@@ -69,6 +80,25 @@ void PmergeMe::_binaryInsertion(int valueToInsert, std::vector<int>& vec, std::v
 	std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), posOfA, valueToInsert,Compare());
 
 	vec.insert(Positon, valueToInsert);
+	return;
+}
+
+//prerequiste for this is sorted vector
+//finds position where to insert value, and count the number of comparisons
+//insrt value
+//Maybe will need some modificaton that will tell end iterator for looking
+//third paramater is position of A value in vector whic tell function below
+//which iterator he can start looking
+void PmergeMe::_binaryInsertion(int valueToInsert, std::list<int>::iterator posOfA)
+{
+	if(sortedList.size() == 0)
+	{
+		sortedList.insert(sortedList.begin(), valueToInsert);
+		return;
+	}
+	std::list<int>::iterator Positon = std::lower_bound(sortedList.begin(), posOfA, valueToInsert,Compare());
+
+	sortedList.insert(Positon, valueToInsert);
 	return;
 }
 
@@ -133,6 +163,31 @@ void PmergeMe::_insertBs(std::vector<pair>unsortedPairs)
 		else
 			aItSorted =sortedVec.end();
 		_binaryInsertion(valueB, sortedVec, aItSorted);
+	}
+}
+
+//goes through unsorted pairs
+//use _binaryInsertion on correc index of A 
+void PmergeMe::_insertBs(std::vector<pair>unsortedPairs, bool list)
+{
+	(void) list;
+	size_t numberOfPairs = unsortedPairs.size();
+	std::vector<pair> copyOgPairs(unsortedPairs);
+	//std::cout << "Number of pairs is " << numberOfPairs <<std::endl;
+	std::vector<int> bIndexSequence = _getBInsertSequence(numberOfPairs, false);
+	//std::cout << "B index sequence is " << std::endl;
+	//_printVec(bIndexSequence);
+	std::list<int>::iterator aItSorted;
+	for(size_t i = 0; i < copyOgPairs.size(); i++)
+	{
+		size_t index = bIndexSequence[i] - 1;
+		int valuA = copyOgPairs[index].a;
+		int valueB = copyOgPairs[index].b;
+		if(valuA != -1)
+			aItSorted = std::find(sortedList.begin(), sortedList.end(), valuA);
+		else
+			aItSorted =sortedList.end();
+		_binaryInsertion(valueB, aItSorted);
 	}
 }
 
@@ -254,6 +309,7 @@ pair PmergeMe::_makeOnePair(int valueB)
 
 
 
+//mergeInsertsort that put values in vector
 void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 {
 	if(unsortedVec.size() < 2)
@@ -288,6 +344,32 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 	//fill b ; goes through sorted vec, apply binnaryInsertion on correct index
 	//find value on index in sorted vec, then find ther b pair and apply Binary 
 	//insertion on b, (you are putting b on sortedvec)
+	return;
+}
+
+
+//put values in list
+void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec, bool list)
+{
+	//_printList(sortedList);
+	(void) list;
+	if(unsortedVec.size() < 2)
+		throw std::runtime_error("Called merge Insert with less than 2 elements");
+	std::vector<pair> unsortedPairs = _getUnsortedPairs(unsortedVec);
+	if(unsortedVec.size() == 2 || unsortedVec.size() == 3)
+	{
+		sortedList.push_back(unsortedPairs[0].b);
+		sortedList.push_back(unsortedPairs[0].a);
+		if(unsortedVec.size() == 3)
+		{
+			_binaryInsertion(unsortedPairs[1].b, sortedList.end());
+		}
+		return;
+	}
+	std::vector<int> unsortedAs;
+	unsortedAs = _fillUnsortedAs(unsortedPairs);
+	mergeInsertSort(unsortedAs, true);
+	_insertBs(unsortedPairs,true);
 	return;
 }
 
