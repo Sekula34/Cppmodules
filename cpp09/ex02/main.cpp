@@ -44,15 +44,11 @@ void testingJohnson(std::vector<int>& myVector)
 	return;
 }
 
-void testingUserInput(int argc, char **argv)
-{
-	std::cout << "User inputed " << argc << " number of arguments" << std::endl;
-	for(int i = 0; i < argc; i++)
-	{
-		std::cout << "Argument " << i << " is " << argv[i] << std::endl;
-	}
-}
 
+//goes through one char** argv and check if evertyhing is digit
+//throw exception if something that is not digit is found 
+//check if one arg size is bigger than 10 if so throw exception
+//lastly try to put it in int from stringstream, throw exception if failed - should not happed
 int getIntfromString(std::string oneArg)
 {
 	int value;
@@ -74,16 +70,15 @@ int getIntfromString(std::string oneArg)
 		throw std::runtime_error("StringStream in getIntFromString failed");
 	return value;
 }
-
-void getUserInput(int argc, char** argv)
+//check if number of argumetns are correct, put value in user vector
+void getUserInput(int argc, char** argv, std::vector<int>& userVector)
 {
-
 	if(argc == 1)
 		throw std::runtime_error("User didnt provide any input for mergeInsertSort");
 	for(int i = 1; i < argc; i++)
 	{
 		int value = getIntfromString(argv[i]);
-		std::cout << "Int value is " << value << std::endl;
+		userVector.push_back(value);
 	}
 }
 
@@ -118,6 +113,7 @@ int main(int argc, char **argv)
 		// }
 		//testingBInsertSequence();
 		//merge.printSortedVec();
+		std::vector<int>userVector;
 		std::vector<int>baseCase;
 		baseCase.push_back(6);
 		baseCase.push_back(8);
@@ -153,9 +149,8 @@ int main(int argc, char **argv)
 		// nonBaseCase.push_back(4);
 		// nonBaseCase.push_back(1);
 
-		//testingJohnson(nonBaseCase);
-		getUserInput(argc, argv);
-		testingUserInput(argc, argv);
+		getUserInput(argc, argv, userVector);
+		testingJohnson(userVector);
 		
 
 	}
