@@ -40,7 +40,7 @@ test2 : $(NAME)
 	./$(NAME) 3 5 9 7 4
 
 test3 : $(NAME) 
-	./$(NAME) `shuf -i 1-100000 -n 100 | tr "\n" " "`
+	./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 
 test4 : $(NAME)
 	echo $(ARGS)

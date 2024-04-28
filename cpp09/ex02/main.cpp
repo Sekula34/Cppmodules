@@ -4,6 +4,7 @@
 #include <ctime>
 #include <exception>
 #include <iostream>
+#include <list>
 #include <sstream>
 #include <stdexcept>
 #include <vector>
@@ -40,7 +41,7 @@ void minCompneeded(int n)
 }
 void printVec(std::vector<int>& vec)
 {
-	for(std::vector<int>::iterator it =vec.begin(); it != vec.end(); it ++)
+	for(std::vector<int>::iterator it = vec.begin(); it != vec.end(); it ++)
 	{
 		std::cout << *it << " ";
 	}
@@ -64,28 +65,6 @@ void printPair(pair onePair)
 	std::cout << "B [smaller value] is " << onePair.b << std::endl;
 	std::cout << "-------------------------------------" << std::endl; 
 }
-
-
-void testingBInsertSequence()
-{
-	PmergeMe object;
-	//make it public to test outside main
-	//std::vector<int> bInsertSeq = object._getBInsertSequence(10, false);
-	//printVec(bInsertSeq);
-}
-
-void testingJohnson(std::vector<int>& myVector)
-{
-	PmergeMe merge;
-	std::cout << "Unsorted values are ";
-	printVec(myVector);
-	merge.mergeInsertSort(myVector);
-	printVec(merge.sortedVec);
-	std::cout <<"Number of comparison is " << merge.getComparisonCounter() << std::endl;
-	minCompneeded(myVector.size());
-	return;
-}
-
 
 //goes through one char** argv and check if evertyhing is digit
 //throw exception if something that is not digit is found 
@@ -112,6 +91,7 @@ int getIntfromString(std::string oneArg)
 		throw std::runtime_error("StringStream in getIntFromString failed");
 	return value;
 }
+
 //check if number of argumetns are correct, put value in user vector
 void getUserInput(int argc, char** argv, std::vector<int>& userVector)
 {
@@ -124,11 +104,41 @@ void getUserInput(int argc, char** argv, std::vector<int>& userVector)
 	}
 }
 
- long getTimeInMicroseconds() {
+ long getTimeInMicroseconds()
+ {
     struct timeval currentTime;
     gettimeofday(&currentTime, NULL);
     return currentTime.tv_sec * 1000000L + currentTime.tv_usec;
 }
+
+void checkSorted(std::vector<int> &vec, std::list<int> list)
+{
+	std::vector<int>::iterator first = vec.begin();
+	for(std::vector<int>::iterator it = first+1; it != vec.end(); it++)
+	{
+		if(*it < *first)
+		{
+			std::cout << *it << " " << *first << std::endl;
+			std::cerr<<"Vec not sorted" << std::endl;
+		}
+		first++;
+	}
+	std::list<int>::const_iterator it = list.begin();
+	if(it == list.end())
+	{
+		return ;
+	}
+	int prev = *it;
+	for(; it != list.end(); ++it)
+	{
+		if(*it < prev)
+		{
+			std::cerr<<"List not sorted" << std::endl;
+		}
+		prev = *it;
+	}
+}
+
 void subjectOutput(int argc, char** argv)
 {
 	PmergeMe johnsonSort;
@@ -151,9 +161,7 @@ void subjectOutput(int argc, char** argv)
 	time_t listEndTime = getTimeInMicroseconds();
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::list : ";
 	std::cout << listEndTime - listStartTime <<" μs" << std::endl;
-	std::cout <<listSort.getComparisonCounter() << std::endl;
-	//printList(listSort.sortedList);
-
+	checkSorted(johnsonSort.sortedVec, listSort.sortedList);
 }
 
 
