@@ -8,37 +8,9 @@
 #include <sstream>
 #include <stdexcept>
 #include <vector>
-#include <cmath>
 #include <sys/time.h>
 
 
-
-// Function to calculate the factorial of a number
-unsigned  long factorial(int n) {
-    if (n == 0 || n == 1)
-        return 1;
-    unsigned  long fact = 1;
-    for (int i = 2; i <= n; ++i) {
-        fact *= i;
-    }
-    return fact;
-}
-
-// Function to calculate log2(n!)
-double log2Factorial(int n) {
-    double result = 0.0;
-    for (int i = 1; i <= n; ++i) {
-        result += log2((double)i);
-    }
-    return result;
-}
-
-void minCompneeded(int n)
-{
-	int minCompNumber;
-	minCompNumber = log2Factorial(n) + 1;
-	std::cout << "Min comp needed " << minCompNumber << std::endl;
-}
 void printVec(std::vector<int>& vec)
 {
 	for(std::vector<int>::iterator it = vec.begin(); it != vec.end(); it ++)
@@ -103,11 +75,11 @@ void getUserInput(int argc, char** argv, std::vector<int>& userVector)
 	}
 }
 
- long getTimeInMicroseconds()
- {
+long getTimeInMicroseconds()
+{
     struct timeval currentTime;
     gettimeofday(&currentTime, NULL);
-    return currentTime.tv_sec * 1000000L + currentTime.tv_usec;
+    return (currentTime.tv_sec * 1000000L + currentTime.tv_usec);
 }
 
 void checkSorted(std::vector<int> &vec, std::list<int> list)
@@ -160,7 +132,6 @@ void subjectOutput(int argc, char** argv)
 	time_t listEndTime = getTimeInMicroseconds();
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::list : ";
 	std::cout << listEndTime - listStartTime <<" μs" << std::endl;
-	checkSorted(johnsonSort.sortedVec, listSort.sortedList);
 }
 
 
@@ -169,7 +140,6 @@ int main(int argc, char **argv)
 	try 
 	{
 		subjectOutput(argc, argv);
-		//testingJohnson(userVector);
 
 	}
 	catch(std::exception &e)

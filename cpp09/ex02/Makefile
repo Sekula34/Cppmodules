@@ -45,9 +45,9 @@ test3 : $(NAME)
 test4 : $(NAME) 
 	./$(NAME) "-1" "2"
 
-test7 : $(NAME)
+test5 : $(NAME)
 	echo $(ARGS)
 	./$(NAME) $(ARGS)
 
-test8 : $(NAME)
+test6 : $(NAME)
 	./$(NAME) 3661 19772 32109 47479 58078
