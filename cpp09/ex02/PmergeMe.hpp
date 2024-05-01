@@ -35,7 +35,6 @@ class PmergeMe
 		void 				_insertBs(std::vector<pair>unsortedPairs);
 		void 				_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector);
 
-
 		//deque sorting
 		void 				_binaryInsertionQue(int valueToInsert, std::deque<int>& que, std::deque<int>::iterator posOfA);
 		std::deque<int>		_fillUnsortedAsQue(std::deque<pair> unsortedPairs);
@@ -46,7 +45,7 @@ class PmergeMe
 		void				_insertRestOfSequenceQue(std::deque<int>& bSequence, size_t finalSizeOfVector);
 	
 	public :
-	//orthodox
+		//orthodox
 		PmergeMe(void);
 		PmergeMe(const PmergeMe& source);
 		PmergeMe& operator=(const PmergeMe& source);
@@ -55,8 +54,8 @@ class PmergeMe
 		std::vector<int>	sortedVec;
 		std::deque<int>		sortedQue;
 
-		void			mergeInsertSort(std::vector<int> unsortedVec);
-		void 			mergeInsertQue(std::deque<int> unsortedQue);
+		void	mergeInsertSort(std::vector<int> unsortedVec);
+		void	mergeInsertQue(std::deque<int> unsortedQue);
 
 		unsigned int	getComparisonCounter(void) const;
 		void			printSortedVec(void);
