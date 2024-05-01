@@ -20,11 +20,11 @@ void printVec(std::vector<int>& vec)
 	std::cout << std::endl;
 }
 
-void printList(std::list<int>& list)
+void printQue(std::deque<int>& list)
 {
 	if(list.empty())
 		std::cout << "lista je prazna";
-	for(std::list<int>::iterator it =list.begin(); it != list.end(); it ++)
+	for(std::deque<int>::iterator it =list.begin(); it != list.end(); it ++)
 	{
 		std::cout << *it << " ";
 	}
@@ -75,6 +75,19 @@ void getUserInput(int argc, char** argv, std::vector<int>& userVector)
 	}
 }
 
+//check if number of argumetns are correct, put value in user vector
+void getUserInputQue(int argc, char** argv, std::deque<int>& userVector)
+{
+	if(argc == 1)
+		throw std::runtime_error("User didnt provide any input for mergeInsertSort");
+	for(int i = 1; i < argc; i++)
+	{
+		int value = getIntfromString(argv[i]);
+		userVector.push_back(value);
+	}
+}
+
+
 long getTimeInMicroseconds()
 {
     struct timeval currentTime;
@@ -114,7 +127,9 @@ void subjectOutput(int argc, char** argv)
 {
 	PmergeMe johnsonSort;
 	std::vector<int> userVector;
+	std::deque<int> userQue;
 	getUserInput(argc, argv, userVector);
+	getUserInputQue(argc, argv, userQue);
 
 	std::cout <<"Before: ";
 	printVec(userVector);
@@ -129,10 +144,12 @@ void subjectOutput(int argc, char** argv)
 	std::cout <<"Number of comparison" << johnsonSort.getComparisonCounter() << std::endl;
 	PmergeMe listSort;
 	time_t listStartTime = getTimeInMicroseconds();
+	listSort.mergeInsertQue(userQue);
+	printQue(listSort.sortedQue);
 	time_t listEndTime = getTimeInMicroseconds();
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::list : ";
 	std::cout << listEndTime - listStartTime <<" μs" << std::endl;
-	checkSorted(johnsonSort.sortedVec, listSort.sortedList);
+	//checkSorted(johnsonSort.sortedVec, listSort.sortedList);
 }
 
 

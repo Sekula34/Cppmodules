@@ -1,8 +1,8 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 #include <cstddef>
-#include <list>
 # include <vector>
+#include <deque>
 
 struct pair
 {
@@ -16,7 +16,7 @@ class PmergeMe
 		static unsigned int _comparisonCounter;
 
 		//debuggers
-		void _printList(std::list<int>& list);
+		void _printQue(std::deque<int>& que);
 		void _printVec(std::vector<int> vec);
 		void _printOnePair(pair onePair);
 		void _printPairList(std::vector<pair> pairList);
@@ -31,7 +31,15 @@ class PmergeMe
 		void 				_insertRestOfSequence(std::vector<int>& bSequence, size_t finalSizeOfVector);
 		pair 				_makeOnePair(int value1, int value2);
 		pair 				_makeOnePair(int valueB);
-	
+
+
+		std::deque<pair> _getUnsortedPairsQue(std::deque<int> unsortedQue);
+		void 				_binaryInsertionQue(int valueToInsert, std::deque<int>& que, std::deque<int>::iterator posOfA);
+		std::deque<int>	_fillUnsortedAsQue(std::deque<pair> unsortedPairs);
+		void 				_insertBsQue(std::deque<pair> unsortedPairs);
+		std::deque<int>	_getBInsertSequenceQue(int numberOfPairs, bool lastBAlone);
+		void 			_insertRestOfSequenceQue(std::deque<int>& bSequence, size_t finalSizeOfVector);
+		int					_getBmemberOfPairQue(int aValue, std::deque<pair> unsortedPairs);
 	public :
 	//orthodox
 		PmergeMe(void);
@@ -40,9 +48,11 @@ class PmergeMe
 		~PmergeMe();
 
 		std::vector<int>	sortedVec;
-		std::list<int>		sortedList;
+		std::deque<int>		sortedQue;
 
 		void			mergeInsertSort(std::vector<int> unsortedVec);
+		void 			mergeInsertQue(std::deque<int> unsortedQue);
+
 		unsigned int	getComparisonCounter(void) const;
 		void			printSortedVec(void);
 

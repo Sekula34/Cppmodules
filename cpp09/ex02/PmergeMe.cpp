@@ -1,6 +1,7 @@
 #include "PmergeMe.hpp"
 #include <algorithm>
 #include <cstddef>
+#include <deque>
 #include <stdexcept>
 #include <vector>
 #include <iostream>
@@ -28,11 +29,11 @@ PmergeMe::~PmergeMe()
 
 }
 
-void PmergeMe:: _printList(std::list<int>& list)
+void PmergeMe:: _printQue(std::deque<int>& que)
 {
-	if(list.empty())
+	if(que.empty())
 		std::cout << "lista je prazna";
-	for(std::list<int>::iterator it =list.begin(); it != list.end(); it ++)
+	for(std::deque<int>::iterator it =que.begin(); it != que.end(); it ++)
 	{
 		std::cout << *it << " ";
 	}
@@ -314,6 +315,197 @@ void PmergeMe::mergeInsertSort(std::vector<int> unsortedVec)
 	unsortedAs = _fillUnsortedAs(unsortedPairs);
 	mergeInsertSort(unsortedAs);
 	_insertBs(unsortedPairs);
+	return;
+}
+
+
+std::deque<pair> PmergeMe::_getUnsortedPairsQue(std::deque<int> unsortedQue)
+{
+	std::deque<pair> toReturn;
+	bool odd = (unsortedQue.size() % 2);
+	size_t numberOfPairs = unsortedQue.size() / 2;
+	pair onePair;
+	int j = 0;
+	for(size_t i = 0; i < numberOfPairs; j += 2, i++)
+	{
+		onePair = _makeOnePair(unsortedQue[j], unsortedQue[j + 1]);
+		toReturn.push_back(onePair);
+	}
+	if(odd == true)
+	{
+		onePair = _makeOnePair(*(unsortedQue.end() - 1));
+		toReturn.push_back(onePair);
+	}
+	return (toReturn);
+}
+
+//prerequiste for this is sorted vector
+//finds position where to insert value, and count the number of comparisons
+//insrt value
+//Maybe will need some modificaton that will tell end iterator for looking
+//third paramater is position of A value in vector whic tell function below
+//which iterator he can start looking
+void PmergeMe::_binaryInsertionQue(int valueToInsert, std::deque<int>& que, std::deque<int>::iterator posOfA)
+{
+	if(que.size() == 0)
+	{
+		que.insert(que.begin(), valueToInsert);
+		return;
+	}
+	std::deque<int>::iterator Positon = std::lower_bound(que.begin(), posOfA, valueToInsert,Compare());
+	//std::vector<int>::iterator Positon = std::lower_bound(vec.begin(), posOfA, valueToInsert);
+	que.insert(Positon, valueToInsert);
+	return;
+}
+
+
+//function that goes through unsortedPairs and put only a in vector
+//of unsoreted as. if a valu is -1 that means that we have pair that has b but not a
+//aka odd number of values
+std::deque<int> PmergeMe:: _fillUnsortedAsQue(std::deque<pair> unsortedPairs)
+{
+	std::deque<int> unsortedAs;
+	std::deque<pair>::iterator it = unsortedPairs.begin();
+	for(; it != unsortedPairs.end(); it++)
+	{
+		int value = it->a;
+		if(value != -1)
+			unsortedAs.push_back(value);
+	}
+	return (unsortedAs);
+}
+
+//goes through unsorted pairs
+//use _binaryInsertion on correc index of A 
+void PmergeMe::_insertBsQue(std::deque<pair>unsortedPairs)
+{
+	std::deque<int> copySorted(sortedQue);
+	size_t numberOfPairs = unsortedPairs.size();
+	std::deque<pair> copyOgPairs(unsortedPairs);
+	std::deque<int> bIndexSequence = _getBInsertSequenceQue(numberOfPairs, false);
+	std::deque<int>::iterator aItSorted;
+	for(size_t i = 0; i < copyOgPairs.size(); i++)
+	{
+		int valueA;
+		int valueB;
+		size_t index = bIndexSequence[i] - 1;
+		if(index == copySorted.size())
+		{
+			valueA = -1;
+			valueB = copyOgPairs[index].b;
+		}
+		else 
+		{
+			valueA = copySorted[index];
+			valueB = _getBmemberOfPairQue(valueA, unsortedPairs);
+		}
+		if(valueA != -1)
+			aItSorted = std::find(sortedQue.begin(), sortedQue.end(), valueA);
+		else
+			aItSorted =sortedQue.end();
+		_binaryInsertionQue(valueB, sortedQue, aItSorted);
+	}
+}
+
+//b3,b2; b5,b4; b11,b10, ... ,b5; ... ; btk,btk-1, ... ,btk-1+1; 
+//function that creates and retunr the sequence of indexes in which b should be inserted in a
+//size of that vector is always the same size as number of pairs
+//only if last b dont have pair it the size is increased by one
+//maybe i can remove second argument // keep it false all the time also good
+std::deque<int> PmergeMe::_getBInsertSequenceQue(int numberOfPairs, bool lastBAlone)
+{
+	if(numberOfPairs < 1)
+		throw std::runtime_error("_getBInsertSequence is called on less than 1 pair");
+	size_t sequenceSize(numberOfPairs);
+	if(lastBAlone)
+		sequenceSize++;
+	std::deque<int> indexSequence;
+	indexSequence.push_back(1);
+	if(sequenceSize == 1)
+		return indexSequence;
+	if(sequenceSize == 2)
+	{
+		indexSequence.push_back(2);
+		return indexSequence;
+	}
+	else
+	{
+		indexSequence.push_back(3);
+		indexSequence.push_back(2);
+	}
+	_insertRestOfSequenceQue(indexSequence, sequenceSize);
+	return (indexSequence);
+}
+
+//function that feesl bsequence vector with numbers until it reaches the final size
+//it start with jacob number 5 and try to insert in in vector
+//order 5,4,11,10,9.....
+//if size is smaller that much jacobNumbers are discard
+//example final size is 4, but jacob numbers are 
+//1 3 2,    5 is discarded and 4 is put
+void PmergeMe::_insertRestOfSequenceQue(std::deque<int>& bSequence, size_t finalSizeOfVector)
+{
+	int nMemberOfJacobSequence = 4; // Jacob sequence start with 5 J(4) = 5
+	unsigned int lastJacobNumber = 3;
+	unsigned int neuJacobNumber = _getJacobsthalNumber(nMemberOfJacobSequence); //ne number 5
+	size_t numberOfCurrentInserts = neuJacobNumber - lastJacobNumber; //will try to insert 2 numbers
+	size_t freeSize = finalSizeOfVector - bSequence.size();
+	while(bSequence.size() != finalSizeOfVector)
+	{
+		while(numberOfCurrentInserts > freeSize)
+		{
+			neuJacobNumber --;
+			numberOfCurrentInserts --;
+		}
+		bSequence.push_back(neuJacobNumber);
+		freeSize--;
+		neuJacobNumber--;
+		numberOfCurrentInserts--;
+		if(numberOfCurrentInserts == 0 && freeSize > 0)
+		{
+			lastJacobNumber = _getJacobsthalNumber(nMemberOfJacobSequence);
+			nMemberOfJacobSequence ++;
+			neuJacobNumber = _getJacobsthalNumber(nMemberOfJacobSequence);
+			numberOfCurrentInserts = neuJacobNumber - lastJacobNumber;
+		}
+	}
+}
+int PmergeMe::_getBmemberOfPairQue(int aValue, std::deque<pair> unsortedPairs)
+{
+	int bValue;
+	std::deque<pair>::iterator it = unsortedPairs.begin();
+	for(; it != unsortedPairs.end(); it++)
+	{
+		if(it->a == aValue)
+		{
+			bValue = it->b;
+			return bValue;
+		}
+	}
+	throw std::runtime_error("Cannot find B member of A");
+}
+
+void PmergeMe::mergeInsertQue(std::deque<int> unsortedQue)
+{
+	if(unsortedQue.size() < 2)
+		throw std::runtime_error("Called merge Insert with less than 2 elements");
+	std::deque<pair> unsortedPairs = _getUnsortedPairsQue(unsortedQue);
+	//base case
+	if(unsortedQue.size() == 2 || unsortedQue.size() == 3)
+	{
+		sortedQue.push_back(unsortedPairs[0].b);
+		sortedQue.push_back(unsortedPairs[0].a);
+		if(unsortedQue.size() == 3)
+		{
+			_binaryInsertionQue(unsortedPairs[1].b, sortedQue, sortedQue.end());
+		}
+		return;
+	}
+	//std::cout << "Non Base Case" << std::endl;
+	std::deque<int> unsortedAs;
+	unsortedAs = _fillUnsortedAsQue(unsortedPairs);
+	mergeInsertQue(unsortedAs);
+	_insertBsQue(unsortedPairs);
 	return;
 }
 
