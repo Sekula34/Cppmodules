@@ -103,7 +103,7 @@ void RPN::_operatorFunction(char op, std::stack<long>& myStack)
 		default:
 			throw std::runtime_error("Invalid operator");
 	}
-	if(result > (long)INT_MAX)
+	if(result > (long)INT_MAX || result < (long)INT_MIN)
 	{
 		throw std::runtime_error("Integer overflow");
 	}
