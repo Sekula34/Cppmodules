@@ -47,6 +47,15 @@ class PmergeMe
 		void			mergeInsertSort(std::vector<int> unsortedVec, bool list);
 		unsigned int	getComparisonCounter(void) const;
 		void			printSortedVec(void);
+
+
+		struct Compare
+		{
+			bool operator()(int a, int b) {
+				_comparisonCounter++;
+				return a < b;
+			}
+    	};
 };
 
 #endif
