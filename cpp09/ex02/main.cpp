@@ -129,7 +129,6 @@ void subjectOutput(int argc, char** argv)
 	std::cout <<"Number of comparison" << johnsonSort.getComparisonCounter() << std::endl;
 	PmergeMe listSort;
 	time_t listStartTime = getTimeInMicroseconds();
-	listSort.mergeInsertSort(userVector,true);
 	time_t listEndTime = getTimeInMicroseconds();
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::list : ";
 	std::cout << listEndTime - listStartTime <<" μs" << std::endl;
