@@ -4,11 +4,10 @@
 #include <ctime>
 #include <exception>
 #include <iostream>
-#include <list>
 #include <sstream>
 #include <stdexcept>
 #include <vector>
-#include <sys/time.h>
+#include <algorithm>
 
 
 void printVec(std::vector<int>& vec)
@@ -88,14 +87,8 @@ void getUserInputQue(int argc, char** argv, std::deque<int>& userVector)
 }
 
 
-long getTimeInMicroseconds()
-{
-    struct timeval currentTime;
-    gettimeofday(&currentTime, NULL);
-    return (currentTime.tv_sec * 1000000L + currentTime.tv_usec);
-}
 
-void checkSorted(std::vector<int> &vec, std::list<int> list)
+void checkSorted(std::vector<int> &vec, std::deque<int> deque)
 {
 	std::vector<int>::iterator first = vec.begin();
 	for(std::vector<int>::iterator it = first+1; it != vec.end(); it++)
@@ -107,20 +100,31 @@ void checkSorted(std::vector<int> &vec, std::list<int> list)
 		}
 		first++;
 	}
-	std::list<int>::const_iterator it = list.begin();
-	if(it == list.end())
+	std::deque<int>::const_iterator it = deque.begin();
+	if(it == deque.end())
 	{
 		return ;
 	}
 	int prev = *it;
-	for(; it != list.end(); ++it)
+	for(; it != deque.end(); ++it)
 	{
 		if(*it < prev)
 		{
-			std::cerr<<"List not sorted" << std::endl;
+			std::cerr<<"deque not sorted" << std::endl;
 		}
 		prev = *it;
 	}
+}
+
+void checkForDuplicates(std::vector<int> duplicateCheck)
+{
+	std::sort(duplicateCheck.begin(), duplicateCheck.end());
+	if(std::adjacent_find(duplicateCheck.begin(), duplicateCheck.end()) != duplicateCheck.end())
+	{
+		throw std::runtime_error("Found duplicates in user input. They are not handled in sorting");
+	}
+	return;
+
 }
 
 void subjectOutput(int argc, char** argv)
@@ -128,28 +132,39 @@ void subjectOutput(int argc, char** argv)
 	PmergeMe johnsonSort;
 	std::vector<int> userVector;
 	std::deque<int> userQue;
-	getUserInput(argc, argv, userVector);
-	getUserInputQue(argc, argv, userQue);
+	std::vector<int> duplicateCheck;
+	getUserInput(argc, argv, duplicateCheck);
+	checkForDuplicates(duplicateCheck);
 
 	std::cout <<"Before: ";
 	printVec(userVector);
-	time_t startTime = getTimeInMicroseconds();
+
+
+	clock_t startVec = std::clock();
+	getUserInput(argc, argv, userVector);
 	johnsonSort.mergeInsertSort(userVector);
-	time_t endTime = getTimeInMicroseconds();
+	clock_t endVec = std::clock();
+	double elapsed_time = static_cast<double>(endVec- startVec) / CLOCKS_PER_SEC;
 	std::cout <<"After: ";
 	printVec(johnsonSort.sortedVec);
+	std::cout << std::endl;
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::vector : ";
-	std::cout << endTime - startTime <<" μs" << std::endl;
+	std::cout <<elapsed_time * 1000000<<" μs" << std::endl;
 
-	std::cout <<"Number of comparison" << johnsonSort.getComparisonCounter() << std::endl;
-	PmergeMe listSort;
-	time_t listStartTime = getTimeInMicroseconds();
-	listSort.mergeInsertQue(userQue);
-	printQue(listSort.sortedQue);
-	time_t listEndTime = getTimeInMicroseconds();
-	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::list : ";
-	std::cout << listEndTime - listStartTime <<" μs" << std::endl;
-	//checkSorted(johnsonSort.sortedVec, listSort.sortedList);
+	std::cout <<"Number of comparison " << johnsonSort.getComparisonCounter() << std::endl;
+	
+	PmergeMe dequeSort;
+	startVec = std::clock();
+	getUserInputQue(argc, argv, userQue);
+	dequeSort.mergeInsertQue(userQue);
+	std::cout << "size of deque is " << dequeSort.sortedQue.size() << std::endl;
+	std::cout << "size of vector is " << johnsonSort.sortedVec.size() << std::endl;
+	endVec = std::clock();
+	elapsed_time = static_cast<double>(endVec - startVec) / CLOCKS_PER_SEC;
+	printQue(dequeSort.sortedQue);
+	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::deque : ";
+	std::cout << elapsed_time * 1000000<<" μs" << std::endl;
+	checkSorted(johnsonSort.sortedVec, dequeSort.sortedQue);
 }
 
 
