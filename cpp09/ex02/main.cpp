@@ -133,6 +133,7 @@ void subjectOutput(int argc, char** argv)
 	time_t listEndTime = getTimeInMicroseconds();
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::list : ";
 	std::cout << listEndTime - listStartTime <<" μs" << std::endl;
+	checkSorted(johnsonSort.sortedVec, listSort.sortedList);
 }
 
 

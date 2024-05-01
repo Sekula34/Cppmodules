@@ -147,17 +147,28 @@ std::vector<pair> PmergeMe::_getUnsortedPairs(std::vector<int> unsortedVec)
 //use _binaryInsertion on correc index of A 
 void PmergeMe::_insertBs(std::vector<pair>unsortedPairs)
 {
+	std::vector<int> copySorted(sortedVec);
 	size_t numberOfPairs = unsortedPairs.size();
 	std::vector<pair> copyOgPairs(unsortedPairs);
 	std::vector<int> bIndexSequence = _getBInsertSequence(numberOfPairs, false);
 	std::vector<int>::iterator aItSorted;
 	for(size_t i = 0; i < copyOgPairs.size(); i++)
 	{
+		int valueA;
+		int valueB;
 		size_t index = bIndexSequence[i] - 1;
-		int valuA = copyOgPairs[index].a;
-		int valueB = copyOgPairs[index].b;
-		if(valuA != -1)
-			aItSorted = std::find(sortedVec.begin(), sortedVec.end(), valuA);
+		if(index == copySorted.size())
+		{
+			valueA = -1;
+			valueB = copyOgPairs[index].b;
+		}
+		else 
+		{
+			valueA = copySorted[index];
+			valueB = _getBmemberOfPair(valueA, unsortedPairs);
+		}
+		if(valueA != -1)
+			aItSorted = std::find(sortedVec.begin(), sortedVec.end(), valueA);
 		else
 			aItSorted =sortedVec.end();
 		_binaryInsertion(valueB, sortedVec, aItSorted);
@@ -215,6 +226,21 @@ std::vector<int> PmergeMe::_getBInsertSequence(int numberOfPairs, bool lastBAlon
 	}
 	_insertRestOfSequence(indexSequence, sequenceSize);
 	return (indexSequence);
+}
+
+int PmergeMe::_getBmemberOfPair(int aValue, std::vector<pair> unsortedPairs)
+{
+	int bValue;
+	std::vector<pair>::iterator it = unsortedPairs.begin();
+	for(; it != unsortedPairs.end(); it++)
+	{
+		if(it->a == aValue)
+		{
+			bValue = it->b;
+			return bValue;
+		}
+	}
+	throw std::runtime_error("Cannot find B member of A");
 }
 // return n-th member of JacobsthalNumber
 //n 0 = 0
