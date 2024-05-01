@@ -135,6 +135,7 @@ void subjectOutput(int argc, char** argv)
 	std::vector<int> userVector;
 	std::deque<int> userQue;
 	std::vector<int> duplicateCheck;
+	
 	getUserInput(argc, argv, duplicateCheck);
 	checkForDuplicates(duplicateCheck);
 
