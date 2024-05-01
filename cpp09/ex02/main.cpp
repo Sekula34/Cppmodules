@@ -88,7 +88,7 @@ void getUserInputQue(int argc, char** argv, std::deque<int>& userVector)
 
 
 
-void checkSorted(std::vector<int> &vec, std::deque<int> deque)
+void checkSorted(std::vector<int> &vec, std::deque<int> deque, std::vector<int> input)
 {
 	std::vector<int>::iterator first = vec.begin();
 	for(std::vector<int>::iterator it = first+1; it != vec.end(); it++)
@@ -114,6 +114,8 @@ void checkSorted(std::vector<int> &vec, std::deque<int> deque)
 		}
 		prev = *it;
 	}
+	if(vec.size() != input.size() || deque.size() != input.size())
+		throw std::runtime_error("element size is not correct");
 }
 
 void checkForDuplicates(std::vector<int> duplicateCheck)
@@ -137,7 +139,7 @@ void subjectOutput(int argc, char** argv)
 	checkForDuplicates(duplicateCheck);
 
 	std::cout <<"Before: ";
-	printVec(userVector);
+	printVec(duplicateCheck);
 
 
 	clock_t startVec = std::clock();
@@ -147,24 +149,23 @@ void subjectOutput(int argc, char** argv)
 	double elapsed_time = static_cast<double>(endVec- startVec) / CLOCKS_PER_SEC;
 	std::cout <<"After: ";
 	printVec(johnsonSort.sortedVec);
-	std::cout << std::endl;
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::vector : ";
 	std::cout <<elapsed_time * 1000000<<" μs" << std::endl;
 
-	std::cout <<"Number of comparison " << johnsonSort.getComparisonCounter() << std::endl;
+	//std::cout <<"Number of comparison " << johnsonSort.getComparisonCounter() << std::endl;
 	
 	PmergeMe dequeSort;
 	startVec = std::clock();
 	getUserInputQue(argc, argv, userQue);
 	dequeSort.mergeInsertQue(userQue);
-	std::cout << "size of deque is " << dequeSort.sortedQue.size() << std::endl;
-	std::cout << "size of vector is " << johnsonSort.sortedVec.size() << std::endl;
+	// std::cout << "size of deque is " << dequeSort.sortedQue.size() << std::endl;
+	// std::cout << "size of vector is " << johnsonSort.sortedVec.size() << std::endl;
 	endVec = std::clock();
 	elapsed_time = static_cast<double>(endVec - startVec) / CLOCKS_PER_SEC;
-	printQue(dequeSort.sortedQue);
+	//printQue(dequeSort.sortedQue);
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::deque : ";
 	std::cout << elapsed_time * 1000000<<" μs" << std::endl;
-	checkSorted(johnsonSort.sortedVec, dequeSort.sortedQue);
+	checkSorted(johnsonSort.sortedVec, dequeSort.sortedQue, userVector);
 }
 
 
