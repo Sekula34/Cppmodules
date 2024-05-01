@@ -531,3 +531,9 @@ void PmergeMe::printSortedVec(void)
 	}
 	std::cout << std::endl;
 }
+
+bool PmergeMe::Compare::operator()(int a, int b)
+{
+	_comparisonCounter++;
+	return a < b;
+}

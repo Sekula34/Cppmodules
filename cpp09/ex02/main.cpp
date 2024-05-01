@@ -153,7 +153,7 @@ void subjectOutput(int argc, char** argv)
 	std::cout << "Time to process a range of "<< userVector.size() <<" elements with std::vector : ";
 	std::cout <<elapsed_time * 1000000<<" μs" << std::endl;
 
-	//std::cout <<"Number of comparison " << johnsonSort.getComparisonCounter() << std::endl;
+	std::cout <<"Number of comparison " << johnsonSort.getComparisonCounter() << std::endl;
 	
 	PmergeMe dequeSort;
 	startVec = std::clock();
