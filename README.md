@@ -12,4 +12,4 @@ In this 9 modules I was writing simple solutions to learn about object oriented 
 - `make re` -> deletes all object files and executable and then make them again
 
 ## Modules
-* [cpp00 - simple stuff about c++](/cppmodules/cpp00/README.md)
+* [cpp00 - simple stuff about c++](./cppmodules/cpp00/README.md)
