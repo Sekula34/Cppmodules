@@ -1,6 +1,6 @@
 # cpp module 1
-This module is about simple basic stuff about c++
-
+This module is about simple basic stuff about c++  
+[Back to Repo README](../README.md)
 ## ex00
 just simple program with class. Nothing special here.
 ### usage
@@ -17,3 +17,4 @@ After executable is running there is 3 commands that are in infinite loop and us
 - `ADD` -> save a new contact
 - `SEARCH` ->  display a specific contact
 - `EXIT` -> The program quits and the contacts are lost forever!
+
