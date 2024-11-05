@@ -18,5 +18,5 @@ This module is about c++ casts
 2. run executable like: `./identify`
 
 
-[← cpp module01](../cpp05/README.md) | [Next →](./next-file.md) 
+[← cpp module05](../cpp05/README.md) | [cpp module07 →](../cpp07/README.md)
 

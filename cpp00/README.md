@@ -18,5 +18,5 @@ After executable is running there is 3 commands that are in infinite loop and us
 - `SEARCH` ->  display a specific contact
 - `EXIT` -> The program quits and the contacts are lost forever!
 
-[← Repo README](../README.md) | [Next →](./next-file.md)
+[← Repo README](../README.md) | [cpp module02 →](../cpp02/README.md)
 

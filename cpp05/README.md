@@ -22,5 +22,5 @@ This module is about exceptions
 1. run command `make` inside ex02 directory -> this will create executable called `intern`
 2. run executable like: `./intern`
 
-[← cpp module01](../cpp04/README.md) | [Next →](./next-file.md) 
+[← cpp module04](../cpp04/README.md) | [cpp module06 →](../cpp06/README.md)
 

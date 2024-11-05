@@ -22,5 +22,4 @@ This module is about inheritance and polymorphism
 1. run command `make` inside ex02 directory -> this will create executable called `interface`
 2. run executable like: `./interface`
 
-[← cpp module01](../cpp03/README.md) | [Next →](./next-file.md) 
-
+[← cpp module03](../cpp03/README.md) | [cpp module05 →](../cpp05/README.md)

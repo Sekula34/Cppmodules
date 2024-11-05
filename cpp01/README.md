@@ -36,5 +36,5 @@ Program that takes 3 parameteres: filename, s1, s2. It will open \<filename> and
 ## ex05 and ex06
 switch case statements
 
-[← cpp module00](../cpp00/README.md) | [Next →](./next-file.md) 
+[← cpp module00](../cpp00/README.md) | [cpp module02 →](../cpp02/README.md)
 

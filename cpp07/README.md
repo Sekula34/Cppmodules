@@ -18,5 +18,5 @@ This module is about templates
 2. run executable like: `./array`
 
 
-[← cpp module01](../cpp06/README.md) | [Next →](./next-file.md) 
+[← cpp module06](../cpp06/README.md) | [cpp module08 →](../cpp08/README.md)
 
