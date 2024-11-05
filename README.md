@@ -12,4 +12,13 @@ In this 9 modules I was writing simple solutions to learn about object oriented 
 - `make re` -> deletes all object files and executable and then make them again
 
 ## Modules
-* [cpp00 - simple stuff about c++](./cpp00/README.md)
+* [cpp00 - simple stuff about c++ part 1/2](./cpp00/README.md)
+* [cpp01 - simple stuff about c++ part 2/2](./cpp01/README.md)
+* [cpp02 - operator overloading](./cpp02/README.md)
+* [cpp03 - inheritance part 1/2](./cpp03/README.md)
+* [cpp04 - inheritance part 2/2 and polymorphism](./cpp04/README.md)
+* [cpp05 - exceptions](./cpp05/README.md)
+* [cpp06 - c++ casts](./cpp06/README.md)
+* [cpp07 - templates](./cpp07/README.md)
+* [cpp08 - templated containers, iterators](./cpp08/README.md)
+* [cpp09 - merge insertion sort, Reverse Polish Notation](./cpp09/README.md)
