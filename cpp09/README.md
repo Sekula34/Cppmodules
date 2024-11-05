@@ -21,7 +21,7 @@ Program that implements [Reverse Polish Notation](https://en.wikipedia.org/wiki/
 2. run executable like: `./RPN "<numbers> <operators>` for example `./RPN "7 8 +"`
 
 ## ex02
-Program that implements merge insert-insertion sort/Ford-Johnson alorithm explained in volume 3 of  __The Art of Computer Programming__ written by Donald Knuth
+Program that implements merge insert-insertion sort/Ford-Johnson alorithm explained in volume 3 of  *The Art of Computer Programming* written by Donald Knuth
 ### usage
 1. run command `make` inside ex02 directory -> this will create executable called `PmergeMe`
 2. run executable like: `./PmergeMe <number> <number> ..` like `./PmergeMe 6 7 2`

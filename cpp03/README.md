@@ -22,5 +22,5 @@ This module is about inheritance
 1. run command `make` inside ex02 directory -> this will create executable called `diamondTrap`
 2. run executable like: `./diamondTrap`
 
-[← cpp module01](../cpp02/README.md) | [cpp module04 →](../cpp04/README.md)
+[← cpp module02](../cpp02/README.md) | [cpp module04 →](../cpp04/README.md)
 
